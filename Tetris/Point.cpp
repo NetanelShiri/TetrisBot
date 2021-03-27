@@ -1,11 +1,11 @@
 #include "gotoxy.h"
 #include "Point.h"
 
-void Point::draw() {
+void Point::draw(char ch) {
 	gotoxy(x, y);
-	cout << "#" << endl;
+	cout << ch << endl;
 }
-
+/*
 void Point::move(int dir) {
 	switch (dir) {
 	
@@ -28,4 +28,4 @@ void Point::move(int dir) {
 		}
 		break;
 	}
-}
+}*/

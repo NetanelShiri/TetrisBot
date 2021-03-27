@@ -1,5 +1,4 @@
 #include "gotoxy.h"
-kokolida
 void gotoxy(int x, int y)
 {
 	HANDLE hConsoleOutput;

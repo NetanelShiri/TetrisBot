@@ -3,6 +3,10 @@
 #include <process.h>
 #include <conio.h>
 #include "Board.h"
+#include "Figure.h"
+#include "Tetris.h"
+#include "Square.h"
+
 
 
 using std::cout;
@@ -10,7 +14,7 @@ using std::endl;
 using std::cin;
 
 
-void init()
+void Tetris:: init()
 {
 	Board();
 
@@ -22,27 +26,53 @@ void init()
 	//s[1].setFigure('x');
 }
 
-void run()
+void  Tetris::run()
 {
 	char key = 0;
 	int dir;
+	int figure=1;
+	//int newFigure;
 	do {
 		if (_kbhit())
 		{
 			key = _getch();
-			if ((dir = game[0].getDirection(key)) != -1)
-				game[0].setDirection(dir);
-			else if ((dir = game[1].getDirection(key)) != -1)
-				game[1].setDirection(dir);
-			
-		game[0].move();
-		game[1].move();
+
+			///using getDirection to find out who is the player? or creat a spacific function for it ?? /////////
 		
-		Sleep(200);
+		
+			
+			if ((dir = player[0].getDirection(key)) != -1) {
+				/*if (checkEndOfBoard(player[0]) != true)/////didnt reach the end of the board
+					player[0].setDirection(dir);
+				//player[0].move();
+				else//reach end of board 
+				
+					///rand figure+change figure +change dir+move//////
+
+					//newFigure=player[0].chooseFigure();
+					//player[0].setFigure(newFigure);// set the figure in the player+ 
+					                                 //creat new interface (new figure)--with switch+draw it 
+				                                 	//according to the right x in the player(default)
+		*/
+
+			}
+
+			else if ((dir = player[1].getDirection(key)) != -1) {
+				//if (checkFigure(player[1]) != -1)/////same as in player 0
+				player[1].setDirection(dir);
+				//player[1].move();
+
+			}
+			//player[0].move(); JUST THAT
+
+			Sleep(200);
+		} 
+			Square s;
+			s.init(6);
+			s.draw('#');
+			Sleep(400);
+		//setTextColor(Color::WHITE);
+		//clear_screen();
+
 	} while (key != ESC);
-
-	//setTextColor(Color::WHITE);
-	//clear_screen();
-
-
 }
