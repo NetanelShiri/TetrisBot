@@ -3,7 +3,6 @@
 #include <process.h>
 #include <conio.h>
 #include "Board.h"
-#include "Figure.h"
 #include "Tetris.h"
 #include "Square.h"
 
@@ -14,15 +13,15 @@ using std::endl;
 using std::cin;
 
 
-void Tetris::init(int gameType = 0)
+void Tetris::init()
 {	
 	Board();
 
 	player[0].playerInit('#', playerWidth, 0, "adswx");
-	
+	player[0].tetrinomInit();
 	player[1].playerInit('@', playerWidth+10, 1 , "jlkim");
-
-	switch (gameType)
+	//player[1].tetrinomInit();
+	/*switch (gameType)
 	{
 	case 0: // normal settings
 		
@@ -31,7 +30,7 @@ void Tetris::init(int gameType = 0)
 	default:
 		return;
 	}
-	
+	*/
 	//s[0].setColor(Color::YELLOW);
 	//s[1].setColor(Color::LIGHTGREEN);
 	
@@ -44,7 +43,8 @@ void Tetris::run()
 	int figure=1;
 
 	auto object = player[0].getSquare();
-	object.init()
+	object.draw();
+	
 	
 	//do {
 	//	if (_kbhit())

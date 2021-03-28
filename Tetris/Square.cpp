@@ -7,33 +7,36 @@ using std::cout;
 using std::endl;
 using std::cin;
 
+//default ctor
+Square::Square() :playerWidth(0), playerChar('#'){}
+
 
 //square constructor for specific player
 Square::Square(int _width, char _ch):playerWidth(_width),playerChar(_ch)
 {
-	init(_width);
+	init();
 }
 
 //drawing the square
-void Square::draw(char ch) {
+void Square::draw() {
 	for (int i = 0; i < SIZE; i++) {
-		 body[i].draw(ch);
+		 body[i].draw(this->playerChar);
 	}
 
 }
 
 //initialize the square by player location
-void Square::init(int width){
-	body[0].setX(width);
+void Square::init(){
+	body[0].setX(this->playerWidth);
 	body[0].setY(1); 
 
-	body[1].setX(width+1);
+	body[1].setX(this->playerWidth+1);
 	body[1].setY(1);
 
-	body[2].setX(width);
+	body[2].setX(this->playerWidth);
 	body[2].setY(2);
 
-	body[3].setX(width+1);
+	body[3].setX(this->playerWidth+1);
 	body[3].setY(2);
 }
 /*

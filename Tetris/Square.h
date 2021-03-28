@@ -13,12 +13,12 @@ class Square {
 
 public:
 
-	Square(){}
+	Square();
 	Square(int _width, char _char);
 
 	void move();
-	void init(int width);
-	void draw(char ch);
+	void init();
+	void draw();
 
 
 	//void setColor(Color c) {

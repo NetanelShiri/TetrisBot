@@ -1,5 +1,5 @@
 #pragma once
-#include "Figure.h"
+#include "Square.h"
 
 class Player {
 
@@ -15,7 +15,9 @@ class Player {
 	
 public:
 
+	
 	void playerInit(char _playerChar,int _width,int _playerNumber,const char _keys[5]);
+	void tetrinomInit();
 	//void setArrowKeys(const char* keys); 
 
 	Square& getSquare()

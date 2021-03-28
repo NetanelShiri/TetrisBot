@@ -9,7 +9,7 @@ constexpr size_t maxWidth = 26;
 constexpr size_t middleWidth = 13;
 
 //player
-constexpr size_t playerWidth = 13;
+constexpr size_t playerWidth = 6;
 
 
 class Tetris
@@ -20,7 +20,7 @@ class Tetris
 public:
 	
 	
-	void init(int gameType = 0);
+	void init();
 	void run();
 
 };

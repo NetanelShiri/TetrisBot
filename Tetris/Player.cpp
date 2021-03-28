@@ -1,5 +1,9 @@
 #include "Player.h"
-#include "Figure.h"
+#include "gotoxy.h"
+
+
+//player constructor
+//Player::Player()
 //
 //void Square:: setArrowKeys(const char* keys) { // "wzad"
        // arrowKeys[0] = keys[0];
@@ -33,6 +37,13 @@ void Player::setDirection(int dir) {
 		return -1;
 	}
 
+	//initialize the tetrinoms, the way we want it (colored/white).
+	void Player::tetrinomInit()
+	{
+		square = new Square(this->widthDefault, this->playerChar);
+	}
+
+
 	/*
 	bool Player:: checkeEndOfBoard(Player player) {///////
 
@@ -51,7 +62,4 @@ void Player::setDirection(int dir) {
 		}
 	}
 	*/
-	void setFigure(int figure) {
-
-
-	}
+	
