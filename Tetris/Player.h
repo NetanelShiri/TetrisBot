@@ -3,16 +3,25 @@
 
 class Player {
 
-	int _direction = 3;
-	char arrowKeys[4];
-	int _playerNumber;
-	int _widthDefault;
-	Figure tetrinom[7];
-public:
-	/*Player(char* arrowKeys,int playerNumber,int widthDefault) {//ctor
 
-	}*/
+	int direction = 3;
+	char arrowKeys[5];
+	int playerNumber = 0;
+	int widthDefault = 0;
+	char playerChar = ' ';
+
+	Square* square;
+
+	
+public:
+
+	void playerInit(char _playerChar,int _width,int _playerNumber,const char _keys[5]);
 	//void setArrowKeys(const char* keys); 
+
+	Square& getSquare()
+	{
+		return *this->square;
+	}
 
 	int getDirection(char key);
 	void setDirection(int dir);
@@ -21,5 +30,4 @@ public:
 	//void setFigure();//////
 	//int checkLocation();//
 	//bool checkFigureLocation();//
-
 };

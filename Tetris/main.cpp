@@ -13,6 +13,8 @@ int main()
 	game.init();
 	game.run();
 	
+	gotoxy(0, 20);
+	cout << "";
 	//while (!_kbhit() || _getch() != 27)
 	//{
 	//	gotoxy(x, y);

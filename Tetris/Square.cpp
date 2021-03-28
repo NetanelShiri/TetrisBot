@@ -7,12 +7,22 @@ using std::cout;
 using std::endl;
 using std::cin;
 
+
+//square constructor for specific player
+Square::Square(int _width, char _ch):playerWidth(_width),playerChar(_ch)
+{
+	init(_width);
+}
+
+//drawing the square
 void Square::draw(char ch) {
 	for (int i = 0; i < SIZE; i++) {
 		 body[i].draw(ch);
 	}
 
 }
+
+//initialize the square by player location
 void Square::init(int width){
 	body[0].setX(width);
 	body[0].setY(1); 
