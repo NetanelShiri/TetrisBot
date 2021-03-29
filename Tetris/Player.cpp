@@ -37,19 +37,15 @@ void Player::setDirection(int dir) {
 		return -1;
 	}
 
-	//initialize the tetrinoms, the way we want it (colored/white).
-	void Player::tetrinomInit()
-	{
-		square = new Square(this->widthDefault, this->playerChar);
+	char Player::getPlayerChar() {
+
+		return  playerChar;
 	}
 
-	auto Player::getObject(int number)
-	{
-		switch (number)
-		{
-		case 0:
-			return square;
-		}
+
+	int Player::getWidthDefault() {
+
+		return widthDefault;
 	}
 
 	/*

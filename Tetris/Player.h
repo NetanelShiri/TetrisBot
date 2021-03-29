@@ -1,5 +1,4 @@
 #pragma once
-#include "Square.h"
 
 class Player {
 
@@ -10,20 +9,17 @@ class Player {
 	int widthDefault = 0;
 	char playerChar = ' ';
 
-	Square* square;
 
 	
 public:
 
-	auto getObject(int number);
-	void playerInit(char _playerChar,int _width,int _playerNumber,const char _keys[5]);
-	void tetrinomInit();
-	//void setArrowKeys(const char* keys); 
 
-	Square& getSquare()
-	{
-		return *this->square;
-	}
+	void playerInit(char _playerChar,int _width,int _playerNumber,const char _keys[5]);
+	//void setArrowKeys(const char* keys); 
+	char getPlayerChar();
+	int getWidthDefault();
+
+
 
 	int getDirection(char key);
 	void setDirection(int dir);

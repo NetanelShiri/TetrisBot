@@ -1,6 +1,8 @@
 #pragma once
 
 #include"Player.h"
+#include "Square.h"
+
 //board
 constexpr size_t minHeight = 0;
 constexpr size_t maxHeight = 19;
@@ -16,11 +18,15 @@ class Tetris
 {
 	enum { ESC = 27 };
 	Player player[2];
+	Square* square[2];
+
 
 public:
 	
 	
 	void init();
 	void run();
+	void tetrinomInit();
+
 
 };
