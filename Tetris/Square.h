@@ -5,6 +5,8 @@ class Square {
 	enum { SIZE = 4 };
 	Point body[SIZE];
 
+
+	int direction = 0;
 	int playerWidth;
 	char playerChar;
 	
@@ -20,7 +22,10 @@ public:
 	void init();
 	void draw();
 
-
+	void setDirection(int _direction)
+	{
+		this->direction = _direction;
+	}
 	//void setColor(Color c) {
 	//	color = c;
 	//}

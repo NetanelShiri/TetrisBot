@@ -43,6 +43,14 @@ void Player::setDirection(int dir) {
 		square = new Square(this->widthDefault, this->playerChar);
 	}
 
+	auto Player::getObject(int number)
+	{
+		switch (number)
+		{
+		case 0:
+			return square;
+		}
+	}
 
 	/*
 	bool Player:: checkeEndOfBoard(Player player) {///////

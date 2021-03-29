@@ -4,7 +4,7 @@
 class Player {
 
 
-	int direction = 3;
+	int direction = 0;
 	char arrowKeys[5];
 	int playerNumber = 0;
 	int widthDefault = 0;
@@ -15,7 +15,7 @@ class Player {
 	
 public:
 
-	
+	auto getObject(int number);
 	void playerInit(char _playerChar,int _width,int _playerNumber,const char _keys[5]);
 	void tetrinomInit();
 	//void setArrowKeys(const char* keys); 

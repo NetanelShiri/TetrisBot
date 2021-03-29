@@ -27,19 +27,22 @@ void Square::draw() {
 
 //initialize the square by player location
 void Square::init(){
+	//top
 	body[0].setX(this->playerWidth);
 	body[0].setY(1); 
 
 	body[1].setX(this->playerWidth+1);
 	body[1].setY(1);
 
+	//bottom
 	body[2].setX(this->playerWidth);
 	body[2].setY(2);
 
 	body[3].setX(this->playerWidth+1);
 	body[3].setY(2);
 }
-/*
+
+//deleting upper points and relocating the points , and then drawing the deleted points in their new locations
 void Square::move() {
 	body[0].draw(' ');
 	body[1].draw(' ');
@@ -49,12 +52,9 @@ void Square::move() {
 
 	body[2].move(direction);
 	body[3].move(direction);
-	Sleep(400);
-	body[0].draw('#');
-	body[1].draw('#');
 
 }
-*/
+
 //body[SIZE - 1].draw(' ');
 //	for (int i = SIZE - 1; i > 0; i--)
 //	{

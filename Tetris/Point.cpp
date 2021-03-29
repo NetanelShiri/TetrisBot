@@ -1,31 +1,36 @@
 #include "gotoxy.h"
 #include "Point.h"
+#include "Tetris.h"
 
 void Point::draw(char ch) {
 	gotoxy(x, y);
 	cout << ch << endl;
 }
-/*
+
 void Point::move(int dir) {
 	switch (dir) {
 	
-	case 1: // DOWN
+	case 0: // DOWN
 		++y;
-		if (y == 24) {
-			draw();
+		if (y == maxHeight) {
+			//--y;
+		//	return;
 		}
+		setY(y);
 		break;
-	case 2: // LEFT
+	case 1: // LEFT
 		--x;
 		if (x == 1) {
-			draw;
+			
 		}
+		setX(x);
 		break;
-	case 3: // RIGHT
+	case 2: // RIGHT
 		++x;
 		if (x ==18) {
-			draw;
+			
 		}
+		setX(x);
 		break;
 	}
-}*/
+}

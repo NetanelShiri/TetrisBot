@@ -19,8 +19,8 @@ void Tetris::init()
 
 	player[0].playerInit('#', playerWidth, 0, "adswx");
 	player[0].tetrinomInit();
-	player[1].playerInit('@', playerWidth+10, 1 , "jlkim");
-	//player[1].tetrinomInit();
+	player[1].playerInit('@', playerWidth+middleWidth, 1 , "jlkim");
+	player[1].tetrinomInit();
 	/*switch (gameType)
 	{
 	case 0: // normal settings
@@ -39,52 +39,52 @@ void Tetris::init()
 void Tetris::run()
 {
 	char key = 0;
-	int dir;
 	int figure=1;
+	int dir = 0;
 
 	auto object = player[0].getSquare();
 	object.draw();
+	auto object2 = player[1].getSquare();
+	object2.draw();
+
+	Sleep(400);
+	object.move();
+	object.draw();
 	
 	
-	//do {
-	//	if (_kbhit())
-	//	{
-	//		key = _getch();
+	
+	do {
+		if (_kbhit())
+		{
+			key = _getch();
 
-	//		///using getDirection to find out who is the player? or creat a spacific function for it ?? /////////
-	//
-	//		if ((dir = player[0].getDirection(key)) != -1) {
-	//			/*if (checkEndOfBoard(player[0]) != true)/////didnt reach the end of the board
-	//				player[0].setDirection(dir);
-	//			//player[0].move();
-	//			else//reach end of board 
-	//			
-	//				///rand figure+change figure +change dir+move//////
+			
+	
+			if ((dir = player[0].getDirection(key)) != -1) {
+	
+		
 
-	//				//newFigure=player[0].chooseFigure();
-	//				//player[0].setFigure(newFigure);// set the figure in the player+ 
-	//				                                 //creat new interface (new figure)--with switch+draw it 
-	//			                                 	//according to the right x in the player(default)
-	//	*/
+			}
 
-	//		}
+			else if ((dir = player[1].getDirection(key)) != -1) {
+				//if (checkFigure(player[1]) != -1)/////same as in player 0
+				player[1].setDirection(dir);
+				//player[1].move();
 
-	//		else if ((dir = player[1].getDirection(key)) != -1) {
-	//			//if (checkFigure(player[1]) != -1)/////same as in player 0
-	//			player[1].setDirection(dir);
-	//			//player[1].move();
+			}
+			//player[0].move(); JUST THAT
 
-	//		}
-	//		//player[0].move(); JUST THAT
+			Sleep(200);
+		} 
+			
+		object.move();
+		object2.move();
+		object.draw();
+		object2.draw();
+			
+			Sleep(400);
+		
+		//clear_screen();
 
-	//		Sleep(200);
-	//	} 
-	//		Square s;
-	//		//s.init(6);
-	//		//s.draw('#');
-	//		Sleep(400);
-	//	//setTextColor(Color::WHITE);
-	//	//clear_screen();
-
-	//} while (key != ESC);
+	} while (key != ESC);
 }
