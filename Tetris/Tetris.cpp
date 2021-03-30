@@ -20,7 +20,7 @@ void Tetris::init()
 	player[0].playerInit('#', playerWidth, 0, "adswx");
 	player[1].playerInit('@', playerWidth+middleWidth, 1 , "jlkim");
 
-	tetrinomInit();
+	tetrominoInit();
 
 	/*switch (gameType)
 	{
@@ -42,13 +42,13 @@ void Tetris::run()
 	char key = 0;
 	int figure=1;
 	int dir = 0;
-
 	
-	square[0]->draw();
-	square[1]->draw();
+	Tetromino shape = SquareS;
+	
+	moveTetromino(shape, 0);
 
 	Sleep(400);
-
+	//check(dir);
 	
 	
 	
@@ -71,15 +71,11 @@ void Tetris::run()
 				//player[1].move();
 
 			}
-			//player[0].move(); JUST THAT
+			
 
 			Sleep(200);
 		} 
-		square[0]->move();
-		square[1]->move();
-
-		square[0]->draw();
-		square[1]->draw();
+	
 			Sleep(400);
 		
 		//clear_screen();
@@ -88,8 +84,35 @@ void Tetris::run()
 }
 
 
+void Tetris::moveTetromino(Tetromino shape, int player)
+{
+	switch (shape)
+	{
+	case SquareS:
+		square[player]->move();
+		square[player]->draw();
+		break;
+	case LineS:
+		break;
+	case TS:
+		break;
+	case LS:
+		break;
+	case JS:
+		break;
+	case SkewS:
+		break;
+	case RSkewS:
+		break;
+	default:
+		moveTetromino(SquareS, player);
+
+	}
+		
+}
+
 //initialize the tetrinoms, the way we want it (colored/white).
-void Tetris::tetrinomInit()
+void Tetris::tetrominoInit()
 {
 	
 	square[0] = new Square(player[0].getWidthDefault() , player[0].getPlayerChar());
