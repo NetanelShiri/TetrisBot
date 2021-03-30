@@ -17,6 +17,7 @@ constexpr size_t playerWidth = 6;
 class Tetris
 {
 	enum { ESC = 27 };
+	enum Tetromino { SquareS, LineS , TS , LS , JS , SkewS , RSkewS };
 	Player player[2];
 	Square* square[2];
 
@@ -26,7 +27,7 @@ public:
 	
 	void init();
 	void run();
-	void tetrinomInit();
-
+	void tetrominoInit();
+	void moveTetromino(Tetromino shape, int player);
 
 };
