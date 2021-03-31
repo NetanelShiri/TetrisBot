@@ -141,19 +141,31 @@
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="gotoxy.cpp" />
+    <ClCompile Include="JShape.cpp" />
+    <ClCompile Include="LineShape.cpp" />
+    <ClCompile Include="LShape.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Point.cpp" />
-    <ClCompile Include="Square.cpp" />
+    <ClCompile Include="RSkewShape.cpp" />
+    <ClCompile Include="SkewShape.cpp" />
+    <ClCompile Include="SquareShape.cpp" />
     <ClCompile Include="Tetris.cpp" />
+    <ClCompile Include="TShape.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
     <ClInclude Include="gotoxy.h" />
+    <ClInclude Include="JShape.h" />
+    <ClInclude Include="LineShape.h" />
+    <ClInclude Include="LShape.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Point.h" />
-    <ClInclude Include="Square.h" />
+    <ClInclude Include="RSkewShape.h" />
+    <ClInclude Include="SkewShape.h" />
+    <ClInclude Include="SquareShape.h" />
     <ClInclude Include="Tetris.h" />
+    <ClInclude Include="TShape.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

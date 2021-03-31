@@ -1,9 +1,10 @@
 #pragma once
+#include "Point.h"
 
 class Player {
 
 
-	int direction = 0;
+	Direction direction = Down;
 	char arrowKeys[5];
 	int playerNumber = 0;
 	int widthDefault = 0;
@@ -21,8 +22,8 @@ public:
 
 
 
-	int getDirection(char key);
-	void setDirection(int dir);
+	Direction getDirection(char key);
+	void setDirection(Direction direction);
 	//int getFigure();//
 	//int checkeEndOfBoard(Player player);/////
 	//void setFigure();//////

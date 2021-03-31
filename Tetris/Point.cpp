@@ -7,30 +7,30 @@ void Point::draw(char ch) {
 	cout << ch << endl;
 }
 
-void Point::move(int dir) {
-	switch (dir) {
+void Point::move(Direction direction) {
+	switch(direction) {
 	
-	case 0: // DOWN
-		++y;
+	case Left:
+
 		if (y == maxHeight) {
 			//--y;
 		//	return;
 		}
-		setY(y);
+		setX(--x);
 		break;
-	case 1: // LEFT
-		--x;
+	case Right: 
+
 		if (x == 1) {
 			
 		}
-		setX(x);
+		setX(++x);
 		break;
-	case 2: // RIGHT
-		++x;
+	case Down:
+
 		if (x ==18) {
 			
 		}
-		setX(x);
+		setY(++y);
 		break;
 	}
 }

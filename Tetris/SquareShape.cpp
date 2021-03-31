@@ -1,5 +1,5 @@
 #include "gotoxy.h"
-#include "Square.h"
+#include "SquareShape.h"
 #include "Tetris.h"
 #include <process.h>
 #include <conio.h>
@@ -8,17 +8,17 @@ using std::endl;
 using std::cin;
 
 //default ctor
-Square::Square() :playerWidth(0), playerChar('#'){}
+SquareShape::SquareShape() :playerWidth(0), playerChar('#'){}
 
 
 //square constructor for specific player
-Square::Square(int _width, char _ch):playerWidth(_width),playerChar(_ch)
+SquareShape::SquareShape(int _width, char _ch):playerWidth(_width),playerChar(_ch)
 {
 	init();
 }
 
 //drawing the square
-void Square::draw() {
+void SquareShape::draw() {
 	for (int i = 0; i < SIZE; i++) {
 		 body[i].draw(this->playerChar);
 	}
@@ -26,8 +26,8 @@ void Square::draw() {
 }
 
 //initialize the square by player location
-void Square::init(){
-		
+void SquareShape::init(){
+
 	//top
 	body[0].setX(this->playerWidth);
 	body[0].setY(1); 
@@ -44,17 +44,19 @@ void Square::init(){
 }
 
 //deleting upper points and relocating the points , and then drawing the deleted points in their new locations
-void Square::move() {
+void SquareShape::move(Direction direction) {
 
 	body[0].draw(' ');
 	body[1].draw(' ');
+	body[2].draw(' ');
+	body[3].draw(' ');
 
 	body[0].move(direction);
 	body[1].move(direction);
-
 	body[2].move(direction);
 	body[3].move(direction);		
 
+	this->draw();
 }
 
 

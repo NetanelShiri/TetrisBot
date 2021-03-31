@@ -1,6 +1,4 @@
-#include "Line.h"
 #include "TShape.h"
-
 
 //default ctor
 TShape::TShape() :playerWidth(0), playerChar('#') {}
@@ -38,7 +36,7 @@ void TShape::init() {
 }
 
 //deleting upper points and relocating the points , and then drawing the deleted points in their new locations
-void TShape::move() {
+void TShape::move(Direction direction) {
 	body[0].draw(' ');
 	body[1].draw(' ');
 

@@ -1,4 +1,5 @@
 #include "gotoxy.h"
+
 void gotoxy(int x, int y)
 {
 	HANDLE hConsoleOutput;
@@ -8,4 +9,12 @@ void gotoxy(int x, int y)
 	dwCursorPosition.Y = y;
 	hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleCursorPosition(hConsoleOutput, dwCursorPosition);
+}
+
+void clearKeyboardBuffer()
+{
+	while (_kbhit())
+	{
+		_getch();
+	}
 }

@@ -3,32 +3,20 @@
 #include "Tetris.h"
 #include <process.h>
 #include <conio.h>
-#include "Square.h"
+
+/*
+Tetris built using oop, easy to manage , add players , functionality and more ..
+*/
+
 using namespace std;
 
 int main()
 {
-	Board();
 	Tetris game;
 	game.init();
 	game.run();
 	
 	gotoxy(0, 20);
 	cout << "";
-	//while (!_kbhit() || _getch() != 27)
-	//{
-	//	gotoxy(x, y);
-	//	cout << "#";
-	//	if (y == maxheight - 1)
-	//		break;;
-	//	Sleep(400);
-	//	gotoxy(x, y);
-	//	cout << " ";
-
-	//	y++;
-
-	//}
 	
-	//cout << "\n\n";
-	//return 0;
 }

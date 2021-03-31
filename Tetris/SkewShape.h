@@ -1,15 +1,5 @@
-
 #pragma once
 #include "Point.h"
-#include "gotoxy.h"
-#include "Square.h"
-#include "Tetris.h"
-#include <process.h>
-#include <conio.h>
-using std::cout;
-using std::endl;
-using std::cin;
-
 
 class SkewShape {
 	enum { SIZE = 4 };
@@ -28,7 +18,7 @@ public:
 	SkewShape();
 	SkewShape(int _width, char _char);
 
-	void move();
+	void move(Direction direction);
 	void init();
 	void draw();
 

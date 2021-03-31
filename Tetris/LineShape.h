@@ -1,12 +1,6 @@
 #pragma once
 #include "gotoxy.h"
-#include "Square.h"
-#include "Tetris.h"
-#include <process.h>
-#include <conio.h>
-using std::cout;
-using std::endl;
-using std::cin;
+#include "Point.h"
 
 class LineShape {
 	enum { SIZE = 4 };
@@ -25,7 +19,7 @@ public:
 	LineShape();
 	LineShape(int _width, char _char);
 
-	void move();
+	void move(Direction direction);
 	void init();
 	void draw();
 

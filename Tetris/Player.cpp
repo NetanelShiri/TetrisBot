@@ -17,24 +17,24 @@ void Player::playerInit(char _playerChar, int _width, int _playerNumber,const ch
 	this->playerChar = _playerChar;
 	this->widthDefault = _width;
 	this->playerNumber = _playerNumber;
-	this->arrowKeys[0] = _keys[0];
-	this->arrowKeys[1] = _keys[1];
-	this->arrowKeys[2] = _keys[2];
-	this->arrowKeys[3] = _keys[3];
+	this->arrowKeys[0] = _keys[0]; //Left
+	this->arrowKeys[1] = _keys[1]; //Right
+	this->arrowKeys[2] = _keys[2]; //Down
+	this->arrowKeys[3] = _keys[3]; 
 	this->arrowKeys[4] = _keys[4];
 }
 
-void Player::setDirection(int dir) {
-		direction = dir;
+void Player::setDirection(Direction _direction) {
+		this->direction = _direction;
 }
 
-	int  Player::getDirection(char key){//////
+	Direction Player::getDirection(char key){//////
 		for (int i = 0; i < 4; i++)
 		{
 			if (key == arrowKeys[i])
-				return i;
+				return Direction(i);
 		}
-		return -1;
+		return Direction(-1);
 	}
 
 	char Player::getPlayerChar() {

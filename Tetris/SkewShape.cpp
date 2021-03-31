@@ -1,5 +1,3 @@
-#include "Line.h"
-#include "TShape.h"
 #include "SkewShape.h"
 
 
@@ -40,7 +38,7 @@ void SkewShape::init() {
 }
 
 //deleting upper points and relocating the points , and then drawing the deleted points in their new locations
-void SkewShape::move() {
+void SkewShape::move(Direction direction) {
 	body[0].draw(' ');
 	body[1].draw(' ');
 

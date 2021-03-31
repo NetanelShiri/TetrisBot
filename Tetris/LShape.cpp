@@ -1,5 +1,3 @@
-#include "Line.h"
-#include "TShape.h"
 #include "LShape.h"
 
 
@@ -39,7 +37,7 @@ void LShape::init() {
 }
 
 //deleting upper points and relocating the points , and then drawing the deleted points in their new locations
-void LShape::move() {
+void LShape::move(Direction direction) {
 	body[0].draw(' ');
 	body[1].draw(' ');
 
