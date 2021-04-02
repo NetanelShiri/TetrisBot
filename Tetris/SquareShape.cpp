@@ -58,5 +58,12 @@ void SquareShape::moveTetromino(Direction direction) {
 }
 
 
+void SquareShape::RotateCW()
+{
+
+
+}
+
+
 
 

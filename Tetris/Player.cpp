@@ -2,7 +2,6 @@
 #include "gotoxy.h"
 
 
-
 void Player::playerInit(char _playerChar, int _width, int _playerNumber,const char _keys[5])
 {
 	this->playerChar = _playerChar;
@@ -17,13 +16,19 @@ void Player::playerInit(char _playerChar, int _width, int _playerNumber,const ch
 
 void Player::playerMovement()
 {
-	this->tetromino->moveTetromino(direction);
+	if (direction == Direction::RotateC) { playerRotateCW(); }
+	else if(direction == Direction::RotateCC) { }
+	else{ this->tetromino->moveTetromino(direction); }
 }
-
 
 void Player::playerDraw()
 {
 	this->tetromino->drawTetromino();
+}
+
+void Player::playerRotateCW()
+{
+	this->tetromino->RotateCW();
 }
 
 void Player::setDirection(Direction _direction) {
@@ -64,6 +69,21 @@ void Player::setDirection(Direction _direction) {
 		case LineS:
 			tetromino = new LineShape(this->widthDefault, this->playerChar);
 			break;
+		case TS:
+			tetromino = new TShape(this->widthDefault, this->playerChar);
+			break;
+		case LS:
+			tetromino = new LShape(this->widthDefault, this->playerChar);
+			break;
+		case JS:
+			tetromino = new JShape(this->widthDefault, this->playerChar);
+			break;
+		case SkewS:
+			tetromino = new SkewShape(this->widthDefault, this->playerChar);
+			break;
+		case RSkewS:
+			tetromino = new RSkewShape(this->widthDefault, this->playerChar);
+			break;
 
 		default:
 			tetromino = new SquareShape(this->widthDefault, this->playerChar);
@@ -76,7 +96,7 @@ void Player::setDirection(Direction _direction) {
 	{
 		std::random_device rd;
 		std::mt19937 mt(rd());
-		std::uniform_real_distribution<double> dist(0.0, 2.0);
+		std::uniform_real_distribution<double> dist(0.0, 7.0);
 
 		return (int)dist(mt);
 	}

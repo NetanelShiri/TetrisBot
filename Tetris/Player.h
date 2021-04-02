@@ -6,7 +6,11 @@
 #include "Tetrominos.h"
 #include "SquareShape.h"
 #include "LineShape.h"
-
+#include "JShape.h"
+#include "LShape.h"
+#include "TShape.h"
+#include "SkewShape.h"
+#include "RSkewShape.h"
 
 
 class Player {
@@ -23,10 +27,12 @@ class Player {
 	Tetrominos* tetromino = nullptr;
 	
 public:
-
+	
 	void playerMovement();
 	void playerDraw();
+	void playerRotateCW();
 	void playerInit(char _playerChar,int _width,int _playerNumber,const char _keys[5]);
+	
 
 	int randomizer();
 	void tetrominoCreator();

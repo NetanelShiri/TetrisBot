@@ -11,26 +11,14 @@ void Point::move(Direction direction) {
 	switch(direction) {
 	
 	case Direction::Left:
-
-		if (y == maxHeight) {
-			//--y;
-		//	return;
-		}
-		setX(x-2);
+		setX(--x);
 		break;
 	case Direction::Right: 
-
-		if (x == 1) {
-			
-		}
-		setX(x+2);
+		setX(++x);
 		break;
 	case Direction::Down:
-
-		if (x ==18) {
-			
-		}
 		setY(++y);
 		break;
+		
 	}
 }

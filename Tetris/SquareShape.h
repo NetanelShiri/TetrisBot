@@ -14,5 +14,6 @@ public:
 	virtual void moveTetromino(Direction direction);
 	virtual void initTetromino();
 	virtual void drawTetromino();
+	virtual void RotateCW();
 
 };

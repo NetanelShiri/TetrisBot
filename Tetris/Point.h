@@ -4,7 +4,7 @@
 
 using namespace std;
 
-enum class Direction {None = -1 , Left , Right , Down};
+enum class Direction {None = -1 , Left , Right , Down , RotateC , RotateCC};
 
 class Point {
 	int x = 1, y = 1;
@@ -18,6 +18,16 @@ public:
 	void setY(int Y) {
 		y = Y;
 	}
+	
+	int getX()
+	{
+		return x;
+	}
+	int getY()
+	{
+		return y;
+	}
+
 
 };
 

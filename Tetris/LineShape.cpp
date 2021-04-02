@@ -56,6 +56,25 @@ void LineShape::moveTetromino(Direction direction) {
 	this->drawTetromino();
 }
 
+void LineShape::RotateCW()
+{
+	body[0].draw(' ');
+	body[1].draw(' ');
+	body[2].draw(' ');
+	body[3].draw(' ');
+
+	body[0].setX(body[0].getX() + 1);
+	body[0].setY(body[0].getY() - 2);
+	body[2].setX(body[2].getX() - 1);
+	body[2].setY(body[2].getY() - 1);
+	body[3].setX(body[3].getX() - 2);
+	body[3].setY(body[3].getY() + 1);
+
+	this->drawTetromino();
+
+}
+
+
 
 
 
