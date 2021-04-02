@@ -1,10 +1,10 @@
 #pragma once
-
+#include "gotoxy.h"
 #include <iostream>
 
 using namespace std;
 
-enum Direction {None = -1 , Left , Right , Down};
+enum class Direction {None = -1 , Left , Right , Down};
 
 class Point {
 	int x = 1, y = 1;

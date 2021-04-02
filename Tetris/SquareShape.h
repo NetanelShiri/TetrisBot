@@ -1,35 +1,18 @@
 #pragma once
 #include "Point.h"
+#include "Tetrominos.h"
 
 
-class SquareShape {
-	enum { SIZE = 4 };
-	Point body[SIZE];
+class SquareShape : public Tetrominos {
 
-	int playerWidth;
-	char playerChar;
-	
-	//Color color;
-	//char figure;
 
 public:
 
 	SquareShape();
 	SquareShape(int _width, char _char);
 
-	void move(Direction direction);
-	void init();
-	void draw();
-
-
-	//void setColor(Color c) {
-	//	color = c;
-	//}
-	//void setFigure(const char c) {
-	//	figure = c;
-	//}
+	virtual void moveTetromino(Direction direction);
+	virtual void initTetromino();
+	virtual void drawTetromino();
 
 };
-
-
-

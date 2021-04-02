@@ -162,6 +162,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="RSkewShape.h" />
+    <ClInclude Include="Tetrominos.h" />
     <ClInclude Include="SkewShape.h" />
     <ClInclude Include="SquareShape.h" />
     <ClInclude Include="Tetris.h" />

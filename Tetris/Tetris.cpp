@@ -20,7 +20,7 @@ void Tetris::init()
 	player[1].playerInit('@', playerWidth+middleWidth, 1 , "jlkim");
 
 	//creating shapes according to player settings.
-	tetrominoInit();
+	
 
 	/*switch (gameType)
 	{
@@ -42,115 +42,46 @@ void Tetris::run()
 	char key = 0;
 	int figure=1;
 	
-	Direction direction = Down;
-	Tetromino shape = SquareS;	
 	
-	drawTetromino(shape, Player1);
+	Direction direction;
 
+	player[0].tetrominoCreator();
+	player[1].tetrominoCreator();
 
+		
 	Sleep(400);
-	
 	
 	
 	do {
 		
-		if (_kbhit())
+		player[Player1].setDirection(Direction::Down);
+		player[Player1].playerMovement();
+		player[Player2].setDirection(Direction::Down);
+		player[Player2].playerMovement();
+
+		while (_kbhit())
 		{
 			key = _getch();
-
-			
 	
-			if ((direction = player[0].getDirection(key)) != None) {
+			if ((direction = player[Player1].getDirection(key)) != Direction::None) {
 				
-				moveTetromino(shape, Player1, direction);
+				player[Player1].setDirection(direction);
+				player[Player1].playerMovement();
 			}
 
-			else if ((direction = player[1].getDirection(key)) != None) {
+			else if ((direction = player[Player2].getDirection(key)) != Direction::None) {
 			
-
+				player[Player2].setDirection(direction);
+				player[Player2].playerMovement();
 			}
-			
-			direction = Down;
-			clearKeyboardBuffer();
 		
-			
 		} 
+		//	clearKeyboardBuffer();
+
 		
-		    moveTetromino(shape, Player1, direction);
-			Sleep(1000);
+		Sleep(800);
 		
 	} while (key != ESC);
-}
-
-
-
-//All functions below can be way more efficient via inheritence and polymorphism!
-//and will be able to be changed easily.
-void Tetris::drawTetromino(Tetromino shape, int player)
-{
-	switch (shape)
-	{
-	case SquareS:
-		square[player]->draw();
-		break;
-	case LineS:
-		break;
-	case TS:
-		break;
-	case LS:
-		break;
-	case JS:
-		break;
-	case SkewS:
-		break;
-	case RSkewS:
-		break;
-	default:
-	    drawTetromino(SquareS, player);
 	
-	}
 }
 
-void Tetris::moveTetromino(Tetromino shape, int player, Direction direction)
-{
-	switch (shape)
-	{
-	case SquareS:
-		square[player]->move(direction);
-		break;
-	case LineS:
-		break;
-	case TS:
-		break;
-	case LS:
-		break;
-	case JS:
-		break;
-	case SkewS:
-		break;
-	case RSkewS:
-		break;
-	default:
-		moveTetromino(SquareS, player, direction);
-
-	}
-		
-}
-
-//initialize the tetrinoms, the way we want it (colored/white/char/size...etc).
-void Tetris::tetrominoInit()
-{
-
-	//Player1 initialization
-	int player1Width = player[Player1].getWidthDefault();
-	int player1Char = player[Player1].getPlayerChar();
-	square[Player1] = new SquareShape(player1Width, player1Char);
-	line[Player1] = new LineShape(player1Width, player1Char);
-	
-	//Player2 initialization
-	int player2Width = player[Player2].getWidthDefault();
-	int player2Char = player[Player2].getPlayerChar();
-	square[Player2] = new SquareShape(player2Width, player2Char);
-	line[Player2] = new LineShape(player2Width, player2Char);
-
-}

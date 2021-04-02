@@ -2,16 +2,7 @@
 #include "gotoxy.h"
 
 
-//player constructor
-//Player::Player()
-//
-//void Square:: setArrowKeys(const char* keys) { // "wzad"
-       // arrowKeys[0] = keys[0];
-//		arrowKeys[1] = keys[1];
-//		arrowKeys[2] = keys[2];
-//		arrowKeys[3] = keys[3];
-//	}
-//
+
 void Player::playerInit(char _playerChar, int _width, int _playerNumber,const char _keys[5])
 {
 	this->playerChar = _playerChar;
@@ -22,6 +13,17 @@ void Player::playerInit(char _playerChar, int _width, int _playerNumber,const ch
 	this->arrowKeys[2] = _keys[2]; //Down
 	this->arrowKeys[3] = _keys[3]; 
 	this->arrowKeys[4] = _keys[4];
+}
+
+void Player::playerMovement()
+{
+	this->tetromino->moveTetromino(direction);
+}
+
+
+void Player::playerDraw()
+{
+	this->tetromino->drawTetromino();
 }
 
 void Player::setDirection(Direction _direction) {
@@ -48,22 +50,33 @@ void Player::setDirection(Direction _direction) {
 		return widthDefault;
 	}
 
-	/*
-	bool Player:: checkeEndOfBoard(Player player) {///////
-
-		switch (player.getFigure)
-		{
-		case 1:
-			if (checkLocation() != false)
-				return 0;
-			else//we reach the end of board with this figure
-			return true;
-
-			
-			break;
-		default:
-			break;
-		}
-	}
-	*/
 	
+
+	void Player::tetrominoCreator()
+	{
+		int randomNumber = randomizer();
+
+		switch (randomNumber)
+		{
+		case SquareS:
+			tetromino = new SquareShape(this->widthDefault, this->playerChar);
+			break;
+		case LineS:
+			tetromino = new LineShape(this->widthDefault, this->playerChar);
+			break;
+
+		default:
+			tetromino = new SquareShape(this->widthDefault, this->playerChar);
+		}
+
+	}
+
+	//returns number between 0 to 6
+	int Player::randomizer()
+	{
+		std::random_device rd;
+		std::mt19937 mt(rd());
+		std::uniform_real_distribution<double> dist(0.0, 2.0);
+
+		return (int)dist(mt);
+	}

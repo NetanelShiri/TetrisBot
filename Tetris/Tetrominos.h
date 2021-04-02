@@ -1,0 +1,24 @@
+#pragma once
+#include "Point.h"
+
+
+class Tetrominos
+{
+	
+protected:
+
+	enum { SIZE = 4 };
+	Point body[SIZE];
+
+	int playerWidth = 0;
+	char playerChar = ' ';
+
+public:
+
+	enum Tetromino { SquareS, LineS, TS, LS, JS, SkewS, RSkewS };
+
+	virtual void moveTetromino(Direction direction) = 0;
+	virtual void initTetromino() = 0;
+	virtual void drawTetromino() = 0;
+
+};

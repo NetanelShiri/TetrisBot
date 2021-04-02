@@ -10,22 +10,22 @@ void Point::draw(char ch) {
 void Point::move(Direction direction) {
 	switch(direction) {
 	
-	case Left:
+	case Direction::Left:
 
 		if (y == maxHeight) {
 			//--y;
 		//	return;
 		}
-		setX(--x);
+		setX(x-2);
 		break;
-	case Right: 
+	case Direction::Right: 
 
 		if (x == 1) {
 			
 		}
-		setX(++x);
+		setX(x+2);
 		break;
-	case Down:
+	case Direction::Down:
 
 		if (x ==18) {
 			
