@@ -4,7 +4,7 @@
 
 using namespace std;
 
-enum class Direction {None = -1 , Left , Right , Down , RotateC , RotateCC};
+enum class Direction {None = -1 , Left , Right , Down , RotateC , RotateCC };
 
 class Point {
 	int x = 1, y = 1;

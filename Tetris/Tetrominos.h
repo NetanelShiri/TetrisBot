@@ -8,10 +8,13 @@ class Tetrominos
 protected:
 
 	enum { SIZE = 4 };
+	enum class RotateDirection { Up, Down, Left, Right };////
+
 	Point body[SIZE];
 
 	int playerWidth = 0;
 	char playerChar = ' ';
+
 
 public:
 
@@ -20,6 +23,9 @@ public:
 	virtual void moveTetromino(Direction direction) = 0;
 	virtual void initTetromino() = 0;
 	virtual void drawTetromino() = 0;
+	virtual void clearBody() = 0;////
+
 	virtual void RotateCW() = 0;
+	virtual void RotateCCW() = 0;
 
 };

@@ -17,7 +17,7 @@ void Tetris::init()
 
 	//player settings
 	player[0].playerInit('#', playerWidth, 0, "adxsw");
-	player[1].playerInit('@', playerWidth+middleWidth, 1 , "jlmkl");
+	player[1].playerInit('@', playerWidth+middleWidth, 1 , "jlmki");
 
 	//creating shapes according to player settings.
 	

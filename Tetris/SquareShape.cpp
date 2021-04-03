@@ -44,10 +44,7 @@ void SquareShape::initTetromino(){
 //deleting upper points and relocating the points , and then drawing the deleted points in their new locations
 void SquareShape::moveTetromino(Direction direction) {
   
-	body[0].draw(' ');
-	body[1].draw(' ');
-	body[2].draw(' ');
-	body[3].draw(' ');
+	clearBody();
 
 	body[0].move(direction);
 	body[1].move(direction);
@@ -60,10 +57,24 @@ void SquareShape::moveTetromino(Direction direction) {
 
 void SquareShape::RotateCW()
 {
-
+	return;
 
 }
 
 
 
 
+
+void SquareShape::clearBody()
+{
+	body[0].draw(' ');
+	body[1].draw(' ');
+	body[2].draw(' ');
+	body[3].draw(' ');
+}
+
+
+void SquareShape::RotateCCW()
+{
+	return;
+}

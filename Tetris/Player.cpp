@@ -10,17 +10,18 @@ void Player::playerInit(char _playerChar, int _width, int _playerNumber,const ch
 	this->arrowKeys[0] = _keys[0]; //Left
 	this->arrowKeys[1] = _keys[1]; //Right
 	this->arrowKeys[2] = _keys[2]; //Down
-	this->arrowKeys[3] = _keys[3]; 
-	this->arrowKeys[4] = _keys[4];
+	this->arrowKeys[3] = _keys[3]; //Rotate Clock Wise
+	this->arrowKeys[4] = _keys[4];//Rotate Counter Clock Wise
 }
 
 void Player::playerMovement()
 {
-	if (direction == Direction::RotateC) { playerRotateCW(); }
-	else if(direction == Direction::RotateCC) { }
-	else{ this->tetromino->moveTetromino(direction); }
-}
 
+	if (direction == Direction::RotateC) { playerRotateCW(); }
+	else if (direction == Direction::RotateCC) { playerRotateCCW(); }
+	else { this->tetromino->moveTetromino(direction); }
+
+}
 void Player::playerDraw()
 {
 	this->tetromino->drawTetromino();
@@ -31,14 +32,19 @@ void Player::playerRotateCW()
 	this->tetromino->RotateCW();
 }
 
+void Player::playerRotateCCW()
+{
+	this->tetromino->RotateCCW();
+}
+
 void Player::setDirection(Direction _direction) {
 		this->direction = _direction;
 }
 
-	Direction Player::getDirection(char key){//////
-		for (int i = 0; i < 4; i++)
+	Direction Player::getDirection(char key){
+		for (int i = 0; i < 5; i++)
 		{
-			if (key == arrowKeys[i])
+			if (key == arrowKeys[i]|| key == arrowKeys[i]-32)
 				return Direction(i);
 		}
 		return Direction(-1);

@@ -42,12 +42,7 @@ void RSkewShape::initTetromino() {
 
 //deleting upper points and relocating the points , and then drawing the deleted points in their new locations
 void RSkewShape::moveTetromino(Direction direction) {
-
-	body[0].draw(' ');
-	body[1].draw(' ');
-	body[2].draw(' ');
-	body[3].draw(' ');
-
+	clearBody();
 	body[0].move(direction);
 	body[1].move(direction);
 	body[2].move(direction);
@@ -56,10 +51,42 @@ void RSkewShape::moveTetromino(Direction direction) {
 	this->drawTetromino();
 }
 
-void RSkewShape::RotateCW()
+void RSkewShape::RotateCW()/////////
 {
+	if (rotateDirection == RotateDirection::Right) {
+		clearBody();
 
+		body[1].setX(body[0].getX() - 1);
+		body[3].setY(body[3].getY() - 2);
+		this->drawTetromino();
+
+		rotateDirection = RotateDirection::Up;
+	}
+	else if (rotateDirection == RotateDirection::Up)
+	{
+		clearBody();
+
+		body[1].setX(body[0].getX() + 1);
+		body[3].setY(body[3].getY() + 2);
+		this->drawTetromino();
+
+		rotateDirection = RotateDirection::Right;
+
+	}
 
 }
 
 
+
+void RSkewShape::clearBody()
+{
+	body[0].draw(' ');
+	body[1].draw(' ');
+	body[2].draw(' ');
+	body[3].draw(' ');
+
+}
+
+void RSkewShape:: RotateCCW() {
+	RotateCW();
+}

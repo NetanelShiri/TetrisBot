@@ -5,7 +5,7 @@ using std::endl;
 using std::cin;
 
 //default ctor
-SkewShape::SkewShape() { playerWidth = 0;  playerChar = '#'; }
+SkewShape::SkewShape() { playerWidth = 0;  playerChar = '#';  }
 
 //square constructor for specific player
 SkewShape::SkewShape(int _width, char _ch)
@@ -43,10 +43,7 @@ void SkewShape::initTetromino() {
 //deleting upper points and relocating the points , and then drawing the deleted points in their new locations
 void SkewShape::moveTetromino(Direction direction) {
 
-	body[0].draw(' ');
-	body[1].draw(' ');
-	body[2].draw(' ');
-	body[3].draw(' ');
+	clearBody();
 
 	body[0].move(direction);
 	body[1].move(direction);
@@ -59,10 +56,39 @@ void SkewShape::moveTetromino(Direction direction) {
 
 void SkewShape::RotateCW()
 {
+	if (rotateDirection == RotateDirection::Left) {
+		clearBody();
 
+		body[0].setX(body[0].getX() + 2);
+		body[0].setY(body[0].getY() - 1);
+		body[3].setY(body[3].getY() - 1);
+		this->drawTetromino();
+
+		rotateDirection = RotateDirection::Up;
+	}
+	else if(rotateDirection == RotateDirection::Up)
+	{
+		clearBody();
+
+		body[0].setX(body[0].getX() - 2);
+		body[0].setY(body[0].getY() + 1);
+		body[3].setY(body[3].getY() + 1);
+		this->drawTetromino();
+		rotateDirection = RotateDirection::Left;
+
+	}
 
 }
 
+void  SkewShape::clearBody()
+{
+	body[0].draw(' ');
+	body[1].draw(' ');
+	body[2].draw(' ');
+	body[3].draw(' ');
+}
 
 
-
+void SkewShape::RotateCCW() {
+	RotateCW();
+}

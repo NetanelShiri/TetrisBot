@@ -14,6 +14,8 @@ public:
 	virtual void moveTetromino(Direction direction);
 	virtual void initTetromino();
 	virtual void drawTetromino();
-	virtual void RotateCW();
+	virtual void RotateCW();//Rotate the shape clockwise
+	virtual void RotateCCW();//Rotate the shape counterclockwise
+	virtual void clearBody();
 
 };

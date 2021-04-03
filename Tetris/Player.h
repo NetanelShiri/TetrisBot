@@ -24,6 +24,7 @@ class Player {
 	int widthDefault = 0;
 	char playerChar = ' ';
 
+
 	Tetrominos* tetromino = nullptr;
 	
 public:
@@ -31,6 +32,7 @@ public:
 	void playerMovement();
 	void playerDraw();
 	void playerRotateCW();
+	void playerRotateCCW();
 	void playerInit(char _playerChar,int _width,int _playerNumber,const char _keys[5]);
 	
 
