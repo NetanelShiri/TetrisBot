@@ -61,7 +61,7 @@ void LineShape::moveTetromino(Direction direction) {
 }
 
 
-void LineShape::RotateCW()////////
+void LineShape::RotateCW(int playerBoard[12][18],int distancing)////////
 {
 
 	if (rotateDirection == RotateDirection::Left|| rotateDirection == RotateDirection::Right ) {
@@ -101,8 +101,8 @@ void LineShape::RotateCW()////////
 	}
 
 }
-void LineShape:: RotateCCW() {
-	RotateCW();
+void LineShape:: RotateCCW(int playerBoard[12][18], int distancing) {
+	RotateCW(playerBoard,distancing);
 }
 
 

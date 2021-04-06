@@ -56,54 +56,98 @@ void JShape::moveTetromino(Direction direction) {
 	this->drawTetromino();
 }
 
-void JShape::RotateCW()
+void JShape::RotateCW(int playerBoard[12][18],int distancing)
 {
+	bool value = true;
+	vector<Point> save;
+
 	switch (rotateDirection)
 	{
 	case RotateDirection::Up:
 		clearBody();
+		save.resize(2);
 
-		body[2].setX(body[2].getX()+1);
-		body[2].setY(body[2].getY()+1);
-		body[3].setX(body[3].getX()+3);
-		body[3].setY(body[3].getY()+1);
+		save[0].setX(body[2].getX() + 1);
+		save[0].setY(body[2].getY() + 1);
+		save[1].setX(body[3].getX() + 3);
+		save[1].setY(body[3].getY() + 1);
 
+		if (checkLegal(save, playerBoard, distancing))
+		{
+			cout << "hey1";
+			body[2].setX(body[2].getX() + 1);
+			body[2].setY(body[2].getY() + 1);
+			body[3].setX(body[3].getX() + 3);
+			body[3].setY(body[3].getY() + 1);
+			rotateDirection = RotateDirection::Right;
+		}
 		this->drawTetromino();
 
-		rotateDirection = RotateDirection::Right;
+		
 		break;
 
 	case RotateDirection::Right:
 		clearBody();
+		save.resize(2);
 
-		body[0].setX(body[0].getX()-1);
-		body[0].setY(body[0].getY()+2);
-		body[1].setX(body[1].getX()-1);
-		body[1].setY(body[1].getY()+2);
-	
+		save[0].setX(body[0].getX() - 1);
+		save[0].setY(body[0].getY() + 2);
+		save[1].setX(body[1].getX() - 1);
+		save[1].setY(body[1].getY() + 2);
+
+		if (checkLegal(save, playerBoard, distancing))
+		{
+			cout << "hey2";
+			body[0].setX(body[0].getX() - 1);
+			body[0].setY(body[0].getY() + 2);
+			body[1].setX(body[1].getX() - 1);
+			body[1].setY(body[1].getY() + 2);
+			rotateDirection = RotateDirection::Down;
+		}
 		this->drawTetromino();
 
-		rotateDirection = RotateDirection::Down;
 		break;
 	case RotateDirection::Down:
 		clearBody();
 
-		body[2].setX(body[2].getX() - 1);
-		body[2].setY(body[2].getY() + 2);
-		body[3].setX(body[3].getX() - 3);
+		save.resize(2);
+
+		save[0].setX(body[2].getX() - 1);
+		save[0].setY(body[2].getY() + 2);
+		save[1].setX(body[3].getX() - 3);
+		save[1].setY(body[3].getY());
+
+		if (checkLegal(save, playerBoard, distancing))
+		{
+			cout << "hey3";
+			body[2].setX(body[2].getX() - 1);
+			body[2].setY(body[2].getY() + 2);
+			body[3].setX(body[3].getX() - 3);
+			rotateDirection = RotateDirection::Left;
+		}
 
 		this->drawTetromino();
 
-		rotateDirection = RotateDirection::Left;
+	
 		break;
 	case RotateDirection::Left:
 		clearBody();
 
-		body[2].setX(body[2].getX() -1);
-		body[2].setY(body[2].getY() - 1);
-		body[3].setX(body[3].getX() - 1);
-		body[3].setY(body[3].getY() + 1);
+		save.resize(2);
 
+		save[0].setX(body[2].getX() - 1);
+		save[0].setY(body[2].getY() - 1);
+		save[1].setX(body[3].getX() - 1);
+		save[1].setY(body[3].getY() + 1);
+
+		if (checkLegal(save, playerBoard, distancing))
+		{
+			body[2].setX(body[2].getX() - 1);
+			body[2].setY(body[2].getY() - 1);
+			body[3].setX(body[3].getX() - 1);
+			body[3].setY(body[3].getY() + 1);
+			rotateDirection = RotateDirection::Up;
+		}
 
 		this->drawTetromino();
 
@@ -114,7 +158,7 @@ void JShape::RotateCW()
 
 }
 
-void JShape::RotateCCW() 
+void JShape::RotateCCW(int playerBoard[12][18],int distancing)
 {
 	
 	switch (rotateDirection)

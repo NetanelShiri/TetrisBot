@@ -54,7 +54,7 @@ void LShape::moveTetromino(Direction direction) {
 	this->drawTetromino();
 }
 
-void LShape::RotateCW()
+void LShape::RotateCW(int playerBoard[12][18],int distancing)
 {
 
 	switch (rotateDirection)
@@ -119,16 +119,7 @@ void LShape::RotateCW()
 
 }
 
-
-void  LShape::clearBody()
-{
-	body[0].draw(' ');
-	body[1].draw(' ');
-	body[2].draw(' ');
-	body[3].draw(' ');
- }
-
-void LShape:: RotateCCW() {
+void LShape::RotateCCW(int playerBoard[12][18],int distancing) {
 
 
 	switch (rotateDirection)
@@ -188,4 +179,14 @@ void LShape:: RotateCCW() {
 
 	}
 
+	
+
+}
+
+void LShape::clearBody()
+{
+	body[0].draw(' ');
+	body[1].draw(' ');
+	body[2].draw(' ');
+	body[3].draw(' ');
 }

@@ -54,7 +54,7 @@ void TShape::moveTetromino(Direction direction) {
 
 
 
-void TShape::RotateCW()
+void TShape::RotateCW(int playerBoard[12][18],int distancing)
 {
 	switch (rotateDirection)
 	{
@@ -113,7 +113,7 @@ void TShape::clearBody()
 	body[3].draw(' ');
 }
 
-void TShape::RotateCCW()
+void TShape::RotateCCW(int playerBoard[12][18],int distancing)
 {
 	switch (rotateDirection)
 	{

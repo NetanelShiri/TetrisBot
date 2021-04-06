@@ -51,7 +51,7 @@ void RSkewShape::moveTetromino(Direction direction) {
 	this->drawTetromino();
 }
 
-void RSkewShape::RotateCW()/////////
+void RSkewShape::RotateCW(int playerBoard[12][18],int distancing)/////////
 {
 	if (rotateDirection == RotateDirection::Right) {
 		clearBody();
@@ -87,6 +87,6 @@ void RSkewShape::clearBody()
 
 }
 
-void RSkewShape:: RotateCCW() {
-	RotateCW();
+void RSkewShape:: RotateCCW(int playerBoard[12][18],int distancing) {
+	RotateCW(playerBoard,distancing);
 }

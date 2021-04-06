@@ -54,7 +54,7 @@ void SkewShape::moveTetromino(Direction direction) {
 }
 
 
-void SkewShape::RotateCW()
+void SkewShape::RotateCW(int playerBoard[12][18],int distancing)
 {
 	if (rotateDirection == RotateDirection::Left) {
 		clearBody();
@@ -89,6 +89,6 @@ void  SkewShape::clearBody()
 }
 
 
-void SkewShape::RotateCCW() {
-	RotateCW();
+void SkewShape::RotateCCW(int playerBoard[12][18],int distancing) {
+	RotateCW(playerBoard,distancing);
 }

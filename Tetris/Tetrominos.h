@@ -1,6 +1,6 @@
 #pragma once
 #include "Point.h"
-
+#include <vector>
 
 class Tetrominos
 {
@@ -15,7 +15,6 @@ protected:
 	int playerWidth = 0;
 	char playerChar = ' ';
 
-
 public:
 
 	enum Tetromino { SquareS, LineS, TS, LS, JS, SkewS, RSkewS };
@@ -24,10 +23,11 @@ public:
 	virtual void initTetromino() = 0;
 	virtual void drawTetromino() = 0;
 	virtual void clearBody() = 0;
-	virtual void RotateCW() = 0;
-	virtual void RotateCCW() = 0;
+	virtual void RotateCW(int playerBoard[12][18],int distancing) = 0;
+	virtual void RotateCCW(int playerBoard[12][18],int distancing) = 0;
 
 	Point* getPoints();
 	int getTetrinomSize();
+	bool checkLegal(vector<Point> &save,int playerBoard[12][18], int distancing);
 
 };

@@ -45,12 +45,12 @@ void Player::playerDraw()
 
 void Player::playerRotateCW()
 {
-	this->tetromino->RotateCW();
+	this->tetromino->RotateCW(playerBoard,distancing);
 }
 
 void Player::playerRotateCCW()
 {
-	this->tetromino->RotateCCW();
+	this->tetromino->RotateCCW(playerBoard,distancing);
 }
 
 void Player::setDirection(Direction _direction) {
@@ -162,10 +162,10 @@ void Player::setDirection(Direction _direction) {
 				if ((trueToArr) == minWidth || (playerBoard[trueToArr][y]) != 0) { return 0; }
 				break;
 			case Direction::Right:
-				if ((trueToArr++) == middleWidth - 1 || (playerBoard[trueToArr][y]) != 0) { return 0; }
+				if ((trueToArr+1) == middleWidth - 1 || (playerBoard[trueToArr][y]) != 0) { return 0; }
 				break;
 			case Direction::Down:
-				if ((playerBoard[trueToArr][y++]) != 0 || (y == maxHeight-1)) { return -1; }
+				if ((playerBoard[trueToArr][y+1]) != 0 || (y == maxHeight-1)) { return -1; }
 				break;
 			}
 		}
