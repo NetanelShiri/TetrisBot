@@ -55,6 +55,7 @@ public:
 
 	int randomizer();
 	void tetrominoCreator();
+	void replaceTetromino();
 	//void setArrowKeys(const char* keys); 
 	
 	char getPlayerChar();

@@ -81,7 +81,7 @@ void Tetris::run()
 
 		Sleep(800);
 
-	} while (key != 'c');
+	} while (key != ESC);
 
 
 	

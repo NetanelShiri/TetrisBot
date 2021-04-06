@@ -31,7 +31,10 @@ void Player::playerMovement()
 	}
 	else if (value == -1)
 	{
+		PlayerBoardTetroUpdate(1);
 		tetromino->drawTetromino();
+		replaceTetromino();
+		return;
 	}
 	PlayerBoardTetroUpdate(1);
 	
@@ -110,8 +113,14 @@ void Player::setDirection(Direction _direction) {
 		default:
 			tetromino = new SquareShape(this->widthDefault, this->playerChar);
 		}
-		
+		tetromino->drawTetromino();
 		shapeNumber++;
+	}
+
+	void Player::replaceTetromino()
+	{
+		delete[] tetromino;
+		tetrominoCreator();
 	}
 
 	void Player::PlayerBoardTetroUpdate(int number)
@@ -148,7 +157,7 @@ void Player::setDirection(Direction _direction) {
 		int x, y , trueToArr;
 		int tetSize = tetromino->getTetrinomSize();
 		Point* pts = tetromino->getPoints();
-	    
+		
 		for (int i = 0; i < tetSize; i++)
 		{
 			
@@ -162,10 +171,10 @@ void Player::setDirection(Direction _direction) {
 				if ((trueToArr) == minWidth || (playerBoard[trueToArr][y]) != 0) { return 0; }
 				break;
 			case Direction::Right:
-				if ((trueToArr+1) == middleWidth - 1 || (playerBoard[trueToArr][y]) != 0) { return 0; }
+				if ((trueToArr++) == middleWidth - 1 || (playerBoard[trueToArr][y]) != 0) { return 0; }
 				break;
 			case Direction::Down:
-				if ((playerBoard[trueToArr][y+1]) != 0 || (y == maxHeight-1)) { return -1; }
+				if ((y == maxHeight-1) || (playerBoard[trueToArr][y]) != 0) { return -1; }
 				break;
 			}
 		}
