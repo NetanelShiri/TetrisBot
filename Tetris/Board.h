@@ -1,4 +1,10 @@
 #pragma once
+#include "Point.h"
 
 
-void Board();
+class Board
+{
+	int** boardSaver;
+public:
+	void Boardinit();
+};

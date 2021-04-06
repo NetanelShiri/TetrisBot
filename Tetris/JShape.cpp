@@ -47,7 +47,7 @@ void JShape::initTetromino()
 void JShape::moveTetromino(Direction direction) {
 
 	clearBody();
-
+	
 	body[0].move(direction);
 	body[1].move(direction);
 	body[2].move(direction);
@@ -116,7 +116,7 @@ void JShape::RotateCW()
 
 void JShape::RotateCCW() 
 {
-
+	
 	switch (rotateDirection)
 	{
 	case RotateDirection::Up:

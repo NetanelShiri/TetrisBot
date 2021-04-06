@@ -4,7 +4,7 @@
 
 class Tetrominos
 {
-	
+
 protected:
 
 	enum { SIZE = 4 };
@@ -23,9 +23,11 @@ public:
 	virtual void moveTetromino(Direction direction) = 0;
 	virtual void initTetromino() = 0;
 	virtual void drawTetromino() = 0;
-	virtual void clearBody() = 0;////
-
+	virtual void clearBody() = 0;
 	virtual void RotateCW() = 0;
 	virtual void RotateCCW() = 0;
+
+	Point* getPoints();
+	int getTetrinomSize();
 
 };

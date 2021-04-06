@@ -8,7 +8,7 @@ class LineShape : public Tetrominos
 	RotateDirection rotateDirection= RotateDirection::Left;
 
 public:
-
+	
 	LineShape();
 	LineShape(int _width, char _char);
 

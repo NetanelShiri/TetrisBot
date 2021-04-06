@@ -20,7 +20,6 @@ void LineShape::drawTetromino() {
 	for (int i = 0; i < SIZE; i++) {
 		body[i].draw(this->playerChar);
 	}
-
 }
 
 //initialize the square by player location

@@ -151,6 +151,7 @@
     <ClCompile Include="SkewShape.cpp" />
     <ClCompile Include="SquareShape.cpp" />
     <ClCompile Include="Tetris.cpp" />
+    <ClCompile Include="Tetrominos.cpp" />
     <ClCompile Include="TShape.cpp" />
   </ItemGroup>
   <ItemGroup>
