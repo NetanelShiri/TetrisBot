@@ -22,6 +22,7 @@ void Player::playerMovement()
 	PlayerBoardTetroUpdate(0);
 	int value = isLegalMove();
 
+	
 	if (value == 1)
 	{
 		if (direction == Direction::RotateC) { playerRotateCW(); } //Rotate Clockwise
@@ -122,19 +123,18 @@ void Player::setDirection(Direction _direction) {
 		{
 			x = pts[i].getX();
 			y = pts[i].getY();
-
 			
-			playerBoard[x-distancing][y] = number;
+			playerBoard[x-distancing-1][y-1] = number;
 		}
-	}
+	}	
 
 	void Player::drawFromPlayerBoard()
 	{
-		for (int i = minWidth + 1; i < middleWidth-1; i++)
+		for (int i = minWidth; i < middleWidth-1; i++)
 		{
-			for (int j = minWidth + 1; j < maxHeight-1; j++)
+			for (int j = minHeight; j < maxHeight-1; j++)
 			{
-				gotoxy(i + distancing , j);
+				gotoxy(i + distancing + 1, j + 1);
 				if (getXYFromBoard(i, j) == 1)
 				{
 					cout << playerChar;
@@ -154,16 +154,19 @@ void Player::setDirection(Direction _direction) {
 			
 			x = pts[i].getX();
 			y = pts[i].getY();
-			trueToArr = x - distancing;
-		
+			trueToArr = x - distancing - 1;
+
 			switch (direction)
 			{
 			case Direction::Left:
-				if ((playerBoard[trueToArr - 1][y]) != 0 || (trueToArr - 1) == minWidth) { return 0; }
+				if ((trueToArr) == minWidth || (playerBoard[trueToArr][y]) != 0) { return 0; }
+				break;
 			case Direction::Right:
-				if ((playerBoard[trueToArr + 1][y]) != 0 || (trueToArr + 1) == middleWidth) { return 0; }
+				if ((trueToArr++) == middleWidth - 1 || (playerBoard[trueToArr][y]) != 0) { return 0; }
+				break;
 			case Direction::Down:
-				if ((playerBoard[trueToArr][y + 1]) != 0 || (y + 1 == maxHeight)) { return -1; }
+				if ((playerBoard[trueToArr][y++]) != 0 || (y == maxHeight-1)) { return -1; }
+				break;
 			}
 		}
 		return 1;

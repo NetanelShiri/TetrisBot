@@ -83,8 +83,9 @@ void Tetris::run()
 
 	} while (key != 'c');
 
-	
 
 	
+	player[0].drawFromPlayerBoard();
+	player[1].drawFromPlayerBoard();
 }
 
