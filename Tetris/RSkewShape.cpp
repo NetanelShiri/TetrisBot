@@ -55,22 +55,40 @@ void RSkewShape::RotateCW(int playerBoard[12][18],int distancing)/////////
 {
 	if (rotateDirection == RotateDirection::Right) {
 		clearBody();
+		saveParts.resize(2);
 
-		body[1].setX(body[0].getX() - 1);
-		body[3].setY(body[3].getY() - 2);
+		saveParts[0].setX(body[0].getX() - 1);
+		saveParts[0].setY(body[0].getY());
+		saveParts[1].setX(body[3].getX());
+		saveParts[1].setY(body[3].getY() - 2);
+
+		if (checkLegal(saveParts, playerBoard, distancing))
+		{
+			body[1].setX(body[0].getX() - 1);
+			body[3].setY(body[3].getY() - 2);
+			rotateDirection = RotateDirection::Up;
+		}
 		this->drawTetromino();
 
-		rotateDirection = RotateDirection::Up;
+		
 	}
 	else if (rotateDirection == RotateDirection::Up)
 	{
 		clearBody();
+		saveParts.resize(2);
 
-		body[1].setX(body[0].getX() + 1);
-		body[3].setY(body[3].getY() + 2);
+		saveParts[0].setX(body[0].getX() + 1);
+		saveParts[0].setY(body[0].getY());
+		saveParts[1].setX(body[3].getX());
+		saveParts[1].setY(body[3].getY() + 2);
+
+		if (checkLegal(saveParts, playerBoard, distancing))
+		{
+			body[1].setX(body[0].getX() + 1);
+			body[3].setY(body[3].getY() + 2);
+			rotateDirection = RotateDirection::Right;
+		}
 		this->drawTetromino();
-
-		rotateDirection = RotateDirection::Right;
 
 	}
 

@@ -11,11 +11,14 @@ protected:
 	enum class RotateDirection { Up, Down, Left, Right };////
 
 	Point body[SIZE];
+	vector<Point> saveParts;
 
 	int playerWidth = 0;
 	char playerChar = ' ';
 
 public:
+
+	virtual ~Tetrominos();
 
 	enum Tetromino { SquareS, LineS, TS, LS, JS, SkewS, RSkewS };
 
@@ -27,7 +30,8 @@ public:
 	virtual void RotateCCW(int playerBoard[12][18],int distancing) = 0;
 
 	Point* getPoints();
+	vector<Point> &getSaveParts() { return saveParts; }
 	int getTetrinomSize();
-	bool checkLegal(vector<Point> &save,int playerBoard[12][18], int distancing);
+	bool checkLegal(vector<Point> &saveParts,int playerBoard[12][18], int distancing);
 
 };

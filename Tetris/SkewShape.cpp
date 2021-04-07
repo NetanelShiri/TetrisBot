@@ -58,24 +58,40 @@ void SkewShape::RotateCW(int playerBoard[12][18],int distancing)
 {
 	if (rotateDirection == RotateDirection::Left) {
 		clearBody();
+		saveParts.resize(2);
 
-		body[0].setX(body[0].getX() + 2);
-		body[0].setY(body[0].getY() - 1);
-		body[3].setY(body[3].getY() - 1);
+		saveParts[0].setX(body[0].getX() + 2);
+		saveParts[0].setY(body[0].getY() - 1);
+		saveParts[1].setX(body[3].getX());
+		saveParts[1].setY(body[3].getY() - 1);
+
+		if (checkLegal(saveParts, playerBoard, distancing))
+		{
+			body[0].setX(body[0].getX() + 2);
+			body[0].setY(body[0].getY() - 1);
+			body[3].setY(body[3].getY() - 1);
+			rotateDirection = RotateDirection::Up;
+		}
 		this->drawTetromino();
-
-		rotateDirection = RotateDirection::Up;
 	}
 	else if(rotateDirection == RotateDirection::Up)
 	{
 		clearBody();
+		saveParts.resize(2);
 
-		body[0].setX(body[0].getX() - 2);
-		body[0].setY(body[0].getY() + 1);
-		body[3].setY(body[3].getY() + 1);
+		saveParts[0].setX(body[0].getX() - 2);
+		saveParts[0].setY(body[0].getY() + 1);
+		saveParts[1].setX(body[3].getX());
+		saveParts[1].setY(body[3].getY() + 1);
+
+		if (checkLegal(saveParts, playerBoard, distancing))
+		{
+			body[0].setX(body[0].getX() - 2);
+			body[0].setY(body[0].getY() + 1);
+			body[3].setY(body[3].getY() + 1);
+			rotateDirection = RotateDirection::Left;
+		}
 		this->drawTetromino();
-		rotateDirection = RotateDirection::Left;
-
 	}
 
 }

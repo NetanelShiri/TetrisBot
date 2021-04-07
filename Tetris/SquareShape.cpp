@@ -58,7 +58,6 @@ void SquareShape::moveTetromino(Direction direction) {
 void SquareShape::RotateCW(int playerBoard[12][18],int distancing)
 {
 	return;
-
 }
 
 

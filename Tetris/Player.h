@@ -12,6 +12,7 @@
 #include "TShape.h"
 #include "SkewShape.h"
 #include "RSkewShape.h"
+using std::vector;
 
 //player board
 constexpr size_t minHeight = 0;

@@ -1,6 +1,9 @@
 #include "Tetrominos.h"
 
-
+Tetrominos::~Tetrominos()
+{
+	saveParts.clear();
+}
 
 Point* Tetrominos::getPoints()
 {
@@ -12,13 +15,13 @@ int Tetrominos::getTetrinomSize()
 	return int(SIZE);
 }
 
-bool Tetrominos::checkLegal(vector<Point> &save, int playerBoard[12][18], int distancing)
+bool Tetrominos::checkLegal(vector<Point> &saveParts, int playerBoard[12][18], int distancing)
 {
 	int x, y , trueSizeArr;
-	for (int i = 0; i < save.size(); i++)
+	for (int i = 0; i < saveParts.size(); i++)
 	{
-		x = save[i].getX();
-		y = save[i].getY();
+		x = saveParts[i].getX();
+		y = saveParts[i].getY();
 		trueSizeArr = x - distancing - 1;
 		if((trueSizeArr == 0) || (trueSizeArr == 12)	
 		||(y == 19)|| (playerBoard[trueSizeArr][y - 1]) != 0)

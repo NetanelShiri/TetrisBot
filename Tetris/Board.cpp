@@ -76,3 +76,21 @@ int Board::gameOver()
 	return 0;
 }
 */
+/*
+void Board::gamePause()
+{
+	using namespace std;
+
+	char a;
+	cout << "#######     #    #     # ####### #######   \n";
+	cout << "#     #    # #   #     # #       #         \n";
+	cout << "#     #   #   #  #     # #       #         \n";
+	cout << "# # # #  #     # #     # ####### #######   \n";
+	cout << "#        ####### #     #       # #         \n";
+	cout << "#        #     # #     #       # #         \n";
+	cout << "#        #     # ####### ####### #######   \n";
+	cout << "\n\nPress any key and enter\n";
+	cin >> a;
+
+}
+*/
