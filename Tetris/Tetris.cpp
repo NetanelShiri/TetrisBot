@@ -55,9 +55,9 @@ void Tetris::run()
 	do {
 
 		player[Player1].setDirection(Direction::Down);
-		player[Player1].playerMovement();
+		if (player[Player1].playerMovement()) { player[Player1].checkFullLines(); }
 		player[Player2].setDirection(Direction::Down);
-		player[Player2].playerMovement();
+		if(player[Player2].playerMovement()) { player[Player2].checkFullLines(); }
 
 		while (_kbhit())
 		{
@@ -66,20 +66,27 @@ void Tetris::run()
 			if ((direction = player[Player1].getDirection(key)) != Direction::None) {
 
 				player[Player1].setDirection(direction);
-				player[Player1].playerMovement();
+				if (player[Player1].playerMovement())
+				{
+					player[Player1].checkFullLines();
+				}
 			}
 
 			else if ((direction = player[Player2].getDirection(key)) != Direction::None) {
 
 				player[Player2].setDirection(direction);
-				player[Player2].playerMovement();
+				
+				if (player[Player2].playerMovement())
+				{
+					player[Player2].checkFullLines();
+				}
 			}
 
 		}
 		//	clearKeyboardBuffer();
 
 
-		Sleep(800);
+		Sleep(200);
 
 	} while (key != ESC);
 

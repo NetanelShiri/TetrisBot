@@ -16,7 +16,7 @@ void Player::playerInit(char _playerChar, int _width,int _distancing, int _playe
 
 }
 
-void Player::playerMovement()
+bool Player::playerMovement()
 {
 	
 	PlayerBoardTetroUpdate(0);
@@ -34,10 +34,10 @@ void Player::playerMovement()
 		PlayerBoardTetroUpdate(1);
 		tetromino->drawTetromino();
 		replaceTetromino();
-		return;
+		return true;
 	}
 	PlayerBoardTetroUpdate(1);
-	
+	return false;
 }
 
 void Player::playerDraw()
@@ -171,7 +171,7 @@ void Player::setDirection(Direction _direction) {
 				if ((trueToArr) == minWidth || (playerBoard[trueToArr][y]) != 0) { return 0; }
 				break;
 			case Direction::Right:
-				if ((trueToArr++) == middleWidth - 1 || (playerBoard[trueToArr][y]) != 0) { return 0; }
+				if (trueToArr + 1 == middleWidth - 1 || (playerBoard[trueToArr][y]) != 0) { return 0; }
 				break;
 			case Direction::Down:
 				if ((y == maxHeight-1) || (playerBoard[trueToArr][y]) != 0) { return -1; }
@@ -181,7 +181,27 @@ void Player::setDirection(Direction _direction) {
 		return 1;
 	}
 
-	
+	void Player::checkFullLines()
+	{
+		bool flag = false;
+		int height = int(maxHeight) - 2;
+		int width = int(middleWidth) - 2;
+		for (int i = height; i >=  int(minHeight); i--)
+		{
+			for (int j = width; j >= int(minWidth); j--)
+			{
+				if (playerBoard[j][i] == 0)
+				{
+					flag = false;
+					break;
+				}
+				else if (j == minWidth) { flag = true; }
+				
+			}
+			if (flag) { cout << " WORKS"; }
+		}
+
+	}
 
 
 	//returns number between 0 to 6

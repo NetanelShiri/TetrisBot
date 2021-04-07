@@ -1,4 +1,6 @@
 #pragma once
+#pragma warning( push )
+#pragma warning( disable : 26451 )
 
 #include <random>
 #include "Point.h"
@@ -34,6 +36,9 @@ class Player {
 	int distancing = 0;
 	char playerChar = ' ';
 	
+	//player score monitor
+	int score = 0;
+
 
 	//player shape control
 	Tetrominos* tetromino = nullptr;
@@ -41,13 +46,11 @@ class Player {
 	//player board control
 	int playerBoard[12][18] = { 0 };
 	int shapeNumber = 0;
-
-
 	int trueWidthToArr = ((playerNumber - 1) * distancing);
 
 public:
 	
-	void playerMovement();
+	bool playerMovement();
 	void playerDraw();
 	void playerRotateCW();
 	void playerRotateCCW();
@@ -63,7 +66,7 @@ public:
 	int getWidthDefault();
 
 
-
+	void checkFullLines();
 	Direction getDirection(char key);
 	Tetrominos* getTetromino()	{return tetromino;}
 	void setDirection(Direction direction);
