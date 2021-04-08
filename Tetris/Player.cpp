@@ -182,7 +182,7 @@ void Player::setDirection(Direction _direction) {
 		return 1;
 	}
 
-	int Player::checkFullLines()
+	void Player::checkFullLines()
 	{
 		bool flag = false;
 		int lines = 0;
@@ -208,9 +208,8 @@ void Player::setDirection(Direction _direction) {
 				this->drawFromPlayerBoard();
 			}
 		}
-		return lines;
+		if (lines) { CalculateScore(lines); }
 	}
-
 
 	void Player::bombLine(int height)
 	{
@@ -222,6 +221,19 @@ void Player::setDirection(Direction _direction) {
 				playerBoard[j][i + 1] = playerBoard[j][i];
 			}
 		}
+	}
+
+	void Player::CalculateScore(int lines)
+	{
+		int score = (int)pow(lines*15, 2);
+		this->setScore(score);
+		PrintScore();
+	}
+
+	void Player::PrintScore()
+	{
+		gotoxy(minWidth + distancing , maxHeight + 1);
+		cout << 'P' << this->playerNumber << " Score:" << score;
 	}
 
 	//returns number between 0 to 6

@@ -64,12 +64,13 @@ public:
 	
 	char getPlayerChar();
 	int getWidthDefault();
-
-
-	int checkFullLines();
+	void CalculateScore(int lines);
+	void PrintScore();
+	void checkFullLines();
 	Direction getDirection(char key);
 	Tetrominos* getTetromino()	{return tetromino;}
 	void setDirection(Direction direction);
+	void setScore(int _score) { score += _score; }
 	void bombLine(int height);
 	void PlayerBoardTetroUpdate(int number);
 	void drawFromPlayerBoard();

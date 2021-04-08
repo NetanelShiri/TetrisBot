@@ -42,7 +42,7 @@ void Tetris::run()
 {
 	char key = 0;
 	int figure = 1;
-
+	
 	Direction direction;
 
 	player[0].tetrominoCreator();
@@ -53,7 +53,8 @@ void Tetris::run()
 
 
 	do {
-
+		player[Player1].PrintScore();
+		player[Player2].PrintScore();
 		player[Player1].setDirection(Direction::Down);
 		if (player[Player1].playerMovement()) { player[Player1].checkFullLines(); }
 		player[Player2].setDirection(Direction::Down);
