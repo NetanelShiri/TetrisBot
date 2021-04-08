@@ -24,11 +24,10 @@ bool Tetrominos::checkLegal(vector<Point> &saveParts, int playerBoard[12][18], i
 		y = saveParts[i].getY();
 		trueSizeArr = x - distancing - 1;
 		if((trueSizeArr == 0) || (trueSizeArr == 12)	
-		||(y == 19)|| (playerBoard[trueSizeArr][y - 1]) != 0)
+		||(y == 19)|| (y == 0)|| (playerBoard[trueSizeArr][y - 1]) != 0)
 		{
 			return false;
 		}
 	}
-
 	return true;
 }

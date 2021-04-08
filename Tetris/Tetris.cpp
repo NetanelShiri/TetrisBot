@@ -86,7 +86,7 @@ void Tetris::run()
 		//	clearKeyboardBuffer();
 
 
-		Sleep(200);
+		Sleep(300);
 
 	} while (key != ESC);
 

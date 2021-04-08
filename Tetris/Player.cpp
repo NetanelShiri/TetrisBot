@@ -169,10 +169,10 @@ void Player::setDirection(Direction _direction) {
 			switch (direction)
 			{
 			case Direction::Left:
-				if ((trueXToArr) == minWidth || (playerBoard[trueXToArr-1][y]) != 0) { return 0; }
+				if ((trueXToArr) == minWidth || (playerBoard[trueXToArr-1][y-1]) != 0) { return 0; }
 				break;
 			case Direction::Right:
-				if (trueXToArr + 1 == middleWidth - 1 || (playerBoard[trueXToArr+1][y]) != 0) { return 0; }
+				if (trueXToArr + 1 == middleWidth - 1 || (playerBoard[trueXToArr+1][y-1]) != 0) { return 0; }
 				break;
 			case Direction::Down:
 				if ((y == maxHeight-1) || (playerBoard[trueXToArr][y]) != 0) { return -1; }
