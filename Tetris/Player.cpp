@@ -148,13 +148,14 @@ void Player::setDirection(Direction _direction) {
 				{
 					cout << playerChar;
 				}
+				else { cout << ' '; }
 			}
 		}
 	}
 
 	int Player::isLegalMove()
 	{
-		int x, y , trueToArr;
+		int x, y , trueXToArr ,trueYToArr;
 		int tetSize = tetromino->getTetrinomSize();
 		Point* pts = tetromino->getPoints();
 		
@@ -163,27 +164,28 @@ void Player::setDirection(Direction _direction) {
 			
 			x = pts[i].getX();
 			y = pts[i].getY();
-			trueToArr = x - distancing - 1;
-
+			trueXToArr = x - distancing - 1;
+			trueYToArr = y - 1;
 			switch (direction)
 			{
 			case Direction::Left:
-				if ((trueToArr) == minWidth || (playerBoard[trueToArr][y]) != 0) { return 0; }
+				if ((trueXToArr) == minWidth || (playerBoard[trueXToArr-1][y]) != 0) { return 0; }
 				break;
 			case Direction::Right:
-				if (trueToArr + 1 == middleWidth - 1 || (playerBoard[trueToArr][y]) != 0) { return 0; }
+				if (trueXToArr + 1 == middleWidth - 1 || (playerBoard[trueXToArr+1][y]) != 0) { return 0; }
 				break;
 			case Direction::Down:
-				if ((y == maxHeight-1) || (playerBoard[trueToArr][y]) != 0) { return -1; }
+				if ((y == maxHeight-1) || (playerBoard[trueXToArr][y]) != 0) { return -1; }
 				break;
 			}
 		}
 		return 1;
 	}
 
-	void Player::checkFullLines()
+	int Player::checkFullLines()
 	{
 		bool flag = false;
+		int lines = 0;
 		int height = int(maxHeight) - 2;
 		int width = int(middleWidth) - 2;
 		for (int i = height; i >=  int(minHeight); i--)
@@ -198,11 +200,29 @@ void Player::setDirection(Direction _direction) {
 				else if (j == minWidth) { flag = true; }
 				
 			}
-			if (flag) { cout << " WORKS"; }
+			if (flag) 
+			{
+				lines++;
+				bombLine(i);
+			    i++;
+				this->drawFromPlayerBoard();
+			}
 		}
-
+		return lines;
 	}
 
+
+	void Player::bombLine(int height)
+	{
+		//drop all other lines from above
+		for (int i = height - 1; i >= int(minHeight); i--)
+		{
+			for (int j = int(middleWidth) - 2; j >= int(minWidth); j--)
+			{
+				playerBoard[j][i + 1] = playerBoard[j][i];
+			}
+		}
+	}
 
 	//returns number between 0 to 6
 	int Player::randomizer()

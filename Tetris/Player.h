@@ -66,11 +66,11 @@ public:
 	int getWidthDefault();
 
 
-	void checkFullLines();
+	int checkFullLines();
 	Direction getDirection(char key);
 	Tetrominos* getTetromino()	{return tetromino;}
 	void setDirection(Direction direction);
-
+	void bombLine(int height);
 	void PlayerBoardTetroUpdate(int number);
 	void drawFromPlayerBoard();
 	int getXYFromBoard(int x, int y) { return playerBoard[x][y]; }
