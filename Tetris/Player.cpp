@@ -232,7 +232,10 @@ void Player::setDirection(Direction _direction) {
 
 	void Player::PrintScore()
 	{
-		gotoxy(minWidth + distancing , maxHeight + 1);
+		int visualChange = 0;
+		if (distancing > 0) { visualChange = 1; }
+
+		gotoxy(minWidth + distancing +visualChange, maxHeight + 1);
 		cout << 'P' << this->playerNumber << " Score:" << score;
 	}
 

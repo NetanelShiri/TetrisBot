@@ -13,8 +13,7 @@ using std::cin;
 void Tetris::init()
 {	
 	//creating board
-	Board board;
-	board.Boardinit();
+	Boardinit();
     
 	//player settings (char, player start width , distancing , player Number , game keys)
 	player[0].playerInit('#', playerWidth +(middleWidth*0),(middleWidth*0) , 1, "adxsw");
@@ -42,7 +41,7 @@ void Tetris::run()
 {
 	char key = 0;
 	int figure = 1;
-	
+	int gameIsOver = 0;
 	Direction direction;
 
 	player[0].tetrominoCreator();
@@ -72,7 +71,6 @@ void Tetris::run()
 					player[Player1].checkFullLines();
 				}
 			}
-
 			else if ((direction = player[Player2].getDirection(key)) != Direction::None) {
 
 				player[Player2].setDirection(direction);
@@ -83,17 +81,46 @@ void Tetris::run()
 				}
 			}
 
+			
 		}
 		//	clearKeyboardBuffer();
-
-
+		if (key == ESC) { key = ' ';  pause(); }
 		Sleep(300);
 
-	} while (key != ESC);
+	} while (gameIsOver != 1);
 
-
+	pause();
 	
-	player[0].drawFromPlayerBoard();
-	player[1].drawFromPlayerBoard();
+	//player[0].drawFromPlayerBoard();
+	//player[1].drawFromPlayerBoard();
 }
 
+void Tetris::pause()
+{
+	char key;
+	system("cls");
+	printPause();
+	do {
+		key = _getch();
+		while (_kbhit())
+		{
+			Sleep(200);
+		}
+	} while (key != '2');
+
+
+	cout << "Starting in 3...";
+	Sleep(1000);
+	cout << "2...";
+	Sleep(1000);
+	cout << "1...";
+	Sleep(1000);
+
+	Boardinit();
+	for (int i = 0; i < playersAmount; i++)
+	{
+		player[i].drawFromPlayerBoard();
+	}
+	
+
+}

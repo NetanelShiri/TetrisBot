@@ -1,11 +1,7 @@
 #pragma once
 #include "Point.h"
 
-
-class Board
-{
-	int** boardSaver;
-public:
 	void Boardinit();
-	void gamePause();
-};
+	void printPause();
+	void printGameOver();
+

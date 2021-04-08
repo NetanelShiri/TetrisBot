@@ -5,7 +5,7 @@
 using std::cout;
 using std::endl;
 
-void Board::Boardinit() {
+void Boardinit() {
 
 	
 	system("cls");
@@ -58,12 +58,10 @@ void Board::Boardinit() {
 
 
 }
-/*
-int Board::gameOver()
-{
-	using namespace std;
 
-	char a;
+void printGameOver()
+{
+	
 	cout << " #####     #    #     # ####### ####### #     # ####### ######\n";
 	cout << "#     #   # #   ##   ## #       #     # #     # #       #     #\n";
 	cout << "#        #   #  # # # # #       #     # #     # #       #     #\n";
@@ -71,17 +69,13 @@ int Board::gameOver()
 	cout << "#     # ####### #     # #       #     #  #   #  #       #   #\n";
 	cout << "#     # #     # #     # #       #     #   # #   #       #    #\n";
 	cout << " #####  #     # #     # ####### #######    #    ####### #     #\n";
-	cout << "\n\nPress any key and enter\n";
-	cin >> a;
-	return 0;
-}
-*/
-/*
-void Board::gamePause()
-{
-	using namespace std;
+	cout << "\n\nPress '2' key to continue\n";
 
-	char a;
+}
+
+void printPause()
+{
+
 	cout << "#######     #    #     # ####### #######   \n";
 	cout << "#     #    # #   #     # #       #         \n";
 	cout << "#     #   #   #  #     # #       #         \n";
@@ -89,8 +83,6 @@ void Board::gamePause()
 	cout << "#        ####### #     #       # #         \n";
 	cout << "#        #     # #     #       # #         \n";
 	cout << "#        #     # ####### ####### #######   \n";
-	cout << "\n\nPress any key and enter\n";
-	cin >> a;
+	cout << "\n\nPress '2' key to continue\n";
 
 }
-*/
