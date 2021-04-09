@@ -47,6 +47,7 @@ class Player {
 	int playerBoard[12][18] = { 0 };
 	int shapeNumber = 0;
 	int trueWidthToArr = ((playerNumber - 1) * distancing);
+	bool playerGameOver = false;
 
 public:
 	
@@ -63,6 +64,7 @@ public:
 	//void setArrowKeys(const char* keys); 
 	
 	char getPlayerChar();
+	int getPlayerNumber() { return playerNumber; }
 	int getWidthDefault();
 	void CalculateScore(int lines);
 	void PrintScore();
@@ -76,6 +78,8 @@ public:
 	void drawFromPlayerBoard();
 	int getXYFromBoard(int x, int y) { return playerBoard[x][y]; }
 	int isLegalMove();
+	bool initCheck(Tetrominos *tetromino);
+	bool getPlayerState() { return playerGameOver; }
 	//int getFigure();//
 	//int checkeEndOfBoard(Player player);/////
 	//void setFigure();//////

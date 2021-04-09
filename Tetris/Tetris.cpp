@@ -41,58 +41,61 @@ void Tetris::run()
 {
 	char key = 0;
 	int figure = 1;
-	int gameIsOver = 0;
+	bool gameIsOver = false;
+	int playerLost = 0;
 	Direction direction;
 
 	player[0].tetrominoCreator();
 	player[1].tetrominoCreator();
 
-
-	Sleep(400);
-
-
 	do {
 		player[Player1].PrintScore();
 		player[Player2].PrintScore();
+
+		
 		player[Player1].setDirection(Direction::Down);
-		if (player[Player1].playerMovement()) { player[Player1].checkFullLines(); }
+		if (player[Player1].playerMovement()) { 
+			player[Player1].checkFullLines(); 
+		
+		}
+		if (player[Player1].getPlayerState()) { 
+			playerLost = player[Player1].getPlayerNumber();
+			break;
+		}
+		
 		player[Player2].setDirection(Direction::Down);
-		if(player[Player2].playerMovement()) { player[Player2].checkFullLines(); }
+		if(player[Player2].playerMovement()) { 
+			player[Player2].checkFullLines(); 
+		}
+		if (player[Player2].getPlayerState()) { 
+			playerLost = player[Player2].getPlayerNumber();
+			break;
+		}
+		
 
 		while (_kbhit())
 		{
 			key = _getch();
 
 			if ((direction = player[Player1].getDirection(key)) != Direction::None) {
-
 				player[Player1].setDirection(direction);
-				if (player[Player1].playerMovement())
-				{
-					player[Player1].checkFullLines();
-				}
+				player[Player1].playerMovement();
 			}
 			else if ((direction = player[Player2].getDirection(key)) != Direction::None) {
-
 				player[Player2].setDirection(direction);
-				
-				if (player[Player2].playerMovement())
-				{
-					player[Player2].checkFullLines();
-				}
+				player[Player2].playerMovement();
 			}
 
 			
 		}
 		//	clearKeyboardBuffer();
 		if (key == ESC) { key = ' ';  pause(); }
-		Sleep(300);
+		
+		Sleep(GameSpeed);
 
-	} while (gameIsOver != 1);
+	} while (!gameIsOver);
 
-	pause();
-	
-	//player[0].drawFromPlayerBoard();
-	//player[1].drawFromPlayerBoard();
+	gameOver(playerLost);
 }
 
 void Tetris::pause()
@@ -121,6 +124,21 @@ void Tetris::pause()
 	{
 		player[i].drawFromPlayerBoard();
 	}
-	
+}
+
+void Tetris::gameOver(int Loser)
+{
+	system("cls");
+	printGameOver();
+	cout << endl;
+	cout << "Player " << Loser << " lost!" << endl;
+
+	//ScoreBoard();
+}
+
+/*
+void Tetris::ScoreBoard()
+{
 
 }
+*/

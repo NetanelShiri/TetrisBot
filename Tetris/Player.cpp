@@ -113,6 +113,11 @@ void Player::setDirection(Direction _direction) {
 		default:
 			tetromino = new SquareShape(this->widthDefault, this->playerChar);
 		}
+		if (!initCheck(tetromino)) 
+		{ 
+			playerGameOver = true;
+			return;
+		}
 		tetromino->drawTetromino();
 		shapeNumber++;
 	}
@@ -121,6 +126,18 @@ void Player::setDirection(Direction _direction) {
 	{
 		delete[] tetromino;
 		tetrominoCreator();
+	}
+
+	bool Player::initCheck(Tetrominos *tetromino)
+	{
+		Point pts = *tetromino->getPoints();
+		int x = pts.getX();
+		int y = pts.getY();
+		for (int i = 0; i < tetromino->getTetrinomSize(); i++)
+		{
+			if (playerBoard[x - distancing - 1][y - 1] == 1) { return false; }
+		}
+		return true;
 	}
 
 	void Player::PlayerBoardTetroUpdate(int number)
@@ -233,7 +250,7 @@ void Player::setDirection(Direction _direction) {
 	void Player::PrintScore()
 	{
 		int visualChange = 0;
-		if (distancing > 0) { visualChange = 1; }
+		if (distancing > 0) { visualChange = 3; }
 
 		gotoxy(minWidth + distancing +visualChange, maxHeight + 1);
 		cout << 'P' << this->playerNumber << " Score:" << score;

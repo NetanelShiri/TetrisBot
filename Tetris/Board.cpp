@@ -61,7 +61,6 @@ void Boardinit() {
 
 void printGameOver()
 {
-	
 	cout << " #####     #    #     # ####### ####### #     # ####### ######\n";
 	cout << "#     #   # #   ##   ## #       #     # #     # #       #     #\n";
 	cout << "#        #   #  # # # # #       #     # #     # #       #     #\n";
@@ -69,13 +68,10 @@ void printGameOver()
 	cout << "#     # ####### #     # #       #     #  #   #  #       #   #\n";
 	cout << "#     # #     # #     # #       #     #   # #   #       #    #\n";
 	cout << " #####  #     # #     # ####### #######    #    ####### #     #\n";
-	cout << "\n\nPress '2' key to continue\n";
-
 }
 
 void printPause()
 {
-
 	cout << "#######     #    #     # ####### #######   \n";
 	cout << "#     #    # #   #     # #       #         \n";
 	cout << "#     #   #   #  #     # #       #         \n";
@@ -84,5 +80,4 @@ void printPause()
 	cout << "#        #     # #     #       # #         \n";
 	cout << "#        #     # ####### ####### #######   \n";
 	cout << "\n\nPress '2' key to continue\n";
-
 }
