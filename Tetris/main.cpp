@@ -12,13 +12,12 @@ using namespace std;
 
 int main()
 {
-	Tetris game;
-	game.mainMenu();
-
+	Tetris *game = new Tetris();
 	
-	gotoxy(0, 20);
-	cout << "";
-	
-
-
+	while (true)
+	{
+		delete game;
+		game = new Tetris();
+		if (game->mainMenu()) { delete game; break; }
+	}
 }

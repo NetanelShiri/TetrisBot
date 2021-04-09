@@ -13,7 +13,7 @@ class Tetris
 public:
 	
 	void init();
-	void mainMenu();
+	bool mainMenu();
 	void instructions();
 	void scoreBoard();
 	void run();

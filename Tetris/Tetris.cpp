@@ -136,7 +136,7 @@ void Tetris::gameOver(int Loser)
 	cout << "Player " << Loser << " lost!" << endl;
 
 	scoreBoard();
-	_flushall();
+	clearKeyboardBuffer();
 	cout << "Press (9) to exit game." << endl;
 	cout << "Press (0) to return to main-menu.";
 	do {
@@ -147,7 +147,6 @@ void Tetris::gameOver(int Loser)
 		}
 	} while ((key != '9') && (key != '0'));
 	
-	if (key == '0') { mainMenu(); }
 }
 
 
@@ -191,8 +190,9 @@ void Tetris::instructions()
 	
 }
 
-void Tetris::mainMenu()
+bool Tetris::mainMenu()
 {
+	clearKeyboardBuffer();
 	char key;
 	system("cls");
 	cout << "Main Menu:  (Press Number) " << endl;
@@ -218,12 +218,11 @@ void Tetris::mainMenu()
 		instructions();
 		break;
 	case '9':
-		return;
+		return true;
 	default:
-		return;
+		return false;
 
 	}
-
-
+	return false;
 }
 	
