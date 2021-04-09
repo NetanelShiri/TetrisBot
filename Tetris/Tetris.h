@@ -13,6 +13,7 @@ class Tetris
 public:
 	
 	void init();
+	void mainMenu();
 	void run();
 	void pause();
 	void gameOver(int Loser);

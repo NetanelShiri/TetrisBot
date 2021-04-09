@@ -13,8 +13,8 @@ using namespace std;
 int main()
 {
 	Tetris game;
-	game.init();
-	game.run();
+	game.mainMenu();
+
 	
 	gotoxy(0, 20);
 	cout << "";

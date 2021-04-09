@@ -128,12 +128,23 @@ void Tetris::pause()
 
 void Tetris::gameOver(int Loser)
 {
+	char key;
 	system("cls");
 	printGameOver();
 	cout << endl;
 	cout << "Player " << Loser << " lost!" << endl;
 
 	//ScoreBoard();
+
+	cout << "Press (9) to exit game.";
+	do {
+		key = _getch();
+		while (_kbhit())
+		{
+			Sleep(200);
+		}
+	} while (key != '9');
+	
 }
 
 /*
@@ -142,3 +153,39 @@ void Tetris::ScoreBoard()
 
 }
 */
+
+void Tetris::mainMenu()
+{
+	char key;
+	cout << "Main Menu:  (Press Number) " << endl;
+	cout << "(1) Start a new game" << endl;
+	cout << "(8) Instructions" << endl;
+	cout << "(9) Exit game" << endl;
+
+	do {
+		key = _getch();
+		while (_kbhit())
+		{
+			Sleep(200);
+		}
+	} while ((key != '1') && (key != '8') && (key != '9'));
+
+	switch (key)
+	{
+	case '1':
+		init();
+		run();
+		break;
+	case '8':
+		//instructions();
+		break;
+	case '9':
+		return;
+	default:
+		return;
+
+	}
+
+
+}
+	
