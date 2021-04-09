@@ -130,33 +130,71 @@ void Tetris::gameOver(int Loser)
 {
 	char key;
 	system("cls");
+	
 	printGameOver();
 	cout << endl;
 	cout << "Player " << Loser << " lost!" << endl;
 
-	//ScoreBoard();
-
-	cout << "Press (9) to exit game.";
+	scoreBoard();
+	_flushall();
+	cout << "Press (9) to exit game." << endl;
+	cout << "Press (0) to return to main-menu.";
 	do {
 		key = _getch();
 		while (_kbhit())
 		{
 			Sleep(200);
 		}
-	} while (key != '9');
+	} while ((key != '9') && (key != '0'));
 	
+	if (key == '0') { mainMenu(); }
 }
 
-/*
-void Tetris::ScoreBoard()
+
+void Tetris::scoreBoard()
+{
+	vector<pair<int, int>> scores;
+	int i = 0;
+
+	cout << endl << "~~~~~~Scoreboard~~~~~" << endl;
+	for (int i = 0; i < playersAmount; i++)
+	{
+		scores.push_back(make_pair(player[i].getScore(),player[i].getPlayerNumber()));
+	}
+	sort(scores.rbegin(), scores.rend());
+
+	for (auto it : scores) {
+		cout << ++i << ".Player " << it.second << " score is : " << it.first<< endl;
+	}
+	cout << endl;
+}
+
+
+void Tetris::instructions()
 {
 
+	system("cls");
+	cout << "          Player 1 keys            Player 2 keys" << endl;
+	cout << "Left         A or a                    j or J     " << endl;
+	cout << "Right        D or d                    l or L     " << endl;
+	cout << "Rotate       S or s                    k or K     " << endl;
+	cout << "cRotate      W or w                    i or I     " << endl;
+	cout << "Accelerate   X or x                    m or M     " << endl << endl;
+
+	cout << "Press any key to return";
+	
+	while (!_kbhit())
+	{
+		Sleep(200);
+	}
+	mainMenu();
+	
 }
-*/
 
 void Tetris::mainMenu()
 {
 	char key;
+	system("cls");
 	cout << "Main Menu:  (Press Number) " << endl;
 	cout << "(1) Start a new game" << endl;
 	cout << "(8) Instructions" << endl;
@@ -177,7 +215,7 @@ void Tetris::mainMenu()
 		run();
 		break;
 	case '8':
-		//instructions();
+		instructions();
 		break;
 	case '9':
 		return;

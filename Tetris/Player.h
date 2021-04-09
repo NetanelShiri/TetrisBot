@@ -66,6 +66,7 @@ public:
 	char getPlayerChar();
 	int getPlayerNumber() { return playerNumber; }
 	int getWidthDefault();
+	int getScore() { return score; }
 	void CalculateScore(int lines);
 	void PrintScore();
 	void checkFullLines();

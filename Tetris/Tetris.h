@@ -14,6 +14,8 @@ public:
 	
 	void init();
 	void mainMenu();
+	void instructions();
+	void scoreBoard();
 	void run();
 	void pause();
 	void gameOver(int Loser);
