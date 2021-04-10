@@ -156,7 +156,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
-    <ClInclude Include="Colormod.h" />
     <ClInclude Include="gotoxy.h" />
     <ClInclude Include="JShape.h" />
     <ClInclude Include="LineShape.h" />
