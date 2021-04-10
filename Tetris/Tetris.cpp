@@ -29,49 +29,47 @@ void Tetris::run()
 	bool gameIsOver = false;
 	int playerLost = 0;
 	Direction direction;
-	
-	player[0].tetrominoCreator();
-	player[1].tetrominoCreator();
+	vector<Player*> players;
+	for (int i = 0; i < playersAmount; i++)
+	{
+		players.push_back(&player[i]);
+		players[i]->tetrominoCreator();
+	}
+
+//	player[0].tetrominoCreator();
+//	player[1].tetrominoCreator();
 	
 	do {
 		hideCursor();
-		player[Player1].PrintScore();
-		player[Player2].PrintScore();
-	
-		player[Player1].setDirection(Direction::Down);
-		if (player[Player1].playerMovement()) { 
-			player[Player1].checkFullLines(); 
-		
+
+		for (int i = 0; i < players.size(); i++)
+		{
+			players[i]->PrintScore();
+			players[i]->setDirection(Direction::Down);
+			if (players[i]->playerMovement())
+			{
+				players[i]->checkFullLines();
+			}
+			if (gameIsOver = players[i]->getPlayerState())
+			{
+				playerLost = players[i]->getPlayerNumber();
+				break;
+			}
 		}
-		if (player[Player1].getPlayerState()) { 
-			playerLost = player[Player1].getPlayerNumber();
-			break;
-		}
-		
-		player[Player2].setDirection(Direction::Down);
-		if(player[Player2].playerMovement()) { 
-			player[Player2].checkFullLines(); 
-		}
-		if (player[Player2].getPlayerState()) { 
-			playerLost = player[Player2].getPlayerNumber();
-			break;
-		}
-		
+		if (gameIsOver) { break; } //break out of nested loop
+	     
 
 		while (_kbhit())
 		{
 			key = _getch();
 
-			if ((direction = player[Player1].getDirection(key)) != Direction::None) {
-				player[Player1].setDirection(direction);
-				player[Player1].playerMovement();
+			for (int i = 0; i < players.size(); i++)
+			{
+				if ((direction = players[i]->getDirection(key)) != Direction::None) {
+					players[i]->setDirection(direction);
+					players[i]->playerMovement();
+				}
 			}
-			else if ((direction = player[Player2].getDirection(key)) != Direction::None) {
-				player[Player2].setDirection(direction);
-				player[Player2].playerMovement();
-			}
-
-			
 		}
 		//	clearKeyboardBuffer();
 		if (key == ESC) { key = ' ';  pause(); }
