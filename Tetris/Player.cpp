@@ -221,7 +221,6 @@ void Player::setDirection(Direction _direction) {
 			}
 			if (flag) 
 			{
-				cout << "okkk";
 				lines++;
 				bombLine(i);
 			    i++;
