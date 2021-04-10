@@ -15,7 +15,6 @@ protected:
 
 	int playerWidth = 0;
 	char playerChar = ' ';
-	COLOR color = COLOR::White;
 
 
 public:
@@ -34,8 +33,6 @@ public:
 	Point* getPoints();
 	vector<Point> &getSaveParts() { return saveParts; }
 	int getTetrinomSize();
-	COLOR getColor() { return color; }
-	void setColor(COLOR _color) { color = _color; }
 	bool checkLegal(vector<Point> &saveParts,int playerBoard[12][18], int distancing);
 
 };

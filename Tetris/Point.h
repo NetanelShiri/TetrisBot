@@ -8,7 +8,7 @@ enum class Direction {None = -1 , Left , Right , Down , RotateC , RotateCC };
 
 class Point {
 	int x = 1, y = 1;
-	int colorNum = randomizer(7.0);
+	int colorNum = randomizer(0.0,7.0);
 public:
 
 	void draw(char ch);

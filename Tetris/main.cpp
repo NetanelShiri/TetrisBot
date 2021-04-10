@@ -18,6 +18,7 @@ int main()
 	{
 		game = new Tetris();
 		if (game->mainMenu()) { delete game; break; }
+		delete game;
 	}
 	
 }

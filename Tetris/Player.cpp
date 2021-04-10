@@ -85,7 +85,7 @@ void Player::setDirection(Direction _direction) {
 
 	void Player::tetrominoCreator()
 	{
-		int randomNumber = randomizer(7.0);
+		int randomNumber = randomizer(0.0 ,7.0);
 
 		switch (randomNumber)
 		{
@@ -221,6 +221,7 @@ void Player::setDirection(Direction _direction) {
 			}
 			if (flag) 
 			{
+				cout << "okkk";
 				lines++;
 				bombLine(i);
 			    i++;

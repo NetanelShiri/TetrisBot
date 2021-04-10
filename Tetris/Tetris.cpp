@@ -12,6 +12,7 @@ using std::cin;
 
 void Tetris::init()
 {	
+	if (mode != 0) { consoleColor(); }
 	//creating board
 	Boardinit();
     
@@ -19,22 +20,6 @@ void Tetris::init()
 	player[0].playerInit('#', playerWidth +(middleWidth*0),(middleWidth*0) , 1, "adxsw");
 	player[1].playerInit('@', playerWidth+(middleWidth*1), (middleWidth*1), 2 , "jlmki");
 
-	//creating shapes according to player settings.
-	
-
-	/*switch (gameType)
-	{
-	case 0: // normal settings
-		
-		break;
-
-	default:
-		return;
-	}
-	*/
-	//s[0].setColor(Color::YELLOW);
-	//s[1].setColor(Color::LIGHTGREEN);
-	
 }
 
 void Tetris::run()
@@ -49,6 +34,7 @@ void Tetris::run()
 	player[1].tetrominoCreator();
 	
 	do {
+		hideCursor();
 		player[Player1].PrintScore();
 		player[Player2].PrintScore();
 	
@@ -118,6 +104,7 @@ void Tetris::pause()
 	cout << "1...";
 	Sleep(1000);
 
+	if (mode != 0) { consoleColor(); }
 	Boardinit();
 	for (int i = 0; i < playersAmount; i++)
 	{
@@ -146,6 +133,8 @@ void Tetris::gameOver(int Loser)
 		}
 	} while ((key != '9') && (key != '0'));
 	if (key == '9') { exit(0); }
+	mode = 0;
+
 }
 
 
@@ -210,6 +199,9 @@ void Tetris::modMenu()
 
 	switch (key)
 	{
+	case 1:
+		mode = 0;
+		break;
 	case '2':
 		mode = 1;
 		break;
@@ -217,13 +209,13 @@ void Tetris::modMenu()
 		mode = 2;
 		break;
 	case '0':
-		mainMenu();
 		break;
 	default:
 		break;
 	}
 	init();
 	run();
+
 }
 
 bool Tetris::mainMenu()

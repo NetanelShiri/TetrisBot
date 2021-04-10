@@ -17,7 +17,7 @@ void gotoxy(int x, int y)
 
 void color(char ch,int colorNum)
 {
-	if (colorNum == -1) { colorNum = randomizer(7.0); }
+	if (colorNum == -1) { colorNum = randomizer(0.0,7.0); }
 	switch (colorNum)
 	{
 	case 0: //RED
@@ -56,11 +56,35 @@ void clearKeyboardBuffer()
 	}
 }
 
-int randomizer(double max)
+void consoleColor()
+{
+	int color = randomizer(9.0, 15.0);
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	SetConsoleTextAttribute(hConsole, color);	
+}
+
+void resetConsoleColor()
+{
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	SetConsoleTextAttribute(hConsole, 7);
+}
+
+void hideCursor()
+{
+	HANDLE myconsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO CURSOR;
+	CURSOR.dwSize = 1;
+	CURSOR.bVisible = FALSE;
+	SetConsoleCursorInfo(myconsole, &CURSOR);
+}
+
+int randomizer(double min , double max)
 {
 	std::random_device rd;
 	std::mt19937 mt(rd());
-	std::uniform_real_distribution<double> dist(0.0, max);
+	std::uniform_real_distribution<double> dist(min , max);
 
 	return (int)dist(mt);
 }
