@@ -5,7 +5,6 @@
 #include <random>
 #include "Point.h"
 
-
 #include "Tetrominos.h"
 #include "SquareShape.h"
 #include "LineShape.h"
@@ -58,7 +57,6 @@ public:
 	void playerInit(char _playerChar,int _width,int _distancing,int _playerNumber,const char _keys[5]);
 	
 
-	int randomizer();
 	void tetrominoCreator();
 	void replaceTetromino();
 	//void setArrowKeys(const char* keys); 
@@ -77,7 +75,6 @@ public:
 	void bombLine(int height);
 	void PlayerBoardTetroUpdate(int number);
 	void drawFromPlayerBoard();
-	int getXYFromBoard(int x, int y) { return playerBoard[x][y]; }
 	int isLegalMove();
 	bool initCheck(Tetrominos *tetromino);
 	bool getPlayerState() { return playerGameOver; }

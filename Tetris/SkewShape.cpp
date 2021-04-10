@@ -17,10 +17,11 @@ SkewShape::SkewShape(int _width, char _ch)
 
 //drawing the square
 void SkewShape::drawTetromino() {
+	
 	for (int i = 0; i < SIZE; i++) {
 		body[i].draw(this->playerChar);
 	}
-
+	this->getColor();
 }
 
 //initialize the square by player location
@@ -95,15 +96,6 @@ void SkewShape::RotateCW(int playerBoard[12][18],int distancing)
 	}
 
 }
-
-void  SkewShape::clearBody()
-{
-	body[0].draw(' ');
-	body[1].draw(' ');
-	body[2].draw(' ');
-	body[3].draw(' ');
-}
-
 
 void SkewShape::RotateCCW(int playerBoard[12][18],int distancing) {
 	RotateCW(playerBoard,distancing);

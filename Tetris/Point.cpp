@@ -4,7 +4,10 @@
 
 void Point::draw(char ch) {
 	gotoxy(x, y);
-	cout << ch << endl;
+	if (mode == 1) { color(ch, colorNum); }
+	else if (mode == 2) { color(ch, -1); }
+	else { cout << ch << endl; }
+
 }
 
 void Point::move(Direction direction) {

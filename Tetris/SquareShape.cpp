@@ -60,19 +60,6 @@ void SquareShape::RotateCW(int playerBoard[12][18],int distancing)
 	return;
 }
 
-
-
-
-
-void SquareShape::clearBody()
-{
-	body[0].draw(' ');
-	body[1].draw(' ');
-	body[2].draw(' ');
-	body[3].draw(' ');
-}
-
-
 void SquareShape::RotateCCW(int playerBoard[12][18],int distancing)
 {
 	return;

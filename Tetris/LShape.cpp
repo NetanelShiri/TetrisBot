@@ -274,11 +274,3 @@ void LShape::RotateCCW(int playerBoard[12][18],int distancing) {
 	}
 
 }
-
-void LShape::clearBody()
-{
-	body[0].draw(' ');
-	body[1].draw(' ');
-	body[2].draw(' ');
-	body[3].draw(' ');
-}

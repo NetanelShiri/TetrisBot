@@ -51,15 +51,6 @@ void LineShape::moveTetromino(Direction direction) {
 
 	this->drawTetromino();
 }
- void LineShape:: clearBody()
-
- {
-	body[0].draw(' ');
-	body[1].draw(' ');
-	body[2].draw(' ');
-	body[3].draw(' ');
-}
-
 
 void LineShape::RotateCW(int playerBoard[12][18],int distancing)////////
 {

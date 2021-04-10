@@ -94,17 +94,6 @@ void RSkewShape::RotateCW(int playerBoard[12][18],int distancing)/////////
 
 }
 
-
-
-void RSkewShape::clearBody()
-{
-	body[0].draw(' ');
-	body[1].draw(' ');
-	body[2].draw(' ');
-	body[3].draw(' ');
-
-}
-
 void RSkewShape:: RotateCCW(int playerBoard[12][18],int distancing) {
 	RotateCW(playerBoard,distancing);
 }

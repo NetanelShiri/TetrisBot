@@ -12,12 +12,12 @@ using namespace std;
 
 int main()
 {
-	Tetris *game = new Tetris();
+	Tetris* game;
 	
 	while (true)
 	{
-		delete game;
 		game = new Tetris();
 		if (game->mainMenu()) { delete game; break; }
 	}
+	
 }

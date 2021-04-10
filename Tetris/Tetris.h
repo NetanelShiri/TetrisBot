@@ -14,6 +14,7 @@ public:
 	
 	void init();
 	bool mainMenu();
+	void modMenu();
 	void instructions();
 	void scoreBoard();
 	void run();

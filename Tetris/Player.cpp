@@ -21,7 +21,6 @@ bool Player::playerMovement()
 	
 	PlayerBoardTetroUpdate(0);
 	int value = isLegalMove();
-
 	
 	if (value == 1)
 	{
@@ -34,9 +33,11 @@ bool Player::playerMovement()
 		PlayerBoardTetroUpdate(1);
 		tetromino->drawTetromino();
 		replaceTetromino();
+	
 		return true;
 	}
 	PlayerBoardTetroUpdate(1);
+	
 	return false;
 }
 
@@ -84,7 +85,7 @@ void Player::setDirection(Direction _direction) {
 
 	void Player::tetrominoCreator()
 	{
-		int randomNumber = randomizer();
+		int randomNumber = randomizer(7.0);
 
 		switch (randomNumber)
 		{
@@ -161,9 +162,10 @@ void Player::setDirection(Direction _direction) {
 			for (int j = minHeight; j < maxHeight-1; j++)
 			{
 				gotoxy(i + distancing + 1, j + 1);
-				if (getXYFromBoard(i, j) == 1)
+				if (playerBoard[i][j] == 1)
 				{
-					cout << playerChar;
+					if (mode != 0) { color(playerChar, -1); }
+					else { cout << playerChar; }
 				}
 				else { cout << ' '; }
 			}
@@ -256,12 +258,4 @@ void Player::setDirection(Direction _direction) {
 		cout << 'P' << this->playerNumber << " Score:" << score;
 	}
 
-	//returns number between 0 to 6
-	int Player::randomizer()
-	{
-		std::random_device rd;
-		std::mt19937 mt(rd());
-		std::uniform_real_distribution<double> dist(0.0, 7.0);
-
-		return (int)dist(mt);
-	}
+	

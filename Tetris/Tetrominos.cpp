@@ -15,6 +15,15 @@ int Tetrominos::getTetrinomSize()
 	return int(SIZE);
 }
 
+void Tetrominos::clearBody()
+{
+	body[0].draw(' ');
+	body[1].draw(' ');
+	body[2].draw(' ');
+	body[3].draw(' ');
+}
+
+
 bool Tetrominos::checkLegal(vector<Point> &saveParts, int playerBoard[12][18], int distancing)
 {
 	int x, y , trueSizeArr;

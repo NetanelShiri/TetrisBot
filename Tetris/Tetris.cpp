@@ -44,15 +44,14 @@ void Tetris::run()
 	bool gameIsOver = false;
 	int playerLost = 0;
 	Direction direction;
-
+	
 	player[0].tetrominoCreator();
 	player[1].tetrominoCreator();
-
+	
 	do {
 		player[Player1].PrintScore();
 		player[Player2].PrintScore();
-
-		
+	
 		player[Player1].setDirection(Direction::Down);
 		if (player[Player1].playerMovement()) { 
 			player[Player1].checkFullLines(); 
@@ -146,7 +145,7 @@ void Tetris::gameOver(int Loser)
 			Sleep(200);
 		}
 	} while ((key != '9') && (key != '0'));
-	
+	if (key == '9') { exit(0); }
 }
 
 
@@ -171,7 +170,7 @@ void Tetris::scoreBoard()
 
 void Tetris::instructions()
 {
-
+	clearKeyboardBuffer();
 	system("cls");
 	cout << "          Player 1 keys            Player 2 keys" << endl;
 	cout << "Left         A or a                    j or J     " << endl;
@@ -188,6 +187,43 @@ void Tetris::instructions()
 	}
 	mainMenu();
 	
+}
+
+void Tetris::modMenu()
+{
+	clearKeyboardBuffer();
+	char key;
+	system("cls");
+	cout << "Mod Menu:  (Press Number) " << endl;
+	cout << "(1) Normal Mode" << endl;
+	cout << "(2) Rainbow Mode" << endl;
+	cout << "(3) Epilepsy Mode" << endl;
+
+	cout << "(0) Return to main menu " << endl;
+	do {
+		key = _getch();
+		while (_kbhit())
+		{
+			Sleep(200);
+		}
+	} while ((key != '1') && (key != '2') && (key != '3') && (key != '0'));
+
+	switch (key)
+	{
+	case '2':
+		mode = 1;
+		break;
+	case '3':
+		mode = 2;
+		break;
+	case '0':
+		mainMenu();
+		break;
+	default:
+		break;
+	}
+	init();
+	run();
 }
 
 bool Tetris::mainMenu()
@@ -211,8 +247,7 @@ bool Tetris::mainMenu()
 	switch (key)
 	{
 	case '1':
-		init();
-		run();
+		modMenu();
 		break;
 	case '8':
 		instructions();
