@@ -5,16 +5,17 @@
 
 class Tetris
 {
-	enum { GameSpeed = 300 };
+	enum { GameSpeed = 225 };
 	enum { Player1,Player2, ESC = 27 };
 	Player player[2];
 	int playersAmount = 2;
+	int paused = 0;
 		
 public:
 	
 	void init();
 	bool mainMenu();
-	void modMenu();
+	void modeMenu();
 	void instructions();
 	void scoreBoard();
 	void run();

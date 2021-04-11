@@ -35,12 +35,9 @@ void Tetris::run()
 		players.push_back(&player[i]);
 		players[i]->tetrominoCreator();
 	}
-
-//	player[0].tetrominoCreator();
-//	player[1].tetrominoCreator();
-	
+	hideCursor();
 	do {
-		hideCursor();
+		
 
 		for (int i = 0; i < players.size(); i++)
 		{
@@ -69,9 +66,8 @@ void Tetris::run()
 					players[i]->setDirection(direction);
 					players[i]->playerMovement();
 				}
-			}
+			}		
 		}
-		//	clearKeyboardBuffer();
 		if (key == ESC) { key = ' ';  pause(); }
 		
 		Sleep(GameSpeed);
@@ -169,12 +165,12 @@ void Tetris::instructions()
 	
 }
 
-void Tetris::modMenu()
+void Tetris::modeMenu()
 {
 	clearKeyboardBuffer();
 	char key;
 	system("cls");
-	cout << "Mod Menu:  (Press Number) " << endl;
+	cout << "Pick Mode:  (Press Number) " << endl;
 	cout << "(1) Normal Mode" << endl;
 	cout << "(2) Rainbow Mode" << endl;
 	cout << "(3) Epilepsy Mode" << endl;
@@ -205,8 +201,6 @@ void Tetris::modMenu()
 	default:
 		break;
 	}
-	init();
-	run();
 
 }
 
@@ -217,6 +211,7 @@ bool Tetris::mainMenu()
 	system("cls");
 	cout << "Main Menu:  (Press Number) " << endl;
 	cout << "(1) Start a new game" << endl;
+	//if(paused) << cout (2) continue game
 	cout << "(8) Instructions" << endl;
 	cout << "(9) Exit game" << endl;
 
@@ -231,7 +226,9 @@ bool Tetris::mainMenu()
 	switch (key)
 	{
 	case '1':
-		modMenu();
+		modeMenu();
+		init();
+		run();
 		break;
 	case '8':
 		instructions();

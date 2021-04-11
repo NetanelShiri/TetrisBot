@@ -23,6 +23,14 @@ void Tetrominos::clearBody()
 	body[3].draw(' ');
 }
 
+void Tetrominos::rainbowBody()
+{
+	body[0].setColor(0);
+	body[1].setColor(1);
+	body[2].setColor(2);
+	body[3].setColor(3);
+}
+
 
 bool Tetrominos::checkLegal(vector<Point> &saveParts, int playerBoard[12][18], int distancing)
 {

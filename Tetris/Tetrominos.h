@@ -30,6 +30,7 @@ public:
 	virtual void RotateCCW(int playerBoard[12][18],int distancing) = 0;
 	
 	void clearBody();
+	void rainbowBody();
 	Point* getPoints();
 	vector<Point> &getSaveParts() { return saveParts; }
 	int getTetrinomSize();

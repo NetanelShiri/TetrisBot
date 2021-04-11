@@ -119,6 +119,7 @@ void Player::setDirection(Direction _direction) {
 			playerGameOver = true;
 			return;
 		}
+		if (mode == 1) { tetromino->rainbowBody(); }
 		tetromino->drawTetromino();
 		shapeNumber++;
 	}
@@ -157,6 +158,7 @@ void Player::setDirection(Direction _direction) {
 
 	void Player::drawFromPlayerBoard()
 	{
+		static int check = 0;
 		for (int i = minWidth; i < middleWidth-1; i++)
 		{
 			for (int j = minHeight; j < maxHeight-1; j++)
@@ -164,12 +166,17 @@ void Player::setDirection(Direction _direction) {
 				gotoxy(i + distancing + 1, j + 1);
 				if (playerBoard[i][j] == 1)
 				{
-					if (mode != 0) { color(playerChar, -1); }
+					if (mode == 1) { color(playerChar, check ); }
+					else if (mode == 2) { color(playerChar, -1); }
 					else { cout << playerChar; }
+					check++;
+					if (check == 4) { check = 0; }
 				}
 				else { cout << ' '; }
 			}
 		}
+
+		
 	}
 
 	int Player::isLegalMove()

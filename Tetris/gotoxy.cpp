@@ -17,6 +17,7 @@ void gotoxy(int x, int y)
 
 void color(char ch,int colorNum)
 {
+	
 	if (colorNum == -1) { colorNum = randomizer(0.0,7.0); }
 	switch (colorNum)
 	{
@@ -44,7 +45,7 @@ void color(char ch,int colorNum)
 	default:
 		std::cout << "\x1B[31m" << ch << "\033[0m\n";
 	}
-		
+	
 }
 
 void clearKeyboardBuffer()
