@@ -225,6 +225,7 @@ void Player::setDirection(Direction _direction) {
 				bombLine(i);
 			    i++;
 				this->drawFromPlayerBoard();
+				
 			}
 		}
 		if (lines) { CalculateScore(lines); }

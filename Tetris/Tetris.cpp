@@ -112,7 +112,6 @@ void Tetris::pause()
 
 void Tetris::gameOver(int Loser)
 {
-	char key;
 	system("cls");
 	
 	printGameOver();
@@ -121,18 +120,12 @@ void Tetris::gameOver(int Loser)
 
 	scoreBoard();
 	clearKeyboardBuffer();
-	cout << "Press (9) to exit game." << endl;
-	cout << "Press (0) to return to main-menu.";
-	do {
-		key = _getch();
-		while (_kbhit())
-		{
-			Sleep(200);
-		}
-	} while ((key != '9') && (key != '0'));
-	if (key == '9') { exit(0); }
+	cout << "Press any key to return to main-menu.";
+	while (!_kbhit())
+	{
+		Sleep(200);
+	}
 	mode = 0;
-
 }
 
 
@@ -207,6 +200,7 @@ void Tetris::modMenu()
 		mode = 2;
 		break;
 	case '0':
+		return;
 		break;
 	default:
 		break;
