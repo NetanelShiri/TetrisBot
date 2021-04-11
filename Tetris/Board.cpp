@@ -7,10 +7,6 @@ using std::endl;
 
 void Boardinit() {
 
-	
-	system("cls");
-
-	_flushall();
 
 
 	//borders

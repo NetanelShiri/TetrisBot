@@ -12,6 +12,9 @@ using std::cin;
 
 void Tetris::init()
 {	
+	system("cls");
+	_flushall();
+
 	if (mode != 0) { consoleColor(); }
 	//creating board
 	Boardinit();
@@ -68,10 +71,10 @@ void Tetris::run()
 				}
 			}		
 		}
-		if (key == ESC) { key = ' ';  pause(); }
+		if (key == ESC) { key = ' ';  pause();  }
 		
 		Sleep(GameSpeed);
-
+		if (mode == 2) { consoleColor(); Boardinit(); }
 	} while (!gameIsOver);
 
 	gameOver(playerLost);
@@ -99,6 +102,7 @@ void Tetris::pause()
 	Sleep(1000);
 
 	if (mode != 0) { consoleColor(); }
+	system("cls");
 	Boardinit();
 	for (int i = 0; i < playersAmount; i++)
 	{
