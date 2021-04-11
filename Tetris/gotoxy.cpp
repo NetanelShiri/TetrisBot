@@ -59,7 +59,9 @@ void clearKeyboardBuffer()
 
 void consoleColor()
 {
-	int color = randomizer(9.0, 15.0);
+	int color = 9;
+	if (mode == 2) { color = randomizer(9.0, 15.0); }
+	
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	SetConsoleTextAttribute(hConsole, color);	

@@ -44,6 +44,8 @@ void Tetris::run()
 
 		for (int i = 0; i < players.size(); i++)
 		{
+			if (mode != 0) { consoleColor(); }
+		    
 			players[i]->PrintScore();
 			players[i]->setDirection(Direction::Down);
 			if (players[i]->playerMovement())
@@ -177,7 +179,9 @@ void Tetris::modeMenu()
 	cout << "Pick Mode:  (Press Number) " << endl;
 	cout << "(1) Normal Mode" << endl;
 	cout << "(2) Rainbow Mode" << endl;
-	cout << "(3) Epilepsy Mode" << endl;
+	cout << "(3) Epilepsy Mode | WARNING: This mode contains flashing lights which\n "
+		"	          | May not be suitable for photosensitive epilepsy." << endl << endl;
+	                
 
 	cout << "(0) Return to main menu " << endl;
 	do {
