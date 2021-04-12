@@ -1,6 +1,7 @@
 #pragma once
 #pragma warning( push )
 #pragma warning( disable : 26451 )
+#pragma warning( disable : 26812 )
 
 #include <random>
 #include "Point.h"

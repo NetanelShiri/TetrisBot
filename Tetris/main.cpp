@@ -19,7 +19,6 @@ int main()
 	{
 		game = new Tetris();
 		if (game->mainMenu(restarted)) { delete game; break; }
-		restarted = 1;
 		if (game->getGameState()) { restarted = 0; }
 		else { restarted = 1; }
 		delete game;

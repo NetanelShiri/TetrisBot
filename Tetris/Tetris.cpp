@@ -77,7 +77,7 @@ void Tetris::run()
 		}
 		if (key == ESC) { key = ' '; system("cls"); paused = 1; return; }
 		
-		Sleep(GameSpeed);
+		Sleep(gameSpeed);
 		if (mode == 2) { consoleColor(); Boardinit(); }
 	} while (!gameIsOver);
 
@@ -165,17 +165,22 @@ void Tetris::instructions()
 	
 }
 
-void Tetris::modeMenu()
+bool Tetris::modeMenu()
 {
 	clearKeyboardBuffer();
 	char key;
+	string gameSpeedPhrase = "(4) Set game speed : ";
+	string gameSpeedLevel = setGameSpeed();
+
 	system("cls");
 	cout << "Pick Mode:  (Press Number) " << endl;
 	cout << "(1) Normal Mode" << endl;
 	cout << "(2) Rainbow Mode" << endl;
 	cout << "(3) Epilepsy Mode | WARNING: This mode contains flashing lights which\n "
 		"	          | May not be suitable for photosensitive epilepsy." << endl << endl;
-	                
+	
+	cout << gameSpeedPhrase << level << ' ' << gameSpeedLevel << endl << endl;
+	
 
 	cout << "(0) Return to main menu " << endl;
 	do {
@@ -183,6 +188,13 @@ void Tetris::modeMenu()
 		while (_kbhit())
 		{
 			Sleep(200);
+		}
+		if (key == '4') {
+			gotoxy(0, 6);
+			for (int i = 0; i < gameSpeedPhrase.length() + gameSpeedLevel.length() + 5; i++) { cout << ' '; }
+			gameSpeedLevel = setGameSpeed();
+			gotoxy(0, 6);
+			cout << gameSpeedPhrase << level << ' ' << gameSpeedLevel;
 		}
 	} while ((key != '1') && (key != '2') && (key != '3') && (key != '0'));
 
@@ -198,12 +210,12 @@ void Tetris::modeMenu()
 		mode = 2;
 		break;
 	case '0':
-		return;
+		return false;
 		break;
 	default:
 		break;
 	}
-
+	return true;
 }
 	
 bool Tetris::mainMenu(int restarted)
@@ -240,9 +252,10 @@ bool Tetris::mainMenu(int restarted)
 		{
 		case '1':
 			if (paused) { return false; }
-			modeMenu();
-			init();
-			run();
+			if (modeMenu()) {
+				init();
+				run();
+			}
 			break;
 		case '8':
 			instructions();
@@ -257,3 +270,33 @@ bool Tetris::mainMenu(int restarted)
 	
 }
 	
+string Tetris::setGameSpeed()
+{
+	
+	if (level == 4) { level = 0; }
+	switch (++level)
+	{
+	case 1:
+		gameSpeed = 300;
+		return "(Easy)";
+		break;
+	case 2:
+		gameSpeed = 225;
+		return "(Normal)";
+		break;
+	case 3:
+		gameSpeed = 150;
+		return "(Hard)";
+		break;
+	case 4:
+		gameSpeed = 100;
+		return "(EXTREME)";
+		break;
+	default:
+		gameSpeed = 225;
+		return "Normal";
+		
+	}
+	return "Normal";
+	
+}
