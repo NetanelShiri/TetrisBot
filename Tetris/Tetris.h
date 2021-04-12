@@ -11,7 +11,7 @@ class Tetris
 	int playersAmount = 2;
 
 	int gameSpeed = 225;
-	int level = 0;
+	int level = 1;
 	int paused = 0;
 	int gameIsOver = 0;
 

@@ -278,7 +278,7 @@ string Tetris::setGameSpeed()
 	{
 	case 1:
 		gameSpeed = 300;
-		return "(Easy)";
+		return "(Easy) NOT RECOMMENDED";
 		break;
 	case 2:
 		gameSpeed = 225;
