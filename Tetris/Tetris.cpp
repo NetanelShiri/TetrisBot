@@ -75,7 +75,6 @@ void Tetris::run()
 		if (key == ESC) { key = ' '; system("cls"); paused = 1; return; }
 		
 		Sleep(gameSpeed);
-	
 		if (mode == 2) { consoleColor(); Boardinit(); }
 	} while (!gameIsOver);
 

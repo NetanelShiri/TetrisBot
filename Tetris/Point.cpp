@@ -1,4 +1,6 @@
+#include "gotoxy.h"
 #include "Point.h"
+#include "Tetris.h"
 
 
 void Point::draw(char ch) {

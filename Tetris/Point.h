@@ -1,6 +1,5 @@
 #pragma once
 #include "gotoxy.h"
-#include "Tetris.h"
 #include <iostream>
 
 using namespace std;
