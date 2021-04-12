@@ -221,6 +221,7 @@ bool Tetris::modeMenu()
 //main menu 
 bool Tetris::mainMenu(int restarted)
 {
+	mode = 0;
 	hideCursor();
 	while (true) {
 		
