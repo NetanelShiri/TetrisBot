@@ -27,18 +27,20 @@ void Tetris::init()
 
 void Tetris::run()
 {
+
 	char key = 0;
 	int figure = 1;
 	bool gameIsOver = false;
 	int playerLost = 0;
 	Direction direction;
 	vector<Player*> players;
+
 	for (int i = 0; i < playersAmount; i++)
 	{
 		players.push_back(&player[i]);
-		players[i]->tetrominoCreator();
+		if (!paused) { players[i]->tetrominoCreator(); }
 	}
-	hideCursor();
+	
 	do {
 		
 
@@ -73,7 +75,7 @@ void Tetris::run()
 				}
 			}		
 		}
-		if (key == ESC) { key = ' ';  pause();  }
+		if (key == ESC) { key = ' '; system("cls"); paused = 1; return; }
 		
 		Sleep(GameSpeed);
 		if (mode == 2) { consoleColor(); Boardinit(); }
@@ -84,17 +86,6 @@ void Tetris::run()
 
 void Tetris::pause()
 {
-	char key;
-	system("cls");
-	printPause();
-	do {
-		key = _getch();
-		while (_kbhit())
-		{
-			Sleep(200);
-		}
-	} while (key != '2');
-
 
 	cout << "Starting in 3...";
 	Sleep(1000);
@@ -114,6 +105,8 @@ void Tetris::pause()
 
 void Tetris::gameOver(int Loser)
 {
+	gameIsOver = 1;
+
 	system("cls");
 	
 	printGameOver();
@@ -167,7 +160,8 @@ void Tetris::instructions()
 	{
 		Sleep(200);
 	}
-	mainMenu();
+	system("cls");
+	return;
 	
 }
 
@@ -211,42 +205,55 @@ void Tetris::modeMenu()
 	}
 
 }
-
-bool Tetris::mainMenu()
+	
+bool Tetris::mainMenu(int restarted)
 {
-	clearKeyboardBuffer();
-	char key;
-	system("cls");
-	cout << "Main Menu:  (Press Number) " << endl;
-	cout << "(1) Start a new game" << endl;
-	//if(paused) << cout (2) continue game
-	cout << "(8) Instructions" << endl;
-	cout << "(9) Exit game" << endl;
+	hideCursor();
+	while (true) {
+		
+		    
+			clearKeyboardBuffer();
+			char key;
+			 
+			if (!paused) { system("cls"); }
+			else { printPause(); }
+		if (!restarted) {
+			cout << "Main Menu:  (Press Number) " << endl;
+			cout << "(1) Start a new game" << endl;
+			if (paused) { cout << "(2) Continue a paused game" << endl; }
+			cout << "(8) Instructions" << endl;
+			cout << "(9) Exit game" << endl;
 
-	do {
-		key = _getch();
-		while (_kbhit())
-		{
-			Sleep(200);
+			do {
+				key = _getch();
+				while (_kbhit())
+				{
+					Sleep(200);
+				}
+				if (paused && key == '2') { pause(); run(); break; }
+			} while ((key != '1') && (key != '8') && (key != '9'));
+
+
 		}
-	} while ((key != '1') && (key != '8') && (key != '9'));
+		else { restarted = 0; key = '1'; }
+		switch (key)
+		{
+		case '1':
+			if (paused) { return false; }
+			modeMenu();
+			init();
+			run();
+			break;
+		case '8':
+			instructions();
+			break;
+		case '9':
+			exit(0);
+			break;
 
-	switch (key)
-	{
-	case '1':
-		modeMenu();
-		init();
-		run();
-		break;
-	case '8':
-		instructions();
-		break;
-	case '9':
-		return true;
-	default:
-		return false;
-
+		}
+		if (gameIsOver) { return false; }
 	}
-	return false;
+	
 }
 	

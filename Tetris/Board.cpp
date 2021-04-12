@@ -82,8 +82,6 @@ void printPause()
 	cout << "#        ####### #     #       # #         \n";
 	cout << "#        #     # #     #       # #         \n";
 	cout << "#        #     # ####### ####### #######   \n";
-	if (mode != 0) { consoleColor(); }
-	cout << "\n\nPress '2' key to continue\n";
 	if(mode != 0) { resetConsoleColor(); }
 
 }

@@ -10,16 +10,18 @@ class Tetris
 	Player player[2];
 	int playersAmount = 2;
 	int paused = 0;
+	int gameIsOver = 0;
 		
 public:
 	
 	void init();
-	bool mainMenu();
+	bool mainMenu(int restarted);
 	void modeMenu();
 	void instructions();
 	void scoreBoard();
 	void run();
 	void pause();
 	void gameOver(int Loser);
+	int getGameState() { return gameIsOver; }
 
 };
