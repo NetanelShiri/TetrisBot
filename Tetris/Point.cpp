@@ -3,8 +3,6 @@
 #include "Tetris.h"
 
 
-
-
 void Point::draw(char ch) {
 	gotoxy(x, y);
 	if (mode == 1) { color(ch, colorNum); }

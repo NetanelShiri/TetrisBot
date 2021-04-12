@@ -57,10 +57,6 @@ void Player::playerRotateCCW()
 	this->tetromino->RotateCCW(playerBoard,distancing);
 }
 
-void Player::setDirection(Direction _direction) {
-		this->direction = _direction;
-}	
-
 	Direction Player::getDirection(char key){
 		for (int i = 0; i < 5; i++)
 		{
@@ -69,18 +65,6 @@ void Player::setDirection(Direction _direction) {
 		}
 		return Direction(-1);
 	}
-
-	char Player::getPlayerChar() {
-
-		return  playerChar;
-	}
-
-
-	int Player::getWidthDefault() {
-
-		return widthDefault;
-	}
-
 	
 
 	void Player::tetrominoCreator()

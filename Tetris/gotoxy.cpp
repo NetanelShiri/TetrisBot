@@ -1,7 +1,5 @@
 #include "gotoxy.h"
 
-
-
 int mode = 0;
 
 void gotoxy(int x, int y)
@@ -15,6 +13,7 @@ void gotoxy(int x, int y)
 	SetConsoleCursorPosition(hConsoleOutput, dwCursorPosition);
 }
 
+//printing colored char
 void color(char ch,int colorNum)
 {
 	
@@ -48,6 +47,7 @@ void color(char ch,int colorNum)
 	
 }
 
+//cleaning buffer
 void clearKeyboardBuffer()
 {
 	char junk;
@@ -57,6 +57,7 @@ void clearKeyboardBuffer()
 	}
 }
 
+//for board colored print
 void consoleColor()
 {
 	int color = 9;
@@ -67,6 +68,7 @@ void consoleColor()
 	SetConsoleTextAttribute(hConsole, color);	
 }
 
+//reset to default color
 void resetConsoleColor()
 {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -83,6 +85,7 @@ void hideCursor()
 	SetConsoleCursorInfo(myconsole, &CURSOR);
 }
 
+//returning random number
 int randomizer(double min , double max)
 {
 	std::random_device rd;

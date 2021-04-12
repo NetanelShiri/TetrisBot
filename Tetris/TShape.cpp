@@ -1,8 +1,5 @@
 #include "TShape.h"
 #include "Tetrominos.h"
-using std::cout;
-using std::endl;
-using std::cin;
 
 //default ctor
 TShape::TShape() { playerWidth = 0;  playerChar = '#'; }

@@ -1,6 +1,4 @@
 #pragma once
-#include "gotoxy.h"
-#include "Point.h"
 #include "Tetrominos.h"
 
 class RSkewShape : public Tetrominos

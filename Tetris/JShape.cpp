@@ -1,8 +1,5 @@
 #include "JShape.h"
 #include "Tetrominos.h"
-using std::cout;
-using std::endl;
-using std::cin;
 
 //default ctor
 JShape::JShape() { playerWidth = 0;  playerChar = '#'; }

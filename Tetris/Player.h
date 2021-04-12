@@ -60,28 +60,31 @@ public:
 
 	void tetrominoCreator();
 	void replaceTetromino();
-	//void setArrowKeys(const char* keys); 
 	
-	char getPlayerChar();
+	//getters
+	char getPlayerChar() { return  playerChar; }
 	int getPlayerNumber() { return playerNumber; }
-	int getWidthDefault();
+	int getWidthDefault() { return widthDefault; }
 	int getScore() { return score; }
+	Tetrominos* getTetromino() { return tetromino; }
+	bool getPlayerState() { return playerGameOver; }
+	Direction getDirection(char key);
+
+	//calculations
 	void CalculateScore(int lines);
 	void PrintScore();
 	void checkFullLines();
-	Direction getDirection(char key);
-	Tetrominos* getTetromino()	{return tetromino;}
-	void setDirection(Direction direction);
-	void setScore(int _score) { score += _score; }
 	void bombLine(int height);
+
+	//setters
+	void setDirection(Direction _direction){ this->direction = _direction; }
+	void setScore(int _score) { score += _score; }
+	
+	
 	void PlayerBoardTetroUpdate(int number);
 	void drawFromPlayerBoard();
 	int isLegalMove();
-	bool initCheck(Tetrominos *tetromino);
-	bool getPlayerState() { return playerGameOver; }
-	//int getFigure();//
-	//int checkeEndOfBoard(Player player);/////
-	//void setFigure();//////
-	//int checkLocation();//
-	//bool checkFigureLocation();//
+	bool initCheck(Tetrominos *tetromino); //used to determine if game over
+	
+
 };

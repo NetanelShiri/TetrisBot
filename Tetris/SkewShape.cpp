@@ -1,8 +1,5 @@
 #include "SkewShape.h"
 #include "Tetrominos.h"
-using std::cout;
-using std::endl;
-using std::cin;
 
 //default ctor
 SkewShape::SkewShape() { playerWidth = 0;  playerChar = '#';  }

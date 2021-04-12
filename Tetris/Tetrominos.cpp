@@ -5,16 +5,6 @@ Tetrominos::~Tetrominos()
 	saveParts.clear();
 }
 
-Point* Tetrominos::getPoints()
-{
-	return body;
-}
-
-int Tetrominos::getTetrinomSize()
-{
-	return int(SIZE);
-}
-
 void Tetrominos::clearBody()
 {
 	body[0].draw(' ');

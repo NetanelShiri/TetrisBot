@@ -5,11 +5,7 @@
 #include "Board.h"
 #include "Tetris.h"
 
-using std::cout;
-using std::endl;
-using std::cin;
-
-
+//initilize the game
 void Tetris::init()
 {	
 	system("cls");
@@ -25,6 +21,7 @@ void Tetris::init()
 
 }
 
+//running the game (main game loop)
 void Tetris::run()
 {
 
@@ -84,6 +81,7 @@ void Tetris::run()
 	gameOver(playerLost);
 }
 
+//un-pausing the game(continue after pausing)
 void Tetris::pause()
 {
 
@@ -103,6 +101,7 @@ void Tetris::pause()
 	}
 }
 
+//set the game as over and find the lost player
 void Tetris::gameOver(int Loser)
 {
 	gameIsOver = 1;
@@ -123,7 +122,7 @@ void Tetris::gameOver(int Loser)
 	mode = 0;
 }
 
-
+//calculate the players scores
 void Tetris::scoreBoard()
 {
 	vector<pair<int, int>> scores;
@@ -142,7 +141,7 @@ void Tetris::scoreBoard()
 	cout << endl;
 }
 
-
+//printing the game's instructions
 void Tetris::instructions()
 {
 	clearKeyboardBuffer();
@@ -165,6 +164,7 @@ void Tetris::instructions()
 	
 }
 
+//introducing the game modes and speed , player picks one.
 bool Tetris::modeMenu()
 {
 	clearKeyboardBuffer();
@@ -218,6 +218,7 @@ bool Tetris::modeMenu()
 	return true;
 }
 	
+//main menu 
 bool Tetris::mainMenu(int restarted)
 {
 	hideCursor();
@@ -270,6 +271,7 @@ bool Tetris::mainMenu(int restarted)
 	
 }
 	
+//set the game's speed
 string Tetris::setGameSpeed()
 {
 	

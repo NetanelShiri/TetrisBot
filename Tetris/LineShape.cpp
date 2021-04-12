@@ -1,8 +1,5 @@
 #include "LineShape.h"
 #include "Tetrominos.h"
-using std::cout;
-using std::endl;
-using std::cin;
 
 //default ctor
 LineShape::LineShape() { playerWidth = 0;  playerChar = '#'; rotateDirection = RotateDirection::Up; }/////// 

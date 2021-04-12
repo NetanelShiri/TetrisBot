@@ -1,8 +1,5 @@
 #include "LShape.h"
 #include "Tetrominos.h"
-using std::cout;
-using std::endl;
-using std::cin;
 
 //default ctor
 LShape::LShape() { playerWidth = 0;  playerChar = '#'; }

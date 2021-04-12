@@ -1,7 +1,5 @@
 #pragma once
-#include "Point.h"
 #include "Tetrominos.h"
-
 
 class SquareShape : public Tetrominos {
 
