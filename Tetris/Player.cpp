@@ -69,7 +69,8 @@ void Player::playerRotateCCW()
 
 	void Player::tetrominoCreator()
 	{
-		int randomNumber = randomizer(0.0 ,7.0);
+		
+		int randomNumber = randomizer(0.0 ,8.0);
 
 		switch (randomNumber)
 		{
@@ -94,7 +95,10 @@ void Player::playerRotateCCW()
 		case RSkewS:
 			tetromino = new RSkewShape(this->widthDefault, this->playerChar);
 			break;
-
+		case BombS:
+			tetromino = new Bomb(this->widthDefault,this->playerChar);
+			break;
+		
 		default:
 			tetromino = new SquareShape(this->widthDefault, this->playerChar);
 		}

@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="gotoxy.cpp" />
     <ClCompile Include="JShape.cpp" />
     <ClCompile Include="LineShape.cpp" />
@@ -156,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
+    <ClInclude Include="Bomb.h" />
     <ClInclude Include="gotoxy.h" />
     <ClInclude Include="JShape.h" />
     <ClInclude Include="LineShape.h" />

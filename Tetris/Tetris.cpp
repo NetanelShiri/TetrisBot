@@ -40,7 +40,6 @@ void Tetris::run()
 	
 	do {
 		
-
 		for (int i = 0; i < players.size(); i++)
 		{
 			if (mode != 0) { consoleColor(); }

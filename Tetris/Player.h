@@ -14,6 +14,7 @@
 #include "TShape.h"
 #include "SkewShape.h"
 #include "RSkewShape.h"
+#include "Bomb.h"
 using std::vector;
 
 //player board
@@ -26,7 +27,7 @@ constexpr size_t playerWidth = 6;
 
 class Player {
 
-	enum Tetromino { SquareS, LineS, TS, LS, JS, SkewS, RSkewS };
+	enum Tetromino { SquareS, LineS, TS, LS, JS, SkewS, RSkewS , BombS};
 
 	//default player settings
 	Direction direction = Direction::Down;
