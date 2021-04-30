@@ -87,5 +87,4 @@ public:
 	int isLegalMove();
 	bool initCheck(Tetrominos *tetromino); //used to determine if game over
 	
-
 };
