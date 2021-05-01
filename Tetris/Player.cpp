@@ -117,7 +117,8 @@ void Player::playerRotateCCW()
 	{
 		if (typeid(*tetromino) == typeid(Bomb))
 		{
-			dynamic_cast<Bomb*>(tetromino)->suicide(playerBoard,distancing);
+			int bombed = dynamic_cast<Bomb*>(tetromino)->suicide(playerBoard,distancing);
+			setScore(bombed * 5);
 		}
 		delete[] tetromino;
 		tetrominoCreator();

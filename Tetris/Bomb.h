@@ -19,6 +19,6 @@ public:
 	virtual void RotateCW(int playerBoard[12][18], int distancing);//Rotate the shape clockwise
 	virtual void RotateCCW(int playerBoard[12][18], int distancing);//Rotate the shape counterclockwise
 
-	void suicide(int playerBoard[12][18], int distancing);
+	int suicide(int playerBoard[12][18], int distancing);
 
 };

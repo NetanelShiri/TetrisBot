@@ -12,8 +12,9 @@ Bomb::Bomb(int _width , int _ch)
 	initTetromino();
 }
 
-void Bomb::suicide(int playerBoard[12][18], int distancing)
+int Bomb::suicide(int playerBoard[12][18], int distancing)
 {
+	int bombed = 0;
 	int dirX, dirY;
 	int trueSizeArr;
 	saveParts.resize(1);
@@ -21,7 +22,7 @@ void Bomb::suicide(int playerBoard[12][18], int distancing)
 	//furthest corner 
 	dirX = this->getPoints()->getX() - 4;
 	dirY = this->getPoints()->getY() - 4;
-
+	
 
 	for (int i = 0; i < 9; i++)
 	{
@@ -36,13 +37,15 @@ void Bomb::suicide(int playerBoard[12][18], int distancing)
 				playerBoard[trueSizeArr][dirY - 1] = 0;
 				gotoxy(dirX, dirY);
 				cout << ' ';
+				bombed++;
 			}
 			dirX++;
 		}
 		dirX -= 9;
 		dirY++;
+		
 	}
-
+	return bombed;
 }
 
 //drawing the square
