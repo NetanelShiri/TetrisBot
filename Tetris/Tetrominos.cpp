@@ -45,9 +45,9 @@ bool Tetrominos::checkInBorders(vector<Point>& saveParts, int distancing)
 	int x, y;
 	for (int i = 0; i < saveParts.size(); i++)
 	{
-		x = saveParts[i].getX();
+		x = saveParts[i].getX() - distancing;
 		y = saveParts[i].getY();
-
+		
 		if ((x == 0) || ( x == 13)
 			|| (y == 19) || (y == 0))
 		{

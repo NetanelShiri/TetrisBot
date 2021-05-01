@@ -19,6 +19,31 @@ void Bomb::suicide(int playerBoard[12][18], int distancing)
 	int trueSizeArr;
 	saveParts.resize(1);
 
+	//furthest corner 
+	dirX = this->getPoints()->getX() - 4;
+	dirY = this->getPoints()->getY() - 4;
+
+
+	for (int i = 0; i < 9; i++)
+	{
+		for (int j = 0; j < 9; j++)
+		{
+			saveParts[0].setX(dirX);
+			saveParts[0].setY(dirY);
+
+			if (checkInBorders(saveParts, distancing))
+			{
+				trueSizeArr = dirX - distancing - 1;
+				playerBoard[trueSizeArr][dirY - 1] = 0;
+				gotoxy(dirX, dirY);
+				cout << ' ';
+			}
+			dirX++;
+		}
+		dirX -= 9;
+		dirY++;
+	}
+	/*
 	for (int i = 0; i < dirSize; i++)
 	{
 		setDirections(i, x, y);
@@ -50,7 +75,7 @@ void Bomb::suicide(int playerBoard[12][18], int distancing)
 			
 		}
 	}
-	
+	*/
 
 }
 
