@@ -20,5 +20,5 @@ public:
 	virtual void RotateCCW(int playerBoard[12][18], int distancing);//Rotate the shape counterclockwise
 
 	void suicide(int playerBoard[12][18], int distancing);
-	void setDirections(int dir, int& x, int& y);
+
 };

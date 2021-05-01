@@ -158,7 +158,9 @@
   <ItemGroup>
     <ClInclude Include="Board.h" />
     <ClInclude Include="Bomb.h" />
+    <ClInclude Include="Bot.h" />
     <ClInclude Include="gotoxy.h" />
+    <ClInclude Include="Human.h" />
     <ClInclude Include="JShape.h" />
     <ClInclude Include="LineShape.h" />
     <ClInclude Include="LShape.h" />
