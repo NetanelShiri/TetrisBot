@@ -33,8 +33,10 @@ public:
 	virtual void RotateCW(int playerBoard[12][18],int distancing) = 0; //rotating Clock-wise
 	virtual void RotateCCW(int playerBoard[12][18],int distancing) = 0; //rotating Counter Clock-wise
 	
+
 	//check if rotation is legal
 	bool checkLegal(vector<Point>& saveParts, int playerBoard[12][18], int distancing);
+	bool checkInBorders(vector<Point>& saveParts, int distancing);
 
 	void clearBody(); //clear body
 	void rainbowBody(); //coloring body

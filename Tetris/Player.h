@@ -40,7 +40,6 @@ class Player {
 	//player score monitor
 	int score = 0;
 
-
 	//player shape control
 	Tetrominos* tetromino = nullptr;
 

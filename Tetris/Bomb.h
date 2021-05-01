@@ -3,6 +3,8 @@
 
 class Bomb : public Tetrominos
 {
+	enum {   north ,northEast , east ,southEast ,south , southWest ,west , northWest , dirSize};
+
 	RotateDirection rotateDirection = RotateDirection::Up;
 	char bombChar = char(233);
 
@@ -17,4 +19,6 @@ public:
 	virtual void RotateCW(int playerBoard[12][18], int distancing);//Rotate the shape clockwise
 	virtual void RotateCCW(int playerBoard[12][18], int distancing);//Rotate the shape counterclockwise
 
+	void suicide(int playerBoard[12][18], int distancing);
+	void setDirections(int dir, int& x, int& y);
 };

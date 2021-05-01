@@ -96,24 +96,29 @@ void Player::playerRotateCCW()
 			tetromino = new RSkewShape(this->widthDefault, this->playerChar);
 			break;
 		case BombS:
-			tetromino = new Bomb(this->widthDefault,this->playerChar);
+     		tetromino = new Bomb(this->widthDefault,this->playerChar);
 			break;
 		
 		default:
 			tetromino = new SquareShape(this->widthDefault, this->playerChar);
 		}
-		if (!initCheck(tetromino)) 
-		{ 
+		if (!initCheck(tetromino))
+		{
 			playerGameOver = true;
 			return;
 		}
 		if (mode == 1) { tetromino->rainbowBody(); }
+
 		tetromino->drawTetromino();
 		shapeNumber++;
 	}
 
 	void Player::replaceTetromino()
 	{
+		if (typeid(*tetromino) == typeid(Bomb))
+		{
+			dynamic_cast<Bomb*>(tetromino)->suicide(playerBoard,distancing);
+		}
 		delete[] tetromino;
 		tetrominoCreator();
 	}

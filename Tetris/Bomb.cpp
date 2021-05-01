@@ -12,6 +12,81 @@ Bomb::Bomb(int _width , int _ch)
 	initTetromino();
 }
 
+void Bomb::suicide(int playerBoard[12][18], int distancing)
+{
+	int dirX, dirY;
+	int x, y;
+	int trueSizeArr;
+	saveParts.resize(1);
+
+	for (int i = 0; i < dirSize; i++)
+	{
+		setDirections(i, x, y);
+
+		dirX = this->getPoints()->getX();
+		dirY = this->getPoints()->getY();
+		if(i == 0){
+			trueSizeArr = dirX - distancing - 1;
+			playerBoard[trueSizeArr][dirY - 1] = 0;
+			gotoxy(dirX, dirY);
+			cout << ' ';
+		}
+		for (int j = 0; j < 4; j++)
+		{
+			dirX += x;
+			dirY += y;
+			saveParts[0].setX(dirX);
+			saveParts[0].setY(dirY);
+
+			if (checkInBorders(saveParts, distancing))
+			{
+				trueSizeArr = dirX - distancing - 1;
+				playerBoard[trueSizeArr][dirY - 1] = 0;
+				gotoxy(dirX, dirY);
+				cout << ' ';
+			}
+			else { break; }
+			
+			
+		}
+	}
+	
+
+}
+
+void Bomb::setDirections(int dir , int &x,int &y)
+{
+	switch (dir)
+	{
+	case north:
+		x = 0, y = -1;
+		break;
+	case northEast:
+		x = 1, y = -1;
+		break;
+	case east:
+		x = 1, y = 0;
+		break;
+	case southEast:
+		x = 1, y = 1;
+		break;
+	case south:
+		x = 0, y = 1;
+		break;
+	case southWest:
+		x = -1, y = 1;
+		break;
+	case west:
+		x = -1, y = 0;
+		break;
+	case northWest:
+		x = -1, y = -1;
+		break;
+	default:
+		x = 0, y = 0;
+	}
+}
+
 //drawing the square
 void Bomb::drawTetromino() {
 

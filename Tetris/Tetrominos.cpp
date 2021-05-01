@@ -39,3 +39,21 @@ bool Tetrominos::checkLegal(vector<Point> &saveParts, int playerBoard[12][18], i
 	}
 	return true;
 }
+
+bool Tetrominos::checkInBorders(vector<Point>& saveParts, int distancing)
+{
+	int x, y;
+	for (int i = 0; i < saveParts.size(); i++)
+	{
+		x = saveParts[i].getX();
+		y = saveParts[i].getY();
+
+		if ((x == 0) || ( x == 13)
+			|| (y == 19) || (y == 0))
+		{
+			return false;
+		}
+	}
+	return true;
+
+}
