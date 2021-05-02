@@ -34,10 +34,10 @@ int Bomb::suicide(int playerBoard[12][18], int distancing)
 			if (checkInBorders(saveParts, distancing))
 			{
 				trueSizeArr = dirX - distancing - 1;
+				if (playerBoard[trueSizeArr][dirY - 1] == 1) { bombed++; }
 				playerBoard[trueSizeArr][dirY - 1] = 0;
 				gotoxy(dirX, dirY);
 				cout << ' ';
-				bombed++;
 			}
 			dirX++;
 		}

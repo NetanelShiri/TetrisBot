@@ -75,6 +75,7 @@ public:
 	void PrintScore();
 	void checkFullLines();
 	void bombLine(int height);
+	void clearEmptyLines();
 
 	//setters
 	void setDirection(Direction _direction){ this->direction = _direction; }

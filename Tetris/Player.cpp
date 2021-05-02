@@ -115,10 +115,13 @@ void Player::playerRotateCCW()
 
 	void Player::replaceTetromino()
 	{
+		//for bomb type, explode + setscore + clear all empty lines
 		if (typeid(*tetromino) == typeid(Bomb))
 		{
 			int bombed = dynamic_cast<Bomb*>(tetromino)->suicide(playerBoard,distancing);
-			setScore(bombed * 5);
+			setScore(bombed * 15);
+			this->clearEmptyLines();
+			this->drawFromPlayerBoard();
 		}
 		delete[] tetromino;
 		tetrominoCreator();
@@ -230,6 +233,37 @@ void Player::playerRotateCCW()
 			}
 		}
 		if (lines) { CalculateScore(lines); }
+	}
+
+	void Player::clearEmptyLines()
+	{
+		int maximize = 0;
+		bool none = true;
+		bool flag = false;
+		int height = int(maxHeight) - 2;
+		int width = int(middleWidth) - 2;
+		while (maximize++ != maxHeight)
+		{
+			for (int i = height; i >= int(minHeight); i--)
+			{
+				for (int j = width; j >= int(minWidth); j--)
+				{
+					if (playerBoard[j][i] == 1)
+					{
+						flag = false;
+						break;
+					}
+					else if (j == minWidth) { flag = true; }
+
+				}
+				if (flag)
+				{
+					bombLine(i);
+					break;
+				}
+				if (flag) { break; }
+			}
+		}
 	}
 
 	void Player::bombLine(int height)
