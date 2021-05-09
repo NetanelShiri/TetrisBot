@@ -30,6 +30,8 @@ bool Bot::playerTurn()
 		vec.clear();
 		addTempToBoard();
 		sortBestScenarios();
+
+		
 		if (vec[0].rotation > 1)
 		{
 			playerMovement();
@@ -90,6 +92,7 @@ void Bot::addTempToBoard()
 				addScenario(temp,i+1);
 				findHoles();
 				findHeight();
+				findCompletedLines();
 
 				for (int i = 0; i < temp.size(); i++)
 				{
@@ -116,7 +119,20 @@ void Bot::sortBestScenarios()
 {
 	vector<scenarios> tempHoles;
 	int _holes = 0;
+	int place = 0;
+	double result = INT_MIN;
+	for (int i = 0; i < vec.size(); i++)
+	{
+		vec[i].finalValue = (vec[i].height * a) + (vec[i].completeLines * b) + (vec[i].holes * c) + (vec[i].bumpiness * d);
+		if (vec[i].finalValue > result)
+		{
+			result = vec[i].finalValue;
+			place = i;
+		}
+	}
+
 	//make vector that contains the minimum holes
+	/*
 	while (true)
 	{
 		for (int i = 0; i < vec.size(); i++)
@@ -145,9 +161,39 @@ void Bot::sortBestScenarios()
 		}
 		
 	}
-
+	*/
+	tempHoles.push_back(vec[place]);
 	vec.clear();
-	vec.push_back(tempHoles[place]);
+
+	vec.push_back(tempHoles[0]);
+	
+
+	
+}
+
+void Bot::findCompletedLines()
+{
+	scenarios& temp = vec.back();
+	bool flag = false;
+	int lines = 0;
+	for (int i = maxHeight - 2; i >= int(minHeight); i--)
+	{
+		for (int j = middleWidth-2; j >= int(minWidth); j--)
+		{
+			if (playerBoard[j][i] == 0)
+			{
+				flag = false;
+				break;
+			}
+			else if (j == minWidth) { flag = true; }
+
+		}
+		if (flag)
+		{
+			lines++;
+		}
+	}
+	temp.completeLines = lines;
 }
 
 void Bot::findHoles()
@@ -172,6 +218,10 @@ void Bot::findHeight()
 {
 	scenarios& temp = vec.back();
 	int _height = 0;
+	int _bumpiness = 0;
+	int _absBumpiness = 0;
+	int temp1 = 0;
+	int temp2 = 0;
 	
 	for (int i = 0; i < middleWidth - 1 ; i++)
 	{
@@ -180,11 +230,21 @@ void Bot::findHeight()
 			if (playerBoard[i][j] == 1)
 			{
 				_height += maxHeight - j - 1;
+				_bumpiness = maxHeight - j - 1;
 				break;
 			}
 		}
+		if ((i+1) % 2 == 0) {
+			temp2 = _bumpiness;
+			_absBumpiness += abs(temp2 - temp1);
+		}
+		else {
+			temp1 = _bumpiness;
+		}
 	}
 	temp.height = _height;
+	temp.bumpiness = _absBumpiness;
+
 }
 
 void Bot::addScenario(vector<Point> saveParts,int _rotation)
