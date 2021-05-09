@@ -1,6 +1,7 @@
 #pragma once
 #include "Player.h"
 
+//my little secret ( GA )
 constexpr double a = -0.510066;
 constexpr double b = 0.760666;
 constexpr double c = -0.35663;
@@ -15,7 +16,7 @@ class Bot : public Player
 		int completeLines = 0;		// how many lines completed by scenerios
 		int bumpiness = 0;          // absolute value between all two columns
 		int rotation = 0;           // which rotation is picked
-		double finalValue = 0;         // calculation of all above
+		double finalValue = 0;      // calculation of all above
 		vector<Point> savePts;
 	};
 

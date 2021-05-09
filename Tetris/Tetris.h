@@ -1,8 +1,12 @@
 #pragma once
 #include "Player.h"
 #include "Human.h"
+#include <chrono>
+#include <thread>
 #include "Bot.h"
 #include "Tetrominos.h"
+using namespace std::literals;
+using namespace std::chrono;
 
 class Tetris
 {
@@ -27,6 +31,7 @@ public:
 	void run();
 	void pause();
 	void gameOver(int Loser);
+	void checkPlayerKBHIT(char& key, vector<Player*> players);
 	int getGameState() { return gameIsOver; }
 	string setGameSpeed();
 	

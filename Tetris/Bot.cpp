@@ -30,7 +30,7 @@ bool Bot::playerTurn()
 		vec.clear();
 		addTempToBoard();
 		sortBestScenarios();
-
+		
 		
 		if (vec[0].rotation > 1)
 		{
@@ -48,11 +48,15 @@ bool Bot::playerTurn()
 		tetromino->setTargetFound(true);
 	}
 
+	int random = randomizer(2.0, 4.0);
 
-	if (stack != 0)
+	for (int i = 0; i < random; i++)
 	{
-		initiateMovement();
-		playerMovement();
+		if (stack != 0)
+		{
+			initiateMovement();
+			playerMovement();
+		}
 	}
 	
 	direction = Direction::Down;

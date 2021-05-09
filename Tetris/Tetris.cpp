@@ -27,12 +27,13 @@ void Tetris::init()
 //running the game (main game loop)
 void Tetris::run()
 {
-
-	char key = 0;
+	
+	char key = ' ';
 	int figure = 1;
+	bool keyHit = false;
 	bool gameIsOver = false;
 	int playerLost = 0;
-	Direction direction;
+
 	vector<Player*> players;
 
 	for (int i = 0; i < playersAmount; i++)
@@ -60,23 +61,20 @@ void Tetris::run()
 			}
 		}
 		if (gameIsOver) { break; } //break out of nested loop
-	     
 
-		while (_kbhit())
+		auto start = high_resolution_clock::now();
+		long long dur = 0;
+		while(dur < gameSpeed)
 		{
-			key = _getch();
-
-			for (int i = 0; i < players.size(); i++)
-			{
-				if ((direction = players[i]->getDirection(key)) != Direction::None) {
-					players[i]->setDirection(direction);
-					players[i]->playerTurn();
-				}
-			}		
+			checkPlayerKBHIT(key, players);
+			auto stop = high_resolution_clock::now();
+			auto duration = duration_cast<milliseconds>(stop - start);
+			dur = duration.count();
 		}
+
 		if (key == ESC) { key = ' '; system("cls"); paused = 1; return; }
 		
-		Sleep(gameSpeed);
+		
 		if (mode == 2) { consoleColor(); Boardinit(); }
 	} while (!gameIsOver);
 
@@ -100,6 +98,24 @@ void Tetris::pause()
 	for (int i = 0; i < playersAmount; i++)
 	{
 		player[i]->drawFromPlayerBoard();
+	}
+}
+
+void Tetris::checkPlayerKBHIT(char &key , vector<Player*> players)
+{
+	while (_kbhit())
+	{
+		key = _getch();
+
+		for (int i = 0; i < players.size(); i++)
+		{
+			if (typeid(*players[i]) != typeid(Bot)) {
+				if ((players[i]->getDirection(key)) != Direction::None) {
+					players[i]->setDirection(players[i]->getDirection(key));
+					players[i]->playerTurn();
+				}
+			}
+		}
 	}
 }
 
