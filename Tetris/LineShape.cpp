@@ -9,13 +9,53 @@ LineShape::LineShape(int _width, char _ch)
 {
 	playerWidth = _width;
 	playerChar = _ch;
+	rotations = 2;
 	initTetromino();
 }
+
 
 //drawing the square
 void LineShape::drawTetromino() {
 	for (int i = 0; i < SIZE; i++) {
 		body[i].draw(this->playerChar);
+	}
+}
+
+//setting location in bottom right.	
+void LineShape::initTemporary(int _rotation)
+{
+	saveParts.resize(4);
+
+	if (_rotation == 1){
+		
+		//[8][17]
+		saveParts[0].setX(middleWidth - 5);
+		saveParts[0].setY(maxHeight - 2);
+		//[9][17]
+		saveParts[1].setX(middleWidth - 4);
+		saveParts[1].setY(maxHeight - 2);
+		//[10][17]
+		saveParts[2].setX(middleWidth - 3);
+		saveParts[2].setY(maxHeight - 2);
+		//[11][17]
+		saveParts[3].setX(middleWidth - 2);
+		saveParts[3].setY(maxHeight - 2);
+	}
+	else if (_rotation == 2){
+
+		//[11][14]
+		saveParts[0].setX(middleWidth - 2);
+		saveParts[0].setY(maxHeight - 5);
+		//[11][15]
+		saveParts[1].setX(middleWidth - 2);
+		saveParts[1].setY(maxHeight - 4);
+		//[11][16]
+		saveParts[2].setX(middleWidth - 2);
+		saveParts[2].setY(maxHeight - 3);
+		//[11][17]
+		saveParts[3].setX(middleWidth - 2);
+		saveParts[3].setY(maxHeight - 2);
+
 	}
 }
 
@@ -121,7 +161,6 @@ void LineShape::RotateCW(int playerBoard[12][18],int distancing)////////
 void LineShape::RotateCCW(int playerBoard[12][18], int distancing) {
 	RotateCW(playerBoard,distancing);
 }
-
 
 
 

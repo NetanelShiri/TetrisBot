@@ -54,6 +54,16 @@ void Bomb::drawTetromino() {
 	body[0].draw(this->playerChar);
 }
 
+//setting location in bottom right.	
+void Bomb::initTemporary(int _rotation)
+{
+	saveParts.resize(1);
+
+	//[11][17]
+	saveParts[3].setX(middleWidth - 2);
+	saveParts[3].setY(maxHeight - 2);
+}
+
 //initialize the square by player location
 void Bomb::initTetromino() {
 

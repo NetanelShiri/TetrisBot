@@ -141,7 +141,9 @@
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="Bot.cpp" />
     <ClCompile Include="gotoxy.cpp" />
+    <ClCompile Include="Human.cpp" />
     <ClCompile Include="JShape.cpp" />
     <ClCompile Include="LineShape.cpp" />
     <ClCompile Include="LShape.cpp" />

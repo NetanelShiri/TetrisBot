@@ -20,6 +20,8 @@ protected:
 	int playerWidth = 0;
 	char playerChar = ' ';
 
+	bool targetFound = false;
+	int rotations = 1;
 
 public:
 
@@ -32,11 +34,14 @@ public:
 	virtual void drawTetromino() = 0; //drawing the Point* body[4] of the shape
 	virtual void RotateCW(int playerBoard[12][18],int distancing) = 0; //rotating Clock-wise
 	virtual void RotateCCW(int playerBoard[12][18],int distancing) = 0; //rotating Counter Clock-wise
-	
+	virtual void initTemporary(int _rotation) = 0;
 
 	//check if rotation is legal
 	bool checkLegal(vector<Point>& saveParts, int playerBoard[12][18], int distancing);
 	bool checkInBorders(vector<Point>& saveParts, int distancing);
+
+	void setTargetFound(bool state) { targetFound = state; }
+	bool getTargetFound() { return targetFound; }
 
 	void clearBody(); //clear body
 	void rainbowBody(); //coloring body
@@ -44,6 +49,9 @@ public:
 	Point* getPoints() { return body; }
 	vector<Point> &getSaveParts() { return saveParts; } //used in rotating functions
 	int getTetrinomSize() { return int(SIZE); }
-;
+	int getRotationSize() { return rotations; }
+
+
+
 
 };

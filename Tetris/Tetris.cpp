@@ -14,11 +14,14 @@ void Tetris::init()
 	if (mode != 0) { consoleColor(); }
 	//creating board
 	Boardinit();
-    
+	player[0] = new Bot();
+	player[1] = new Bot();
+	
 	//player settings (char, player start width , distancing , player Number , game keys)
-	player[0].playerInit('#', playerWidth +(middleWidth*0),(middleWidth*0) , 1, "adxsw");
-	player[1].playerInit('@', playerWidth+(middleWidth*1), (middleWidth*1), 2 , "jlmki");
-
+	//player[0]->playerInit('#', playerWidth +(middleWidth*0),(middleWidth*0) , 1, "adxsw");
+	//player[1]->playerInit('@', playerWidth+(middleWidth*1), (middleWidth*1), 2 , "jlmki");
+    player[0]->playerInit('#', playerWidth +(middleWidth*0),(middleWidth*0) , 1, "adxsw");
+	player[1]->playerInit('@', playerWidth+(middleWidth*1), (middleWidth*1), 2 , "jlmki");
 }
 
 //running the game (main game loop)
@@ -34,19 +37,19 @@ void Tetris::run()
 
 	for (int i = 0; i < playersAmount; i++)
 	{
-		players.push_back(&player[i]);
+		players.push_back(player[i]);
 		if (!paused) { players[i]->tetrominoCreator(); }
 	}
 	
 	do {
-		
+
 		for (int i = 0; i < players.size(); i++)
 		{
 			if (mode != 0) { consoleColor(); }
 		    
 			players[i]->PrintScore();
 			players[i]->setDirection(Direction::Down);
-			if (players[i]->playerMovement())
+			if (players[i]->playerTurn())
 			{
 				players[i]->checkFullLines();
 			}
@@ -67,7 +70,7 @@ void Tetris::run()
 			{
 				if ((direction = players[i]->getDirection(key)) != Direction::None) {
 					players[i]->setDirection(direction);
-					players[i]->playerMovement();
+					players[i]->playerTurn();
 				}
 			}		
 		}
@@ -96,7 +99,7 @@ void Tetris::pause()
 	Boardinit();
 	for (int i = 0; i < playersAmount; i++)
 	{
-		player[i].drawFromPlayerBoard();
+		player[i]->drawFromPlayerBoard();
 	}
 }
 
@@ -130,7 +133,7 @@ void Tetris::scoreBoard()
 	cout << endl << "~~~~~~Scoreboard~~~~~" << endl;
 	for (int i = 0; i < playersAmount; i++)
 	{
-		scores.push_back(make_pair(player[i].getScore(),player[i].getPlayerNumber()));
+		scores.push_back(make_pair(player[i]->getScore(),player[i]->getPlayerNumber()));
 	}
 	sort(scores.rbegin(), scores.rend());
 

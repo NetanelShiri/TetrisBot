@@ -9,6 +9,7 @@ RSkewShape::RSkewShape(int _width, char _ch)
 {
 	playerWidth = _width;
 	playerChar = _ch;
+	rotations = 2;
 	initTetromino();
 }
 
@@ -18,6 +19,42 @@ void RSkewShape::drawTetromino() {
 		body[i].draw(this->playerChar);
 	}
 
+}
+
+//setting location in bottom right.	
+void RSkewShape::initTemporary(int _rotation)
+{
+	saveParts.resize(4);
+
+	if (_rotation == 1) {
+		//[11][16]
+		saveParts[0].setX(middleWidth - 2);
+		saveParts[0].setY(maxHeight - 3);
+		//[10][16]
+		saveParts[1].setX(middleWidth - 3);
+		saveParts[1].setY(maxHeight - 3);
+		//[9][17]
+		saveParts[2].setX(middleWidth - 4);
+		saveParts[2].setY(maxHeight - 2);
+		//[10][17]
+		saveParts[3].setX(middleWidth - 3);
+		saveParts[3].setY(maxHeight - 2);
+	}
+	else if (_rotation == 2) {
+
+		//[10][15]
+		saveParts[0].setX(middleWidth - 3);
+		saveParts[0].setY(maxHeight - 4);
+		//[10][16]
+		saveParts[1].setX(middleWidth - 3);
+		saveParts[1].setY(maxHeight - 3);
+		//[11][16]
+		saveParts[2].setX(middleWidth - 2);
+		saveParts[2].setY(maxHeight - 3);
+		//[11][17]
+		saveParts[3].setX(middleWidth - 2);
+		saveParts[3].setY(maxHeight - 2);
+	}
 }
 
 //initialize the square by player location

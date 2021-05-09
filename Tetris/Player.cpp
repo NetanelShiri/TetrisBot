@@ -95,9 +95,9 @@ void Player::playerRotateCCW()
 		case RSkewS:
 			tetromino = new RSkewShape(this->widthDefault, this->playerChar);
 			break;
-		case BombS:
-     		tetromino = new Bomb(this->widthDefault,this->playerChar);
-			break;
+		//case BombS:
+     		//tetromino = new Bomb(this->widthDefault,this->playerChar);
+		// 	break;
 		
 		default:
 			tetromino = new SquareShape(this->widthDefault, this->playerChar);
@@ -123,6 +123,8 @@ void Player::playerRotateCCW()
 			this->clearEmptyLines();
 			this->drawFromPlayerBoard();
 		}
+		//tetromino->setTargetFound(false);
+
 		delete[] tetromino;
 		tetrominoCreator();
 	}

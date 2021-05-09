@@ -13,6 +13,26 @@ SquareShape::SquareShape(int _width, char _ch)
 	initTetromino();
 }
 
+
+//setting location in bottom right.	
+void SquareShape::initTemporary(int _rotation)
+{
+	saveParts.resize(4);
+	    
+	    //[10][16]
+	    saveParts[0].setX(middleWidth-3);
+		saveParts[0].setY(maxHeight - 3);
+		//[11][16]
+		saveParts[1].setX(middleWidth - 2);
+		saveParts[1].setY(maxHeight - 3);
+		//[10][17]
+		saveParts[2].setX(middleWidth - 3);
+		saveParts[2].setY(maxHeight - 2);
+		//[11][17]
+		saveParts[3].setX(middleWidth - 2);
+		saveParts[3].setY(maxHeight - 2);
+}
+
 //drawing the square
 void SquareShape::drawTetromino() {
 	for (int i = 0; i < SIZE; i++) {

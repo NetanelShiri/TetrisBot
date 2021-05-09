@@ -17,19 +17,13 @@
 #include "Bomb.h"
 using std::vector;
 
-//player board
-constexpr size_t minHeight = 0;
-constexpr size_t maxHeight = 19;
-constexpr size_t minWidth = 0;
-constexpr size_t maxWidth = 26;
-constexpr size_t middleWidth = 13;
-constexpr size_t playerWidth = 6;
 
 class Player {
 
 	enum Tetromino { SquareS, LineS, TS, LS, JS, SkewS, RSkewS , BombS};
 
 	//default player settings
+protected:
 	Direction direction = Direction::Down;
 	char arrowKeys[5];
 	int playerNumber = 0;
@@ -51,6 +45,7 @@ class Player {
 
 public:
 	
+	virtual bool playerTurn() = 0;
 	bool playerMovement();
 	void playerDraw();
 	void playerRotateCW();

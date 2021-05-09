@@ -9,6 +9,7 @@ SkewShape::SkewShape(int _width, char _ch)
 {
 	playerWidth = _width;
 	playerChar = _ch;
+	rotations = 2;
 	initTetromino();
 }
 
@@ -18,6 +19,44 @@ void SkewShape::drawTetromino() {
 	for (int i = 0; i < SIZE; i++) {
 		body[i].draw(this->playerChar);
 	}
+}
+
+//setting location in bottom right.	
+void SkewShape::initTemporary(int _rotation)
+{
+	saveParts.resize(4);
+
+	if (_rotation == 1) {
+		//[9][16]
+		saveParts[0].setX(middleWidth - 4);
+		saveParts[0].setY(maxHeight - 3);
+		//[10][16]
+		saveParts[1].setX(middleWidth - 3);
+		saveParts[1].setY(maxHeight - 3);
+		//[10][17]
+		saveParts[2].setX(middleWidth - 3);
+		saveParts[2].setY(maxHeight - 2);
+		//[11][17]
+		saveParts[3].setX(middleWidth - 2);
+		saveParts[3].setY(maxHeight - 2);
+	}
+	else if (_rotation == 2)
+	{
+		//[11][15]
+		saveParts[0].setX(middleWidth - 2);
+		saveParts[0].setY(maxHeight - 4);
+		//[11][16]
+		saveParts[1].setX(middleWidth - 2);
+		saveParts[1].setY(maxHeight - 3);
+		//[10][16]
+		saveParts[2].setX(middleWidth - 3);
+		saveParts[2].setY(maxHeight - 3);
+		//[10][17]
+		saveParts[3].setX(middleWidth - 3);
+		saveParts[3].setY(maxHeight - 2);
+	}
+
+	
 }
 
 //initialize the square by player location
