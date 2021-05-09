@@ -31,7 +31,6 @@ bool Bot::playerTurn()
 		addTempToBoard();
 		sortBestScenarios();
 		
-		
 		if (vec[0].rotation > 1)
 		{
 			playerMovement();
@@ -135,42 +134,10 @@ void Bot::sortBestScenarios()
 		}
 	}
 
-	//make vector that contains the minimum holes
-	/*
-	while (true)
-	{
-		for (int i = 0; i < vec.size(); i++)
-		{
-			if (vec[i].holes == _holes)
-			{
-				tempHoles.push_back(vec[i]);
-			}
-
-		}
-		if (tempHoles.size() != 0) { break; }
-		_holes++;
-	}
-
-	int _height = tempHoles[0].height;
-	int place = 0;
-	
-	
-	//now find lowest height out of the minimum holes vector
-	for (int i = 0; i < tempHoles.size(); i++)
-	{
-		if (tempHoles[i].height < _height)
-		{
-			_height = tempHoles[i].height;
-			place = i;
-		}
-		
-	}
-	*/
 	tempHoles.push_back(vec[place]);
 	vec.clear();
 
 	vec.push_back(tempHoles[0]);
-	
 
 	
 }
@@ -226,6 +193,7 @@ void Bot::findHeight()
 	int _absBumpiness = 0;
 	int temp1 = 0;
 	int temp2 = 0;
+	int* arr = new int[middleWidth - 1]{ 0 };
 	
 	for (int i = 0; i < middleWidth - 1 ; i++)
 	{
@@ -234,21 +202,19 @@ void Bot::findHeight()
 			if (playerBoard[i][j] == 1)
 			{
 				_height += maxHeight - j - 1;
-				_bumpiness = maxHeight - j - 1;
+				arr[i] = maxHeight - j - 1;
 				break;
 			}
 		}
-		if ((i+1) % 2 == 0) {
-			temp2 = _bumpiness;
-			_absBumpiness += abs(temp2 - temp1);
-		}
-		else {
-			temp1 = _bumpiness;
-		}
+	
+	}
+	for (int i = 0; i < middleWidth - 2; i++)
+	{
+		temp.bumpiness += abs(arr[i + 1] - arr[i]);
 	}
 	temp.height = _height;
-	temp.bumpiness = _absBumpiness;
-
+	delete[] arr;
+	
 }
 
 void Bot::addScenario(vector<Point> saveParts,int _rotation)
@@ -291,20 +257,14 @@ void Bot::pathToTarget(vector<Point> &saveParts)
 	    
 	}
 	
-
-
 	if (saveLowest1 < saveLowest2)	{
 		stackDirection = Direction::Left;
 		stack = saveLowest2 - saveLowest1;
-		//cout << stack;
 	}
 	else {
 		stackDirection = Direction::Right;
 		stack = saveLowest1 - saveLowest2;
-		//cout << stack;
 	}
-
-	
 
 }
 
@@ -339,38 +299,9 @@ void Bot::setTemporary(vector<Point>& saveParts, int counter)
 		x = saveParts[i].getX();
 		saveParts[i].setY(y - 1);
 		saveParts[i].setX(x + counter);
-	//	cout << "( " << saveParts[i].getX() << ',' << saveParts[i].getY() << ")";
 	}
 
 	
-}
-
-bool Bot::checkUpper(vector<Point>& saveParts, int playerBoard[12][18])
-{
-	vector<Point> temp = saveParts;
-	int y , counter = 0;
-
-
-	while (true)
-	{
-		counter++;
-		if (counter == maxHeight - 5) { return true; }
-		for (int i = 0; i < saveParts.size(); i++)
-		{
-			y = temp[i].getY();
-			temp[i].setY(y - 1);
-			if (y == minHeight)
-			{
-				return true;
-			}
-			if (playerBoard[temp[i].getX()][temp[i].getY()] == 1)
-			{
-				return false;
-			}
-		}
-
-	}
-
 }
 
 
