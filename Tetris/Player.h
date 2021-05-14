@@ -44,7 +44,12 @@ protected:
 	bool playerGameOver = false;
 
 public:
-	
+	Player() {};
+	virtual ~Player();//dtor
+	Player& operator=(const Player& other);//operator =
+	Player(const Player& a);//copy ctor
+
+
 	virtual bool playerTurn() = 0;
 	bool playerMovement();
 	void playerDraw();

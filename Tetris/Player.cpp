@@ -297,3 +297,42 @@ void Player::playerRotateCCW()
 	}
 
 	
+
+	Player:: ~Player()
+	{
+	
+		delete tetromino;
+	}
+
+	Player& Player::operator=(const Player& other)
+	{
+		if (this != &other) {
+			direction = other.direction;
+
+			for(int i=0;i<5;i++)
+			arrowKeys[i] = other.arrowKeys[i];
+		
+			for (int i = 0; i < 18; ++i) {
+				for (int j = 0; j < 12; ++i)
+					playerBoard[j][i] = other.playerBoard[j][i];
+			}
+			playerNumber =other.playerNumber;
+			widthDefault = other.widthDefault;
+			distancing = other.distancing;
+			playerChar = other.playerChar;
+			score = other.score;
+			tetromino = other.tetromino;
+
+			shapeNumber = other.shapeNumber;
+			trueWidthToArr = other.trueWidthToArr;
+			playerGameOver = other.playerGameOver;
+		}
+		return *this;
+
+	}
+
+	Player:: Player(const Player& other)
+	{
+		*this = other;
+	//	this->tetrominoCreator();
+	}

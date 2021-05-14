@@ -27,6 +27,35 @@ class Bot : public Player
 
 
 public:
+	Bot()=default;
+
+	Bot& operator=(const Bot& other){
+		Player::operator=(other);
+
+
+		for (int i = 0; i < vec.size(); i++) {
+			vec[i].height = other.vec[i].height;
+			vec[i].holes = other.vec[i].holes;
+			vec[i].completeLines = other.vec[i].completeLines;
+			vec[i].bumpiness = other.vec[i].bumpiness;
+
+			vec[i].rotation = other.vec[i].rotation;
+
+			vec[i].finalValue = other.vec[i].finalValue;
+			
+			for (int j = 0; j < vec[i].savePts.size(); j++) {
+				vec[i].savePts[j] = other.vec[i].savePts[j];
+			}
+
+		}
+
+		counter = other.counter;
+		stack = other.stack;
+		stackDirection = other.stackDirection;
+		     
+
+	};//operator =
+	Bot(const Bot& a):Player(a) {};
 
 	//algorithm calculations
 	void findHoles();
@@ -35,7 +64,6 @@ public:
 
 	int checkTemporary(vector<Point>& saveParts, int playerBoard[12][18]);
 	void setTemporary(vector<Point>& saveParts, int counter);
-	bool checkUpper(vector<Point>& saveParts, int playerBoard[12][18]);
 	void pathToTarget(vector<Point> &saveParts);
 	void addScenario(vector<Point> saveParts, int _rotation);
 	void addTempToBoard();
