@@ -3,7 +3,7 @@
 
 void Bot::decideDirection()
 {
-	int k = randomizer(0.0, 4.0);
+	int k = randomizer(0.0, 2.0);
 
 	switch (k)
 	{
@@ -11,40 +11,68 @@ void Bot::decideDirection()
 		direction = Direction::Left;
 		break;
 	case 1:
+		direction = Direction::Right;
+		break;
+	default:
 		direction = Direction::Left;
+	}
+}
+
+bool Bot::randomError()
+{
+	int margin = 0;
+	switch (level)
+	{
+	case NOVICE:
+		margin = randomizer(0.0, 10.0);
+		cout << margin;
+		if (margin == 1)
+		{
+			stack = randomizer(0.0, 5.0);
+			return true;
+		}
+		break;		
+	case GOOD:
+		margin = randomizer(0.0, 40.0);
+		if (margin == 10) 
+		{ 
+			stack = randomizer(0.0, 5.0);
+			return true;
+		}
 		break;
-	case 2:
-		direction = Direction::Right;
-		break;
-	case 3:
-		direction = Direction::Right;
+	case BEST:
 		break;
 	}
+	return false;
 }
 
 bool Bot::playerTurn()
 {
 	if (!tetromino->getTargetFound())
 	{
-		
-		vec.clear();
-		addTempToBoard();
-		sortBestScenarios();
-		
-		if (vec[0].rotation > 1)
-		{
-			playerMovement();
-			playerMovement();
-	
-			for (int i = 0; i < vec[0].rotation - 1; i++)
-			{
-				direction = Direction::RotateC;
-				playerMovement();
-			}
+		if (randomError()) {
+			tetromino->setTargetFound(true);
 		}
+		else {
+			vec.clear();
+			addTempToBoard();
+			sortBestScenarios();
 
-		pathToTarget(vec[0].savePts);
-		tetromino->setTargetFound(true);
+			if (vec[0].rotation > 1)
+			{
+				playerMovement();
+				playerMovement();
+
+				for (int i = 0; i < vec[0].rotation - 1; i++)
+				{
+					direction = Direction::RotateC;
+					playerMovement();
+				}
+			}
+
+			pathToTarget(vec[0].savePts);
+			tetromino->setTargetFound(true);
+		}
 	}
 
 	int random = randomizer(2.0, 4.0);
@@ -71,7 +99,7 @@ void Bot::addTempToBoard()
 	for (int i = 0; i < tetromino->getRotationSize(); i++)
 	{
 		tetromino->initTemporary(i+1);
-		while (counter != 14)
+		while (counter != 16)
 		{
 			legal = checkTemporary(temp, playerBoard);
 			if (legal == -1)

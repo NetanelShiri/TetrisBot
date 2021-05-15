@@ -9,7 +9,9 @@ constexpr double d = -0.184483;
 
 
 class Bot : public Player
-{   
+{
+	enum { NOVICE, GOOD , BEST };
+
 	struct scenarios{
 		int height = 0;				// aggerated height
 		int holes = 0;				// holes defined as if an empty space is blocked from above
@@ -22,6 +24,8 @@ class Bot : public Player
 
 	int counter = 0;
 	int stack = 1;
+
+	int level = NOVICE;
 	Direction stackDirection = Direction::Down;
 	vector<scenarios> vec; 
 
@@ -68,6 +72,7 @@ public:
 	void addScenario(vector<Point> saveParts, int _rotation);
 	void addTempToBoard();
 	void sortBestScenarios();
+	bool randomError();
 
 	virtual bool playerTurn();
 	void decideDirection();
