@@ -48,6 +48,7 @@ bool Bot::randomError()
 
 bool Bot::playerTurn()
 {
+
 	if (!tetromino->getTargetFound())
 	{
 		if (randomError()) {
@@ -157,8 +158,11 @@ void Bot::sortBestScenarios()
 		vec[i].finalValue = (vec[i].height * a) + (vec[i].completeLines * b) + (vec[i].holes * c) + (vec[i].bumpiness * d);
 		if (vec[i].finalValue > result)
 		{
-			result = vec[i].finalValue;
-			place = i;
+			if (checkUpper(vec[i].savePts, playerBoard))
+			{
+				result = vec[i].finalValue;
+				place = i;
+			}
 		}
 	}
 
@@ -330,6 +334,34 @@ void Bot::setTemporary(vector<Point>& saveParts, int counter)
 	}
 
 	
+}
+
+bool Bot::checkUpper(vector<Point>& saveParts, int playerBoard[12][18])
+{
+	vector<Point> temp = saveParts;
+	int y, counter = 0;
+
+
+	while (true)
+	{
+		counter++;
+		if (counter == maxHeight - 5) { return true; }
+		for (int i = 0; i < saveParts.size(); i++)
+		{
+			y = temp[i].getY();
+			temp[i].setY(y - 1);
+			if (y == minHeight)
+			{
+				return true;
+			}
+			if (playerBoard[temp[i].getX()][temp[i].getY()] == 1)
+			{
+				return false;
+			}
+		}
+
+	}
+
 }
 
 

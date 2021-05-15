@@ -77,6 +77,8 @@ public:
 	virtual bool playerTurn();
 	void decideDirection();
 	void initiateMovement();
+	bool checkUpper(vector<Point>& saveParts, int playerBoard[12][18]);
+	
 
 
 };
