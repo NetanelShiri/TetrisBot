@@ -11,15 +11,27 @@ void Tetris::init()
 	system("cls");
 	_flushall();
 
-	if (mode != 0) { consoleColor(); }
-	//creating board
-	Boardinit();
-	player[0] = new Bot();
-	player[1] = new Bot();
+	switch (type)
+	{
+	case HvH:
+		player[0] = new Human();
+		player[1] = new Human();
+		break;
+	case HvC:
+		player[0] = new Human();
+		player[1] = new Bot();
+		break;
+	case CvC:
+		player[0] = new Bot();
+		player[1] = new Bot();
+		break;
+	default:
+		player[0] = new Human();
+		player[1] = new Human();
+	}
+
 	
 	//player settings (char, player start width , distancing , player Number , game keys)
-	//player[0]->playerInit('#', playerWidth +(middleWidth*0),(middleWidth*0) , 1, "adxsw");
-	//player[1]->playerInit('@', playerWidth+(middleWidth*1), (middleWidth*1), 2 , "jlmki");
     player[0]->playerInit('#', playerWidth +(middleWidth*0),(middleWidth*0) , 1, "adxsw");
 	player[1]->playerInit('@', playerWidth+(middleWidth*1), (middleWidth*1), 2 , "jlmki");
 }
@@ -64,6 +76,7 @@ void Tetris::run()
 
 		auto start = high_resolution_clock::now();
 		long long dur = 0;
+	
 		while(dur < gameSpeed)
 		{
 			checkPlayerKBHIT(key, players);
@@ -182,6 +195,48 @@ void Tetris::instructions()
 	
 }
 
+bool Tetris::botMenu()
+{
+	clearKeyboardBuffer();
+	char key;
+	int numberKey;
+
+	system("cls");
+	cout << "Pick Level:  (Press Number) " << endl;
+	cout << "(1) Novice" << endl;
+	cout << "(2) Good" << endl;
+	cout << "(3) Best" << endl;
+
+	cout << "(0) Return to main menu " << endl;
+	do {
+		key = _getch();
+		while (_kbhit())
+		{
+			Sleep(200);
+		}
+	} while ((key != '1') && (key != '2') && (key != '3') && (key != '0'));
+
+	numberKey = key - '0';
+	switch (key)
+	{
+	case '1':
+	case '2':
+	case '3':
+		if (type == HvC) { dynamic_cast<Bot*>(player[1])->setLevel(numberKey); }
+		else if (type == CvC) {
+			dynamic_cast<Bot*>(player[0])->setLevel(numberKey);
+			dynamic_cast<Bot*>(player[1])->setLevel(numberKey);
+		}
+		break;
+	case '0':
+		return false;
+		break;
+	default:
+		break;
+	}
+	return true;
+}
+
 //introducing the game modes and speed , player picks one.
 bool Tetris::modeMenu()
 {
@@ -201,6 +256,7 @@ bool Tetris::modeMenu()
 	
 
 	cout << "(0) Return to main menu " << endl;
+
 	do {
 		key = _getch();
 		while (_kbhit())
@@ -215,10 +271,11 @@ bool Tetris::modeMenu()
 			cout << gameSpeedPhrase << level << ' ' << gameSpeedLevel;
 		}
 	} while ((key != '1') && (key != '2') && (key != '3') && (key != '0'));
-
+	
+	system("cls");
 	switch (key)
 	{
-	case 1:
+	case '1':
 		mode = 0;
 		break;
 	case '2':
@@ -237,51 +294,66 @@ bool Tetris::modeMenu()
 }
 	
 //main menu 
-bool Tetris::mainMenu(int restarted)
+bool Tetris::mainMenu(int restarted , char &key)
 {
+	bool modeLevel = true;
 	mode = 0;
 	hideCursor();
 	while (true) {
 		
 		    
 			clearKeyboardBuffer();
-			char key;
-			 
-			if (!paused) { system("cls"); }
-			else { printPause(); }
-		if (!restarted) {
-			cout << "Main Menu:  (Press Number) " << endl;
-			cout << "(1) Start a new game" << endl;
-			if (paused) { cout << "(2) Continue a paused game" << endl; }
-			cout << "(8) Instructions" << endl;
-			cout << "(9) Exit game" << endl;
+			system("cls");
+			if (!restarted)
+			{
+				if (!paused) { system("cls"); }
+				else { printPause(); }
+				cout << "Main Menu:  (Press Number) " << endl;
+				cout << "(1) Start a new game - Human vs Human" << endl;
+				cout << "(2) Start a new game - Human vs Computer" << endl;
+				cout << "(3) Start a new game - Computer vs Computer" << endl;
+				if (paused) { cout << "(4) Continue a paused game" << endl; }
+				cout << "(8) Instructions" << endl;
+				cout << "(9) Exit game" << endl;
 
-			do {
-				key = _getch();
-				while (_kbhit())
-				{
-					Sleep(200);
-				}
-				if (paused && key == '2') { pause(); run(); break; }
-			} while ((key != '1') && (key != '8') && (key != '9'));
+				do {
+					key = _getch();
+					while (_kbhit())
+					{
+						Sleep(200);
+					}
+					if (paused && key == '4') { pause(); run(); break; }
+				} while ((key != '1') && (key != '8') && (key != '9') && (key != '2') && (key != '3'));
+			}
+			else { restarted = 0; }
+		
+			
 
-
-		}
-		else { restarted = 0; key = '1'; }
 		switch (key)
 		{
 		case '1':
+			if (key == '1') { type = HvH; }
+		case '2':
+			if (key == '2') { type = HvC; }
+		case '3':
+			if (key == '3') { type = CvC; }
 			if (paused) { return false; }
-			if (modeMenu()) {
-				init();
-				run();
+			init();
+			
+			if (key != '1') { modeLevel = botMenu(); }
+			if (modeLevel) {
+				if (modeMenu()) {
+					if (mode != 0) { consoleColor(); }
+					Boardinit();
+					run();
+				}
 			}
 			break;
 		case '8':
 			instructions();
 			break;
 		case '9':
-			exit(0);
+			return true;
 			break;
 
 		}

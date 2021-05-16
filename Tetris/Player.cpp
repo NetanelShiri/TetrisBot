@@ -71,8 +71,8 @@ void Player::playerRotateCCW()
 	{
 		
 		int randomNumber = randomizer(0.0 ,7.0);
-		int bombChance = randomizer(0.0, 20.0);
-		if (bombChance == 10) { randomNumber = BombS; }
+		int bombChance = randomizer(0.0, 8.0);
+		if (bombChance == 7) { randomNumber = BombS; }
 
 		switch (randomNumber)
 		{

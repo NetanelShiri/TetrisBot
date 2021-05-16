@@ -14,11 +14,11 @@ int main()
 {
 	Tetris* game;
 	int restarted = 0;
-
+	char key = ' ';
 	while (true)
 	{
 		game = new Tetris();
-		if (game->mainMenu(restarted)) { delete game; break; }
+		if (game->mainMenu(restarted , key)) { delete game; break; }
 		if (game->getGameState()) { restarted = 0; }
 		else { restarted = 1; }
 		delete game;

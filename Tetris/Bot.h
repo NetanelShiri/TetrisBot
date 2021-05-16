@@ -10,7 +10,7 @@ constexpr double d = -0.184483;
 
 class Bot : public Player
 {
-	enum { NOVICE, GOOD , BEST };
+	enum BotLevel { NOVICE = 1, GOOD, BEST };
 
 	struct scenarios{
 		int height = 0;				// aggerated height
@@ -24,8 +24,8 @@ class Bot : public Player
 
 	int counter = 0;
 	int stack = 1;
-
 	int level = NOVICE;
+	
 	Direction stackDirection = Direction::Down;
 	vector<scenarios> vec; 
 
@@ -73,7 +73,8 @@ public:
 	void addTempToBoard();
 	void sortBestScenarios();
 	bool randomError();
-
+	void setLevel(int _level) { level = (BotLevel)_level; }
+	int  getLevel() { return (int)level; }
 	virtual bool playerTurn();
 	void decideDirection();
 	void initiateMovement();

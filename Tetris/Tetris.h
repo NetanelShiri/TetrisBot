@@ -11,6 +11,7 @@ using namespace std::chrono;
 class Tetris
 {
 	enum LEVEL { Easy , Normal , Hard , EXTREME};
+	enum TYPE { HvH , HvC , CvC};
 	enum { Player1,Player2, ESC = 27 };
 	Player* player[2];
 	int playersAmount = 2;
@@ -19,12 +20,14 @@ class Tetris
 	int level = 1;
 	int paused = 0;
 	int gameIsOver = 0;
+	TYPE type = HvH;
 
 		
 public:
 	
 	void init();
-	bool mainMenu(int restarted);
+	bool mainMenu(int restarted , char &key);
+	bool botMenu();
 	bool modeMenu();
 	void instructions();
 	void scoreBoard();

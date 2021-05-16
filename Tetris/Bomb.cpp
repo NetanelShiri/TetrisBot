@@ -45,7 +45,41 @@ int Bomb::suicide(int playerBoard[12][18], int distancing)
 		dirY++;
 		
 	}
+	fixBombedLine(playerBoard, distancing);
 	return bombed;
+}
+
+void Bomb::fixBombedLine(int playerBoard[12][18], int distancing)
+{
+	int fakeIteration = 0;
+	bool flag = false;
+	for (int i = minWidth; i < middleWidth - 1; i++)
+	{
+		for (int j = maxHeight-2; j >= 2; j--)
+		{
+		
+			if (playerBoard[i][j] == 1)
+			{
+				fakeIteration = (int)j;
+				while (true)
+				{
+					if ((fakeIteration+1) < maxHeight - 1)
+					{
+						if (playerBoard[i][fakeIteration + 1] == 0) {
+							playerBoard[i][fakeIteration] = 0;
+							playerBoard[i][fakeIteration + 1] = 1;
+							fakeIteration++;
+						}
+						else { break; }
+					}
+					else { break; }
+				}
+
+			}
+			flag = false;
+		}
+		
+	}
 }
 
 //drawing the square

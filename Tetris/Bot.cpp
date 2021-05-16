@@ -21,11 +21,12 @@ void Bot::decideDirection()
 bool Bot::randomError()
 {
 	int margin = 0;
+
 	switch (level)
 	{
 	case NOVICE:
 		margin = randomizer(0.0, 10.0);
-		cout << margin;
+//		cout << margin;
 		if (margin == 1)
 		{
 			stack = randomizer(0.0, 5.0);
@@ -41,6 +42,7 @@ bool Bot::randomError()
 		}
 		break;
 	case BEST:
+		return false;
 		break;
 	}
 	return false;
@@ -52,6 +54,7 @@ bool Bot::playerTurn()
 	if (!tetromino->getTargetFound())
 	{
 		if (randomError()) {
+			decideDirection();
 			tetromino->setTargetFound(true);
 		}
 		else {
@@ -158,11 +161,11 @@ void Bot::sortBestScenarios()
 		vec[i].finalValue = (vec[i].height * a) + (vec[i].completeLines * b) + (vec[i].holes * c) + (vec[i].bumpiness * d);
 		if (vec[i].finalValue > result)
 		{
-			if (checkUpper(vec[i].savePts, playerBoard))
-			{
+			//if (checkUpper(vec[i].savePts, playerBoard))
+			
 				result = vec[i].finalValue;
 				place = i;
-			}
+			
 		}
 	}
 
