@@ -5,9 +5,12 @@
 #include <thread>
 #include "Bot.h"
 #include "Tetrominos.h"
+#include "Menu.h"
+
 using namespace std::literals;
 using namespace std::chrono;
 
+class Menu;
 class Tetris
 {
 	enum LEVEL { Easy , Normal , Hard , EXTREME};
@@ -21,22 +24,24 @@ class Tetris
 	int paused = 0;
 	int gameIsOver = 0;
 	TYPE type = HvH;
-
+	Menu* menu = new Menu();
 		
 public:
 	
+	Tetris() {};
+	~Tetris();
+	
 	void init();
 	bool mainMenu(int restarted , char &key);
-	bool botMenu();
-	bool modeMenu();
-	void instructions();
-	void scoreBoard();
 	void run();
 	void pause();
-	void gameOver(int Loser);
 	void checkPlayerKBHIT(char& key, vector<Player*> players);
+	void gameOver(int Loser);
 	int getGameState() { return gameIsOver; }
+	int getPlayersAmount() { return playersAmount; }
+	int getLevel() { return level; }
 	string setGameSpeed();
+	Player** getPlayers() { return player; }
+	TYPE getType() { return type; }
 	
-
 };

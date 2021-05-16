@@ -76,18 +76,6 @@ void LineShape::initTetromino() {
 	body[3].setY(1);
 }
 
-//deleting upper points and relocating the points , and then drawing the deleted points in their new locations
-void LineShape::moveTetromino(Direction direction) {
-
-	clearBody();
-
-	body[0].move(direction);
-	body[1].move(direction);
-	body[2].move(direction);
-	body[3].move(direction);
-
-	this->drawTetromino();
-}
 
 void LineShape::RotateCW(int playerBoard[12][18],int distancing)////////
 {

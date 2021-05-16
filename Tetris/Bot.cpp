@@ -198,7 +198,7 @@ void Bot::sortBestScenarios()
 		if (typeid(*tetromino) != typeid(Bomb))
 		{
 			vec[i].finalValue = (vec[i].height * a) + (vec[i].completeLines * b) + (vec[i].holes * c) + (vec[i].bumpiness * d);
-			if (vec[i].finalValue > result)
+			if (vec[i].finalValue > result && (checkUpper(vec[i].savePts,playerBoard)))
 			{
 				result = vec[i].finalValue;
 				place = i;
@@ -213,7 +213,7 @@ void Bot::sortBestScenarios()
 			}
 		}
 	}
-	cout << vec[place].optimalBomb;
+
 	tempHoles.push_back(vec[place]);
 	
 	vec.clear();

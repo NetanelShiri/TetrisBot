@@ -148,6 +148,7 @@
     <ClCompile Include="LineShape.cpp" />
     <ClCompile Include="LShape.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="RSkewShape.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="JShape.h" />
     <ClInclude Include="LineShape.h" />
     <ClInclude Include="LShape.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="RSkewShape.h" />

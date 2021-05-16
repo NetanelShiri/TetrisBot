@@ -323,7 +323,9 @@ void Player::playerRotateCCW()
 			distancing = other.distancing;
 			playerChar = other.playerChar;
 			score = other.score;
-			tetromino = other.tetromino;
+			
+			tetromino = new SquareShape(this->widthDefault, this->playerChar);
+
 
 			shapeNumber = other.shapeNumber;
 			trueWidthToArr = other.trueWidthToArr;
@@ -336,5 +338,4 @@ void Player::playerRotateCCW()
 	Player:: Player(const Player& other)
 	{
 		*this = other;
-	//	this->tetrominoCreator();
 	}

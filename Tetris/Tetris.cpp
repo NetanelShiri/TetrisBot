@@ -1,9 +1,5 @@
-#include<iostream>
-#include <windows.h>
-#include <process.h>
-#include <conio.h>
-#include "Board.h"
 #include "Tetris.h"
+#include "Menu.h"
 
 //initilize the game
 void Tetris::init()
@@ -65,7 +61,7 @@ void Tetris::run()
 			if (players[i]->playerTurn())
 			{
 				players[i]->checkFullLines();
-			}
+				}
 			if (gameIsOver = players[i]->getPlayerState())
 			{
 				playerLost = players[i]->getPlayerNumber();
@@ -92,6 +88,11 @@ void Tetris::run()
 	} while (!gameIsOver);
 
 	gameOver(playerLost);
+}
+
+Tetris::~Tetris()
+{
+	delete[] menu;
 }
 
 //un-pausing the game(continue after pausing)
@@ -143,7 +144,7 @@ void Tetris::gameOver(int Loser)
 	cout << endl;
 	cout << "Player " << Loser << " lost!" << endl;
 
-	scoreBoard();
+	menu->scoreBoard(*this);
 	clearKeyboardBuffer();
 	cout << "Press any key to return to main-menu.";
 	while (!_kbhit())
@@ -153,145 +154,12 @@ void Tetris::gameOver(int Loser)
 	mode = 0;
 }
 
-//calculate the players scores
-void Tetris::scoreBoard()
-{
-	vector<pair<int, int>> scores;
-	int i = 0;
-
-	cout << endl << "~~~~~~Scoreboard~~~~~" << endl;
-	for (int i = 0; i < playersAmount; i++)
-	{
-		scores.push_back(make_pair(player[i]->getScore(),player[i]->getPlayerNumber()));
-	}
-	sort(scores.rbegin(), scores.rend());
-
-	for (auto it : scores) {
-		cout << ++i << ".Player " << it.second << " score is : " << it.first<< endl;
-	}
-	cout << endl;
-}
 
 //printing the game's instructions
-void Tetris::instructions()
-{
-	clearKeyboardBuffer();
-	system("cls");
-	cout << "          Player 1 keys            Player 2 keys" << endl;
-	cout << "Left         A or a                    j or J     " << endl;
-	cout << "Right        D or d                    l or L     " << endl;
-	cout << "Rotate       S or s                    k or K     " << endl;
-	cout << "cRotate      W or w                    i or I     " << endl;
-	cout << "Accelerate   X or x                    m or M     " << endl << endl;
 
-	cout << "Press any key to return";
-	
-	while (!_kbhit())
-	{
-		Sleep(200);
-	}
-	system("cls");
-	return;
-	
-}
-
-bool Tetris::botMenu()
-{
-	clearKeyboardBuffer();
-	char key;
-	int numberKey;
-
-	system("cls");
-	cout << "Pick Level:  (Press Number) " << endl;
-	cout << "(1) Novice" << endl;
-	cout << "(2) Good" << endl;
-	cout << "(3) Best" << endl;
-
-	cout << "(0) Return to main menu " << endl;
-	do {
-		key = _getch();
-		while (_kbhit())
-		{
-			Sleep(200);
-		}
-	} while ((key != '1') && (key != '2') && (key != '3') && (key != '0'));
-
-	numberKey = key - '0';
-	switch (key)
-	{
-	case '1':
-	case '2':
-	case '3':
-		if (type == HvC) { dynamic_cast<Bot*>(player[1])->setLevel(numberKey); }
-		else if (type == CvC) {
-			dynamic_cast<Bot*>(player[0])->setLevel(numberKey);
-			dynamic_cast<Bot*>(player[1])->setLevel(numberKey);
-		}
-		break;
-	case '0':
-		return false;
-		break;
-	default:
-		break;
-	}
-	return true;
-}
 
 //introducing the game modes and speed , player picks one.
-bool Tetris::modeMenu()
-{
-	clearKeyboardBuffer();
-	char key;
-	string gameSpeedPhrase = "(4) Set game speed : ";
-	string gameSpeedLevel = setGameSpeed();
 
-	system("cls");
-	cout << "Pick Mode:  (Press Number) " << endl;
-	cout << "(1) Normal Mode" << endl;
-	cout << "(2) Rainbow Mode" << endl;
-	cout << "(3) Epilepsy Mode | WARNING: This mode contains flashing lights which\n "
-		"	          | May not be suitable for photosensitive epilepsy." << endl << endl;
-	
-	cout << gameSpeedPhrase << level << ' ' << gameSpeedLevel << endl << endl;
-	
-
-	cout << "(0) Return to main menu " << endl;
-
-	do {
-		key = _getch();
-		while (_kbhit())
-		{
-			Sleep(200);
-		}
-		if (key == '4') {
-			gotoxy(0, 6);
-			for (int i = 0; i < gameSpeedPhrase.length() + gameSpeedLevel.length() + 5; i++) { cout << ' '; }
-			gameSpeedLevel = setGameSpeed();
-			gotoxy(0, 6);
-			cout << gameSpeedPhrase << level << ' ' << gameSpeedLevel;
-		}
-	} while ((key != '1') && (key != '2') && (key != '3') && (key != '0'));
-	
-	system("cls");
-	switch (key)
-	{
-	case '1':
-		mode = 0;
-		break;
-	case '2':
-		mode = 1;
-		break;
-	case '3':
-		mode = 2;
-		break;
-	case '0':
-		return false;
-		break;
-	default:
-		break;
-	}
-	return true;
-}
 	
 //main menu 
 bool Tetris::mainMenu(int restarted , char &key)
@@ -340,9 +208,9 @@ bool Tetris::mainMenu(int restarted , char &key)
 			if (paused) { return false; }
 			init();
 			
-			if (key != '1') { modeLevel = botMenu(); }
+			if (key != '1') { modeLevel = menu->botMenu(*this); }
 			if (modeLevel) {
-				if (modeMenu()) {
+				if (menu->modeMenu(*this)) {
 					if (mode != 0) { consoleColor(); }
 					Boardinit();
 					run();
@@ -350,7 +218,7 @@ bool Tetris::mainMenu(int restarted , char &key)
 			}
 			break;
 		case '8':
-			instructions();
+			menu->instructions();
 			break;
 		case '9':
 			return true;
@@ -364,7 +232,7 @@ bool Tetris::mainMenu(int restarted , char &key)
 	
 //set the game's speed
 string Tetris::setGameSpeed()
-{
+{	
 	
 	if (level == 4) { level = 0; }
 	switch (++level)

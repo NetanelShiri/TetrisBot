@@ -29,7 +29,7 @@ public:
 
 	enum Tetromino { SquareS, LineS, TS, LS, JS, SkewS, RSkewS , BombS};
 
-	virtual void moveTetromino(Direction direction) = 0; //moving shape by direction
+	virtual void moveTetromino(Direction direction); //moving shape by direction
 	virtual void initTetromino() = 0; //initiallize shape by player starting location
 	virtual void drawTetromino() = 0; //drawing the Point* body[4] of the shape
 	virtual void RotateCW(int playerBoard[12][18],int distancing) = 0; //rotating Clock-wise

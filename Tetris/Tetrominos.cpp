@@ -40,6 +40,18 @@ bool Tetrominos::checkLegal(vector<Point> &saveParts, int playerBoard[12][18], i
 	return true;
 }
 
+void Tetrominos::moveTetromino(Direction direction) {
+
+	clearBody();
+
+	body[0].move(direction);
+	body[1].move(direction);
+	body[2].move(direction);
+	body[3].move(direction);
+
+	this->drawTetromino();
+}
+
 bool Tetrominos::checkInBorders(vector<Point>& saveParts, int distancing)
 {
 	int x, y;
