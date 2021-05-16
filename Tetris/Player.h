@@ -62,12 +62,12 @@ public:
 	void replaceTetromino();
 	
 	//getters
-	char getPlayerChar() { return  playerChar; }
-	int getPlayerNumber() { return playerNumber; }
-	int getWidthDefault() { return widthDefault; }
-	int getScore() { return score; }
+	const char getPlayerChar() { return  playerChar; }
+	const int getPlayerNumber() { return playerNumber; }
+	const int getWidthDefault() { return widthDefault; }
+	const int getScore() { return score; }
 	Tetrominos* getTetromino() { return tetromino; }
-	bool getPlayerState() { return playerGameOver; }
+	const bool getPlayerState() { return playerGameOver; }
 	Direction getDirection(char key);
 
 	//calculations

@@ -41,15 +41,15 @@ public:
 	bool checkInBorders(vector<Point>& saveParts, int distancing);
 
 	void setTargetFound(bool state) { targetFound = state; }
-	bool getTargetFound() { return targetFound; }
+	const bool getTargetFound() { return targetFound; }
 
 	void clearBody(); //clear body
 	void rainbowBody(); //coloring body
 	
 	Point* getPoints() { return body; }
 	vector<Point> &getSaveParts() { return saveParts; } //used in rotating functions
-	int getTetrinomSize() { return int(SIZE); }
-	int getRotationSize() { return rotations; }
+	const int getTetrinomSize() { return int(SIZE); }
+	const int getRotationSize() { return rotations; }
 
 
 

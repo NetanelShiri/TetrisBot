@@ -37,9 +37,9 @@ public:
 	void pause();
 	void checkPlayerKBHIT(char& key, vector<Player*> players);
 	void gameOver(int Loser);
-	int getGameState() { return gameIsOver; }
-	int getPlayersAmount() { return playersAmount; }
-	int getLevel() { return level; }
+	const int getGameState() { return gameIsOver; }
+	const int getPlayersAmount() { return playersAmount; }
+	const int getLevel() { return level; }
 	string setGameSpeed();
 	Player** getPlayers() { return player; }
 	TYPE getType() { return type; }

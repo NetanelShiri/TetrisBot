@@ -23,10 +23,10 @@ public:
 	void setX(int X) { x = X; }
 	void setY(int Y) { y = Y; }
 	
-	int getX() { return x; }
-	int getY() { return y; }
+	const int getX() { return x; }
+	const int getY() { return y; }
 
-	int getColor() { colorNum; }
+	const int getColor() { colorNum; }
 	void setColor(int _colorNum) { colorNum = _colorNum; }
 
 };
