@@ -26,7 +26,7 @@ bool Bot::randomError()
 	{
 	case NOVICE:
 		margin = randomizer(0.0, 10.0);
-//		cout << margin;
+
 		if (margin == 1)
 		{
 			stack = randomizer(0.0, 5.0);
@@ -61,7 +61,7 @@ bool Bot::playerTurn()
 			vec.clear();
 			addTempToBoard();
 			sortBestScenarios();
-
+		
 			if (vec[0].rotation > 1)
 			{
 				playerMovement();
@@ -128,6 +128,7 @@ void Bot::addTempToBoard()
 				findHoles();
 				findHeight();
 				findCompletedLines();
+				if (typeid(*tetromino) == typeid(Bomb)) { optimalBombing(); }
 
 				for (int i = 0; i < temp.size(); i++)
 				{
@@ -149,6 +150,40 @@ void Bot::addTempToBoard()
 
 }
 
+void Bot::optimalBombing()
+{
+
+	int bombed = 0;
+	scenarios &tempVec = vec.back();
+	vector<Point> temp = tempVec.savePts;
+	//furthest corner
+	
+	temp[0].setX(temp[0].getX() - 4);
+	temp[0].setY(temp[0].getY() - 4);
+
+	if (checkUpper(temp, playerBoard))
+	{
+		for (int i = 0; i < 9; i++)
+		{
+
+			for (int j = 0; j < 9; j++)
+			{
+
+				if (checkTemporary(temp,playerBoard) == 0)
+				{
+					bombed++;
+				}
+				temp[0].setX(temp[0].getX() + 1);
+			}
+			temp[0].setX(temp[0].getX() - 9);
+			temp[0].setY(temp[0].getY() + 1 );
+		}
+	
+		tempVec.optimalBomb = bombed;
+	}
+	else { tempVec.optimalBomb = 0; }
+}
+
 //sorting all vectors by height and holes
 void Bot::sortBestScenarios()
 {
@@ -156,20 +191,31 @@ void Bot::sortBestScenarios()
 	int _holes = 0;
 	int place = 0;
 	double result = INT_MIN;
+
+	
 	for (int i = 0; i < vec.size(); i++)
 	{
-		vec[i].finalValue = (vec[i].height * a) + (vec[i].completeLines * b) + (vec[i].holes * c) + (vec[i].bumpiness * d);
-		if (vec[i].finalValue > result)
+		if (typeid(*tetromino) != typeid(Bomb))
 		{
-			//if (checkUpper(vec[i].savePts, playerBoard))
-			
+			vec[i].finalValue = (vec[i].height * a) + (vec[i].completeLines * b) + (vec[i].holes * c) + (vec[i].bumpiness * d);
+			if (vec[i].finalValue > result)
+			{
 				result = vec[i].finalValue;
 				place = i;
-			
+			}
+		}
+		else
+		{
+			if (vec[i].optimalBomb > result)
+			{
+				result = vec[i].optimalBomb;
+				place = i;
+			}
 		}
 	}
-
+	cout << vec[place].optimalBomb;
 	tempHoles.push_back(vec[place]);
+	
 	vec.clear();
 
 	vec.push_back(tempHoles[0]);

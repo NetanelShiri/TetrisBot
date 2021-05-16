@@ -19,6 +19,7 @@ class Bot : public Player
 		int bumpiness = 0;          // absolute value between all two columns
 		int rotation = 0;           // which rotation is picked
 		double finalValue = 0;      // calculation of all above
+		int optimalBomb = 0;
 		vector<Point> savePts;
 	};
 
@@ -73,6 +74,7 @@ public:
 	void addTempToBoard();
 	void sortBestScenarios();
 	bool randomError();
+	void optimalBombing();
 	void setLevel(int _level) { level = (BotLevel)_level; }
 	int  getLevel() { return (int)level; }
 	virtual bool playerTurn();
