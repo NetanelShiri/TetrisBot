@@ -195,20 +195,20 @@ void Bot::sortBestScenarios()
 	
 	for (int i = 0; i < vec.size(); i++)
 	{
-		if (typeid(*tetromino) != typeid(Bomb))
+		if (typeid(*tetromino) == typeid(Bomb) && (level == BEST))
 		{
-			vec[i].finalValue = (vec[i].height * a) + (vec[i].completeLines * b) + (vec[i].holes * c) + (vec[i].bumpiness * d);
-			if (vec[i].finalValue > result && (checkUpper(vec[i].savePts,playerBoard)))
+			if (vec[i].optimalBomb > result)
 			{
-				result = vec[i].finalValue;
+				result = vec[i].optimalBomb;
 				place = i;
 			}
 		}
 		else
 		{
-			if (vec[i].optimalBomb > result)
+			vec[i].finalValue = (vec[i].height * a) + (vec[i].completeLines * b) + (vec[i].holes * c) + (vec[i].bumpiness * d);
+			if (vec[i].finalValue > result && (checkUpper(vec[i].savePts, playerBoard)))
 			{
-				result = vec[i].optimalBomb;
+				result = vec[i].finalValue;
 				place = i;
 			}
 		}
